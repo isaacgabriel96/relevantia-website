@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="pt-BR" data-i18n-title="meta.title.contact">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contato | Relevantia</title>
+<meta name="description" content="Vamos conversar. Escolha o canal que preferir para iniciar uma conversa com a Relevantia.">
+<link rel="icon" type="image/png" href="./assets/logos/mark-1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500&family=Space+Grotesk:wght@500;600&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/relevantia.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="./index.html" class="brand"><img src="./assets/logos/mark-1.png" alt="" class="brand-mark"><span>Relevantia</span></a>
+    <nav class="nav-links">
+      <a href="./index.html#ecossistema" data-i18n="nav.ecosystem">Ecossistema</a>
+      <a href="./radar.html" data-i18n="nav.radar">Radar</a>
+      <a href="./intelligence.html" data-i18n="nav.intelligence">Intelligence</a>
+      <a href="./the-edge.html" data-i18n="nav.theedge">The Edge</a>
+      <a href="./shift.html" data-i18n="nav.shift">Shift</a>
+      <a href="./sobre.html" data-i18n="nav.about">Sobre</a>
+      <a href="./manifesto.html" data-i18n="nav.manifesto">Manifesto</a>
+    </nav>
+    <div class="row gap-2">
+      <div class="lang-select" data-open="false">
+        <button class="lang-select-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+          <span class="lang-current">PT</span>
+          <span class="lang-caret">▾</span>
+        </button>
+        <ul class="lang-menu" role="listbox">
+          <li><button type="button" data-lang="pt"><span>Português</span><span class="lang-code">PT</span></button></li>
+          <li><button type="button" data-lang="en"><span>English</span><span class="lang-code">EN</span></button></li>
+          <li><button type="button" data-lang="es"><span>Español</span><span class="lang-code">ES</span></button></li>
+          <li><button type="button" data-lang="zh"><span>中文</span><span class="lang-code">ZH</span></button></li>
+          <li><button type="button" data-lang="ar"><span>العربية</span><span class="lang-code">AR</span></button></li>
+        </ul>
+      </div>
+      <a href="./contato.html" class="nav-cta active" data-i18n="nav.cta">Vamos conversar</a>
+      <button class="menu-trigger" type="button" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:80px">
+  <div class="container container--narrow hero-inner text-center">
+    <span class="t-eyebrow reveal" style="color:var(--gold-light);justify-content:center" data-i18n="home.cta.eyebrow">Próximo passo</span>
+    <h1 class="reveal mt-2" data-i18n="contact.title">Vamos <em>conversar</em></h1>
+    <p class="lead reveal reveal-delay-1 mx-auto" style="margin-left:auto;margin-right:auto" data-i18n="contact.lead">Se chegou até aqui, faz sentido começarmos uma conversa. Escolha o canal que preferir.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      <a href="mailto:contato@relevantia.com" class="card sq-corner reveal" style="text-decoration:none;color:inherit">
+        <span class="kicker">E-mail</span>
+        <h3 class="mt-2">contato@relevantia.com</h3>
+        <p class="mt-2 muted">Para propostas, parcerias e conversas iniciais.</p>
+      </a>
+      <a href="https://www.linkedin.com/in/isaacaraujooficial" target="_blank" rel="noopener" class="card sq-corner reveal reveal-delay-1" style="text-decoration:none;color:inherit">
+        <span class="kicker">LinkedIn</span>
+        <h3 class="mt-2">@isaacaraujooficial</h3>
+        <p class="mt-2 muted">Acompanhe o trabalho, leituras e movimentos do ecossistema.</p>
+      </a>
+      <a href="https://www.instagram.com/isaacaraujooficial" target="_blank" rel="noopener" class="card sq-corner reveal reveal-delay-2" style="text-decoration:none;color:inherit">
+        <span class="kicker">Instagram</span>
+        <h3 class="mt-2">@isaacaraujooficial</h3>
+        <p class="mt-2 muted">Conteúdo, bastidores e reflexões em tempo real.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cream">
+  <div class="container container--narrow">
+    <div class="text-center mb-5">
+      <span class="t-eyebrow reveal">Formulário</span>
+      <h2 class="reveal mt-2">Conte sobre seu <em>contexto</em></h2>
+      <p class="lead mx-auto mt-3 reveal reveal-delay-1" style="margin-left:auto;margin-right:auto">Voltamos em até 48h úteis com a melhor frente do ecossistema para sua situação.</p>
+    </div>
+
+    <form class="form card reveal" data-form-redirect="./radar.html" data-form-origin="contato" data-form-delay="5000" style="padding:40px;max-width:640px;margin:0 auto" autocomplete="on">
+      <div data-form-fields>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="firstname" data-i18n="form.firstname">Nome</label>
+            <input class="form-input" id="firstname" name="firstname" type="text" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastname" data-i18n="form.lastname">Sobrenome</label>
+            <input class="form-input" id="lastname" name="lastname" type="text" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email" data-i18n="form.email">E-mail corporativo</label>
+          <input class="form-input" id="email" name="email" type="email" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="company" data-i18n="form.company">Empresa</label>
+            <input class="form-input" id="company" name="company" type="text" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="role" data-i18n="form.role">Cargo</label>
+            <input class="form-input" id="role" name="role" type="text">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="interest">Frente de interesse</label>
+          <select class="form-select" id="interest" name="interest">
+            <option value="">Selecione...</option>
+            <option value="theedge">The Edge — Consultoria contínua</option>
+            <option value="shift">Shift — Imersão presencial</option>
+            <option value="radar">Radar — Marketplace</option>
+            <option value="intelligence">Intelligence — Diagnóstico</option>
+            <option value="other">Conversar antes de decidir</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="context" data-i18n="form.context">Contexto da empresa hoje</label>
+          <textarea class="form-textarea" id="context" name="context" data-i18n-placeholder="form.context.placeholder" placeholder="O que está acontecendo, qual o desafio, o que vocês buscam..."></textarea>
+        </div>
+        <label class="row gap-2" style="font-size:14px;color:var(--gray-4);align-items:flex-start">
+          <input type="checkbox" name="consent" required style="margin-top:4px">
+          <span data-i18n="form.consent">Concordo em ser contatado pela equipe Relevantia.</span>
+        </label>
+        <button type="submit" class="btn btn-primary btn-arrow btn-lg" style="width:100%;justify-content:center">Enviar</button>
+      </div>
+
+      <div data-form-success hidden style="text-align:center;padding:24px 0">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--gold-gradient);display:inline-flex;align-items:center;justify-content:center;color:var(--white);font-size:28px;font-weight:700;margin-bottom:20px">✓</div>
+        <h3 data-i18n="form.success.title">Recebemos sua solicitação</h3>
+        <p class="muted mt-2" data-i18n="form.success.body">Você será redirecionado para o Radar em alguns segundos. Nossa equipe entrará em contato em até 48h úteis.</p>
+        <a href="./radar.html" class="btn btn-primary btn-arrow mt-4" data-i18n="form.success.cta">Acessar Radar agora</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="./index.html" class="brand mb-3" style="display:inline-flex"><img src="./assets/logos/mark-1.png" alt="" class="brand-mark"><span>Relevantia</span></a>
+        <p class="muted" style="max-width:36ch" data-i18n="footer.tagline">Ecossistema estratégico de marketing e negócios da próxima geração.</p>
+      </div>
+      <div><h4 data-i18n="footer.products">Produtos</h4><a href="./radar.html" data-i18n="nav.radar">Radar</a></div>
+      <div><h4 data-i18n="footer.services">Serviços</h4><a href="./the-edge.html" data-i18n="nav.theedge">The Edge</a><a href="./shift.html" data-i18n="nav.shift">Shift</a></div>
+      <div><h4 data-i18n="footer.tech">Tecnologia</h4><a href="./intelligence.html" data-i18n="nav.intelligence">Intelligence</a></div>
+      <div><h4 data-i18n="footer.company">Empresa</h4><a href="./sobre.html" data-i18n="nav.about">Sobre</a><a href="./manifesto.html" data-i18n="nav.manifesto">Manifesto</a><a href="./contato.html" data-i18n="nav.contact">Contato</a></div>
+    </div>
+    <div class="footer-bottom"><span data-i18n="footer.rights">© 2026 Relevantia. Todos os direitos reservados.</span><a href="#" data-i18n="footer.legal">Termos e privacidade</a></div>
+  </div>
+</footer>
+
+<script src="./assets/js/i18n.js"></script>
+<script src="./assets/js/main.js"></script>
+</body>
+</html>

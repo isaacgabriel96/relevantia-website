@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+.vercel
+.netlify
+*.log
+.env
+.env.local
+
+# Local backup do export Framer (não vai pro repo)
+_framer-mirror-backup/
