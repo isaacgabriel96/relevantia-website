@@ -920,3 +920,131 @@ em, .italic-special {
 .bg-cream { background: var(--gray-body); }
 
 [hidden] { display: none !important; }
+
+/* ═══════════════════════════════════════════════
+   MOBILE OPTIMIZATIONS
+   ═══════════════════════════════════════════════ */
+
+/* Tighter container padding on small screens */
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+  :root {
+    --section-pad: clamp(48px, 12vw, 80px);
+    --nav-h: 64px;
+  }
+}
+
+/* Typography scale-down */
+@media (max-width: 560px) {
+  h1, .h1 { font-size: clamp(34px, 9vw, 48px); line-height: 1.08; }
+  h2, .h2 { font-size: clamp(26px, 7vw, 36px); line-height: 1.15; }
+  h3, .h3 { font-size: clamp(20px, 5vw, 24px); }
+  .lead   { font-size: 16px; line-height: 1.55; }
+  .t-eyebrow { font-size: 10px; }
+  .stat-num { font-size: clamp(36px, 10vw, 48px); }
+}
+
+/* Topbar — keep CTA visible but compact, lang-select smaller */
+@media (max-width: 880px) {
+  .topbar-inner { gap: 12px; padding: 0 20px; }
+  .brand { font-size: 18px; gap: 8px; }
+  .brand-mark { width: 24px; height: 24px; }
+  .lang-select-btn { padding: 6px 10px; font-size: 11px; }
+  .nav-cta { padding: 8px 14px; font-size: 13px; }
+}
+@media (max-width: 560px) {
+  .nav-cta { display: none; }                 /* CTA texto some — fica só hambúrguer */
+  .menu-trigger { font-size: 22px; }
+  .topbar-inner { padding: 0 16px; gap: 10px; }
+}
+@media (max-width: 380px) {
+  .lang-select { font-size: 11px; }
+  .lang-current { display: none; }            /* só caret em telas muito pequenas */
+  .lang-select-btn { padding: 6px 8px; }
+}
+
+/* Hero tightening */
+@media (max-width: 720px) {
+  .hero { padding: 80px 0 56px; }
+  .hero h1 { max-width: 100%; }
+  .hero .lead { max-width: 100%; }
+  .hero-cta { gap: 10px; }
+  .hero-cta .btn { width: 100%; justify-content: center; }
+  .hero-cta .btn-lg { padding: 14px 22px; font-size: 15px; }
+}
+
+/* Buttons — generally smaller on mobile */
+@media (max-width: 560px) {
+  .btn-lg { padding: 14px 22px; font-size: 15px; }
+  .btn { padding: 12px 22px; font-size: 14px; }
+}
+
+/* Cards spacing & inner padding */
+@media (max-width: 560px) {
+  .card, .product-card { padding: 24px 22px; }
+  .product-card { min-height: auto; }
+  .form.card { padding: 24px !important; }
+  .form-input, .form-select, .form-textarea { padding: 12px 14px; font-size: 16px; }  /* 16px evita zoom no iOS */
+  .form-row { gap: 14px; }
+  .grid { gap: 16px; }
+}
+
+/* Intel band — stack vertically on small */
+@media (max-width: 760px) {
+  .intel-band { padding: 28px 22px; gap: 18px; }
+  .intel-band-title { font-size: 20px; }
+  .intel-band-desc { font-size: 14px; }
+  .intel-band-cta { padding: 10px 18px; font-size: 13px; }
+}
+
+/* Manifesto hero — menos padding, manifesto p mais legível */
+@media (max-width: 600px) {
+  section.hero[style*="padding-top:140px"] { padding-top: 96px !important; padding-bottom: 48px !important; }
+  section.hero[style*="padding-bottom:80px"] { padding-bottom: 56px !important; }
+}
+
+/* Sobre — Why now bullets ficam mais compactos */
+@media (max-width: 560px) {
+  .stack > div[style*="padding:24px 0"] { padding: 18px 0 !important; gap: 14px !important; }
+  .stack > div[style*="padding:24px 0"] p { font-size: 16px !important; line-height: 1.45 !important; }
+}
+
+/* Footer — labels ficam justos */
+@media (max-width: 600px) {
+  .footer { padding: 56px 0 32px; }
+  .footer h4 { font-size: 12px; margin-bottom: 12px; }
+  .footer a { font-size: 13px; padding: 5px 0; }
+  .footer-bottom { font-size: 12px; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .footer-grid { gap: 28px; }
+}
+
+/* FAQ — fonte menor, hit area maior */
+@media (max-width: 560px) {
+  .faq-q { font-size: 16px; padding: 20px 0; gap: 14px; }
+  .faq-a { font-size: 15px; }
+}
+
+/* Chips em mobile — espaçamento mais apertado */
+@media (max-width: 560px) {
+  .chip { padding: 5px 12px; font-size: 11px; }
+}
+
+/* Scroll horizontal nunca, aliás */
+html, body { overflow-x: hidden; max-width: 100vw; }
+
+/* Imagens responsivas garantidas */
+img { max-width: 100%; height: auto; }
+
+/* Mobile menu drawer — melhorias */
+@media (max-width: 880px) {
+  .nav-links.open {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-links.open a { font-size: 19px; padding: 12px 16px; }
+}
+
+/* Tap targets mínimos (44×44) */
+@media (max-width: 880px) {
+  .nav-links a, .lang-menu button, .faq-q { min-height: 44px; }
+}
