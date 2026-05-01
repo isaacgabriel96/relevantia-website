@@ -87,6 +87,10 @@
       const cur = sel.querySelector('.lang-current');
       if (cur) cur.textContent = (LANG_LABEL[lang] && LANG_LABEL[lang].code) || lang.toUpperCase();
     });
+    // mobile drawer pills UI state
+    document.querySelectorAll('.nav-lang-pills button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
   }
 
   /* ── mobile nav ── */
@@ -98,9 +102,9 @@
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
   }
 
-  /* ── lang toggle (legacy 2-button) ── */
+  /* ── lang toggle (legacy 2-button + mobile pills) ── */
   function initLangToggle() {
-    document.querySelectorAll('.lang-toggle button').forEach(btn => {
+    document.querySelectorAll('.lang-toggle button, .nav-lang-pills button').forEach(btn => {
       btn.addEventListener('click', () => applyLang(btn.dataset.lang));
     });
   }
