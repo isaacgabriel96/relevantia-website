@@ -102,6 +102,37 @@
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
   }
 
+  /* ── nav dropdowns (Soluções / Empresa) — desktop only ── */
+  function initNavGroups() {
+    const groups = document.querySelectorAll('.nav-group');
+    if (!groups.length) return;
+    const closeAll = (except) => groups.forEach(g => {
+      if (g === except) return;
+      g.setAttribute('data-open', 'false');
+      const b = g.querySelector('.nav-group-btn');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+    groups.forEach(group => {
+      const btn = group.querySelector('.nav-group-btn');
+      if (!btn) return;
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = group.getAttribute('data-open') === 'true';
+        closeAll(group);
+        group.setAttribute('data-open', isOpen ? 'false' : 'true');
+        btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      });
+      group.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(min-width: 881px)').matches) { closeAll(group); group.setAttribute('data-open', 'true'); }
+      });
+      group.addEventListener('mouseleave', () => {
+        if (window.matchMedia('(min-width: 881px)').matches) group.setAttribute('data-open', 'false');
+      });
+    });
+    document.addEventListener('click', () => closeAll(null));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(null); });
+  }
+
   /* ── lang toggle (legacy 2-button + mobile pills) ── */
   function initLangToggle() {
     document.querySelectorAll('.lang-toggle button, .nav-lang-pills button').forEach(btn => {
@@ -202,6 +233,7 @@
   function boot() {
     applyLang(detectLang());
     initNav();
+    initNavGroups();
     initLangToggle();
     initLangSelect();
     initReveal();

@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/radar", "destination": "https://radar-relevantia.com.br/", "permanent": false },
+    { "source": "/radar.html", "destination": "https://radar-relevantia.com.br/", "permanent": false },
+    { "source": "/intelligence", "destination": "https://radar-relevantia.com.br/", "permanent": false },
+    { "source": "/intelligence.html", "destination": "https://radar-relevantia.com.br/", "permanent": false }
+  ],
   "headers": [
     {
       "source": "/assets/css/(.*)",
