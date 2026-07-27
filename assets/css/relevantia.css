@@ -1106,6 +1106,15 @@ img { max-width: 100%; height: auto; }
   display: none;
   z-index: 120;
 }
+/* Ponte invisível sobre o vão entre o botão e o menu. Sem ela o ponteiro
+   sai do .nav-group ao atravessar os 10px, o mouseleave dispara e o menu
+   fecha antes de chegar nos links. */
+.nav-group-menu::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: -14px;
+  height: 14px;
+}
 .nav-group[data-open="true"] .nav-group-menu { display: block; }
 .nav-group-menu a {
   display: block;
@@ -1143,6 +1152,7 @@ img { max-width: 100%; height: auto; }
     position: static; display: block;
     min-width: 0; background: none; border: 0; box-shadow: none; padding: 0;
   }
+  .nav-group-menu::before { display: none; }   /* sem vão a atravessar no drawer */
   .nav-group-menu a { padding: 12px 16px; font-size: 19px; }
   .ngm-title { font-size: 19px; margin-bottom: 0; }
   .ngm-desc { display: none; }
