@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>OG — Relevantia</title>
+<!-- Fonte da imagem de compartilhamento (assets/og/relevantia-og.jpg).
+     Para gerar de novo: ver README, seção "Preview de compartilhamento". -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body { position: relative; background: radial-gradient(120% 80% at 50% 0%, #1A1406 0%, #0A0702 55%, #050300 100%); font-family: 'DM Sans', sans-serif; color: #fff; }
+  canvas { position: absolute; inset: 0; }
+  .brand { position: absolute; top: 44px; left: 56px; display: flex; align-items: center; gap: 12px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: -0.02em; }
+  .brand img { width: 34px; height: 34px; }
+  .url { position: absolute; top: 52px; right: 56px; font-size: 20px; color: rgba(255,255,255,0.55); }
+  .center { position: absolute; left: 0; right: 0; top: 232px; text-align: center; }
+  .hello { display: inline-flex; align-items: center; gap: 10px; padding: 9px 20px; border-radius: 100px; background: rgba(20,15,4,0.8); border: 1px solid rgba(232,201,106,0.35); font-size: 20px; color: rgba(255,255,255,0.9); }
+  .hello span { color: #E8C96A; }
+  h1 { margin-top: 22px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 74px; line-height: 1.04; letter-spacing: -0.035em; }
+  p { margin: 20px auto 0; max-width: 820px; font-size: 24px; line-height: 1.5; color: rgba(255,255,255,0.72); }
+</style>
+</head>
+<body>
+<canvas id="c" width="2400" height="1260" style="width:1200px;height:630px"></canvas>
+<div class="brand"><img src="../../assets/logos/mark-1.png" alt=""><span>Relevantia</span></div>
+<div class="url">relevantia.com.br</div>
+<div class="center">
+  <div class="hello">Olá, somos a Relevantia <span>→</span></div>
+  <h1>Fazemos audiências<br>virarem negócios.</h1>
+  <p>Ecossistema de marketing, negócios e tecnologia: Audiência S/A, Lab, Radar, Intelligence e The Edge.</p>
+</div>
+<script>
+// Mesma onda do hero (assets/js/prodline.js), parada num quadro.
+const cv = document.getElementById('c'), ctx = cv.getContext('2d');
+ctx.scale(2, 2);
+const W = 1200, H = 470;
+const waveY = x => {
+  const u = x / W;
+  const bump = Math.exp(-Math.pow((u - 0.5) / 0.34, 2));
+  return H * 0.62 - H * 0.44 * bump + H * Math.sin(u * Math.PI * 2) * 0.012;
+};
+const path = () => { ctx.beginPath(); for (let x = -20; x <= W + 20; x += 6) { const y = waveY(x); x === -20 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); } };
+const peakY = waveY(W / 2);
+const fog = ctx.createRadialGradient(W / 2, peakY + 50, 0, W / 2, peakY + 50, 720);
+fog.addColorStop(0, 'rgba(200,168,75,0.22)'); fog.addColorStop(0.5, 'rgba(184,134,11,0.07)'); fog.addColorStop(1, 'rgba(184,134,11,0)');
+ctx.fillStyle = fog; ctx.fillRect(0, 0, W, 630);
+ctx.save(); path(); ctx.lineTo(W + 20, 630); ctx.lineTo(-20, 630); ctx.closePath(); ctx.clip();
+const spill = ctx.createLinearGradient(0, peakY, 0, peakY + 300);
+spill.addColorStop(0, 'rgba(232,201,106,0.22)'); spill.addColorStop(0.35, 'rgba(184,134,11,0.08)'); spill.addColorStop(1, 'rgba(184,134,11,0)');
+ctx.fillStyle = spill; ctx.fillRect(0, 0, W, 630); ctx.restore();
+const fade = ctx.createLinearGradient(0, 0, W, 0);
+fade.addColorStop(0, 'rgba(232,201,106,0.15)'); fade.addColorStop(0.5, 'rgba(255,240,200,1)'); fade.addColorStop(1, 'rgba(232,201,106,0.15)');
+ctx.lineCap = 'round';
+[[34, 0.08, 0], [11, 0.25, 18], [2.4, 0.95, 0]].forEach(([w, a, b]) => {
+  ctx.globalAlpha = a; ctx.shadowColor = 'rgba(232,201,106,0.9)'; ctx.shadowBlur = b;
+  path(); ctx.lineWidth = w; ctx.strokeStyle = fade; ctx.stroke();
+});
+ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+// alguns pontos da audiência na linha
+for (let i = 0; i < 70; i++) {
+  const u = (i * 0.618) % 1, x = u * W, y = waveY(x) + ((i * 37) % 26) - 6;
+  const c = 1 - Math.min(1, Math.abs(u - 0.5) * 2);
+  ctx.globalAlpha = 0.2 + c * 0.6; ctx.fillStyle = '#F3DC95'; ctx.fillRect(x - 1, y - 1, 2, 2);
+}
+</script>
+</body>
+</html>
