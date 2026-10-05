@@ -32,13 +32,13 @@ PT é o texto do HTML; EN fica em `i18n-v5.js`. ES, ZH e AR caem no inglês. Ao 
 
 ## Preview de compartilhamento
 
-A imagem que aparece ao enviar o link (WhatsApp, LinkedIn etc.) é `assets/og/relevantia-og.jpg` (1200×630), gerada a partir de `tools/og/og.html`. Para refazer, com o servidor local rodando na porta 8765:
+A imagem que aparece ao enviar o link (WhatsApp, LinkedIn etc.) é `assets/og/relevantia-og-2026.jpg` (1200×630), gerada a partir de `tools/og/og.html`. Para refazer, com o servidor local rodando na porta 8765:
 
 ```bash
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=6000 --screenshot=/tmp/og.png http://localhost:8765/tools/og/og.html && sips -s format jpeg -s formatOptions 88 /tmp/og.png --out assets/og/relevantia-og.jpg
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=6000 --screenshot=/tmp/og.png http://localhost:8765/tools/og/og.html && sips -s format jpeg -s formatOptions 88 /tmp/og.png --out assets/og/relevantia-og-2026.jpg
 ```
 
-Ao trocar a imagem, suba o `?v=` das tags `og:image` e `twitter:image` no `index.html`, porque o WhatsApp guarda o preview em cache pela URL.
+Ao trocar a imagem, salve com um nome novo e atualize `og:image` e `twitter:image` no `index.html`: o WhatsApp guarda o preview em cache pela URL. Use nomes sem `?` na URL da imagem.
 
 ## Rodar localmente
 
