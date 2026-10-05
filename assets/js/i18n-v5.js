@@ -330,7 +330,7 @@
     'eco.ichat.s2': 'How do I diversify revenue?',
     'eco.ichat.s3': 'How do I engage my audience?',
     'eco.edge.title': 'The strategic direction for your company\'s new business',
-    'eco.edge.lead': 'New business is everyone\'s priority and no one\'s responsibility. The Edge puts Relevantia in that seat, continuously and with direct access to the people who decide. We are not an agency, and not just consultants: we work where there is real value to unlock.',
+    'eco.edge.lead': 'New business is everyone\'s priority and no one\'s responsibility. The Edge puts Relevantia in that seat, continuously and with direct access to the people who decide.',
     'eco.edge.dims': 'The Edge X-ray',
     'eco.edge.cta': 'Talk to us about The Edge',
     'eco.edge.p1.when': 'At the start', 'eco.edge.p1.title': 'The Edge Immersion',
