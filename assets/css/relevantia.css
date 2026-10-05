@@ -1143,3 +1143,49 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 .laudo-lock span { display: block; font-size: 12.5px; color: var(--gray-3); filter: blur(2.5px); user-select: none; }
 .laudo-lock small { display: block; margin-top: 6px; color: var(--gold-dark); }
 @media (max-width: 560px) { .laudo-steps { grid-template-columns: 1fr 1fr; } .laudo { padding: 20px; } }
+
+/* ═════════ MOBILE / TELAS SEM A SEÇÃO PRESA ═════════ */
+@media not all and (min-width: 961px) and (min-height: 620px) {
+  /* carrossel em cards, com a ponta do próximo aparecendo */
+  .eco-pin { padding: 48px 0 28px; }
+  .eco-head { gap: 14px; }
+  .eco-tabs { margin-left: 0; margin-right: calc(var(--gutter) * -1); padding-right: var(--gutter); }
+  .eco-track {
+    align-items: flex-start; gap: 12px;
+    padding: 20px var(--gutter) 4px; scroll-padding: 0 var(--gutter);
+  }
+  .eco-slide {
+    flex: 0 0 calc(100% - 28px); padding: 22px 20px 24px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .eco-slide > .container { padding: 0; }
+  .eco-grid { gap: 28px; }
+  .eco-slide h2 { font-size: clamp(24px, 6.4vw, 32px); margin-top: 10px; }
+  .eco-slide .lead { font-size: 15px; line-height: 1.6; }
+  .eco-slide .product-cta { margin-top: 20px; }
+  .eco-slide .product-cta .btn { flex: 1 1 100%; }
+  .eco .hero-radar { max-width: 250px; }
+  .eco .player { margin: 0; }
+  .intel { padding: 18px; }
+  .intel-score svg { width: 76px; height: 76px; }
+  .intel-bars { gap: 9px; margin-top: 18px; }
+  .intel-bar { grid-template-columns: 92px 1fr 28px; font-size: 12px; }
+  .laudo { margin: 0; padding: 18px; }
+  .eco-nav { display: none; }   /* no celular as abas já fazem esse papel */
+}
+@media (max-width: 560px) {
+  /* alvos de toque de pelo menos 40px */
+  .lang-select-btn { min-height: 40px; }
+  .hello { min-height: 40px; }
+  .link-arrow { min-height: 40px; }
+  .eco-tab { min-height: 40px; padding: 8px 14px; font-size: 13.5px; }
+  .hero-center { padding-top: calc(var(--nav-h) + 120px); }
+  .hero-center .hero-cta .btn { width: auto; }
+  .proof { padding-top: 26px; }
+  .marquee { padding: 18px 0; }
+  .form-card { padding: 22px 18px; border-radius: 20px; }
+  .opt span { padding: 9px 12px; font-size: 13.5px; min-height: 40px; }
+  .lead-contacts a { min-height: 48px; }
+}

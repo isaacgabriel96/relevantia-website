@@ -81,7 +81,8 @@
       if (r.top > window.innerHeight * 0.5 || r.bottom < window.innerHeight * 0.3) {
         window.scrollTo({ top: r.top + window.scrollY - 60, behavior });
       }
-      track.scrollTo({ left: slides[i].offsetLeft, behavior });
+      const padL = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+      track.scrollTo({ left: slides[i].offsetLeft - padL, behavior });
     }
   }
 
