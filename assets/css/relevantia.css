@@ -1334,3 +1334,12 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
   .ichat-input { min-height: 64px; }
   .edge-step:nth-child(3) { display: none; }
 }
+
+/* hero: conteúdo um pouco mais alto */
+.hero-center { padding-top: calc(var(--nav-h) + clamp(96px, 11vw, 170px)); }
+@media (max-width: 960px) {
+  .hero--arc { justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  .hero-center { padding-top: calc(var(--nav-h) + 76px); }
+}
