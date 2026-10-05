@@ -104,15 +104,26 @@
     }
   }
 
+  // Um único ciclo de animação por vez: pausar cancela o quadro agendado.
+  // (Antes, pausar e voltar no mesmo quadro deixava o ciclo antigo vivo;
+  // os ciclos se somavam e a onda acelerava com o tempo.)
+  let rafId = 0;
   function frame(t) {
-    if (!running) return;
-    const dt = Math.min(0.05, (t - last) / 1000 || 0.016);
+    const dt = Math.min(0.05, Math.max(0, (t - last) / 1000));
     last = t;
     step(dt); draw();
-    requestAnimationFrame(frame);
+    rafId = requestAnimationFrame(frame);
   }
-  function start() { if (running || reduce) return; running = true; last = performance.now(); requestAnimationFrame(frame); }
-  function stop() { running = false; }
+  function start() {
+    if (running || reduce) return;
+    running = true;
+    last = performance.now();
+    rafId = requestAnimationFrame(frame);
+  }
+  function stop() {
+    running = false;
+    cancelAnimationFrame(rafId);
+  }
 
   size(); draw();
   new ResizeObserver(() => { size(); if (!running) draw(); }).observe(wrap);
