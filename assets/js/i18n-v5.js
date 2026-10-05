@@ -285,6 +285,11 @@
     'eco.manifest.1': 'We believe the market confused visibility with relevance, speed with depth and volume with importance.',
     'eco.manifest.2': 'Communicating before understanding is the most expensive shortcut a brand can take.',
     'lead.f.intel': 'Intelligence (waitlist)',
+    'eco.prod.aria': 'Animation: the audience spirals into the Relevantia core and turns into growing business bars.',
+    'eco.radar.lead': 'For those who invest, those who raise and those who manage. Radar connects brands to personalities, events, music artists and media, with curation, data and a single flow from proposal to close.',
+    'eco.radar.cta.marca': 'I am a brand',
+    'eco.radar.cta.detentor': 'I am a rights holder',
+    'eco.chip1': 'Personality', 'eco.chip2': 'Event', 'eco.chip3': 'Music artist', 'eco.chip4': 'Media',
     'eco.rx.t1': 'Match calculated', 'eco.rx.t2': 'Proposal sent', 'eco.rx.t3': 'Negotiation', 'eco.rx.t4': 'Contract', 'eco.rx.t5': 'Activation and results',
     'lead.b3': 'A clear next step: Radar, The Edge, Intelligence, Audiência S/A or a combined path',
   });

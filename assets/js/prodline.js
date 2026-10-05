@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════
-   Linha de produção do hero: milhões de pessoas (audiência)
-   entram na esteira, passam pelas 3 estações do ecossistema
-   e saem como negócio (contratos) do outro lado.
+   Animação do hero: a audiência (centenas de pontos) gira em
+   espiral até o núcleo da Relevantia; cada lote absorvido vira
+   um bloco dourado que empilha nas barras de negócio embaixo.
    ═══════════════════════════════════════════════ */
 (function () {
   const wrap = document.querySelector('[data-prodline]');
@@ -10,16 +10,14 @@
   const ctx = cv.getContext('2d');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Posições em fração da largura (casam com os rótulos .prod-station no HTML)
-  const BELT_IN = 0.30, BELT_OUT = 0.80;
-  const STATIONS = [0.42, 0.555, 0.69];
-  const GOLD = '#C8A84B', GOLD_BRIGHT = '#E8C96A';
-
-  let W = 0, H = 0, beltY = 0, mobile = false;
-  let crowd = [], belt = [], deals = [], flashes = [0, 0, 0];
-  let dash = 0, running = false, last = 0, spawnAcc = 0, dealAcc = 0;
+  const BARS = 7;
+  const TARGET = [0.28, 0.38, 0.46, 0.58, 0.68, 0.84, 1];   // curva de crescimento
+  let W = 0, H = 0, cx = 0, cy = 0, R = 0, coreR = 0;
+  let people = [], blocks = [], bars = [], pulse = 0, absorbed = 0, barsFade = 1;
+  let running = false, last = 0;
 
   const rnd = (a, b) => a + Math.random() * (b - a);
+  const lerp = (a, b, t) => a + (b - a) * t;
 
   function size() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -27,104 +25,76 @@
     W = r.width; H = r.height;
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    mobile = W < 720;
-    beltY = H * 0.54;
-    const target = mobile ? 220 : 520;
-    while (crowd.length < target) crowd.push(newPerson(true));
-    crowd.length = target;
+    cx = W / 2; cy = H * 0.4;
+    R = Math.min(W * 0.5, H * 0.42);
+    coreR = Math.max(16, R * 0.11);
+    const n = W < 480 ? 360 : 640;
+    while (people.length < n) people.push(newPerson(true));
+    people.length = n;
+    if (!bars.length) resetBars();
   }
 
-  // Pessoa na multidão: anda à toa na nuvem da esquerda
-  const gauss = () => (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
   function newPerson(initial) {
     return {
-      x: (0.145 + gauss() * 0.12) * W, y: (0.63 + gauss() * 0.27) * H,
-      vx: rnd(-6, 6), vy: rnd(-6, 6),
-      r: rnd(1, 1.9), a: initial ? rnd(0.25, 0.85) : 0,
-      ta: rnd(0.25, 0.85),
+      a: rnd(0, Math.PI * 2),
+      r: initial ? rnd(0.18, 1.15) : rnd(0.95, 1.2),
+      decay: rnd(0.035, 0.09),       // velocidade com que cai para o centro
+      spin: rnd(0.18, 0.32),
+      s: rnd(0.8, 1.8),
+      alpha: initial ? 1 : 0,
     };
   }
 
-  // Tira uma pessoa da multidão e manda para a entrada da esteira
-  function recruit() {
-    const i = Math.floor(Math.random() * crowd.length);
-    const p = crowd[i];
-    crowd[i] = newPerson(false);
-    belt.push({ x: p.x, y: p.y, sx: p.x, sy: p.y, t: 0, phase: 'funnel', stage: 0, alpha: p.a, gone: false });
+  function resetBars() { bars = TARGET.map(() => 0); barsFade = 1; }
+
+  function barGeom(i) {
+    const bw = Math.min(28, W * 0.055), gap = bw * 0.55;
+    const total = BARS * bw + (BARS - 1) * gap;
+    const x = cx - total / 2 + i * (bw + gap);
+    const base = H * 0.95, maxH = H * 0.2;
+    return { x, bw, base, maxH };
+  }
+
+  function emit() {
+    // próxima barra que ainda não chegou na meta
+    const i = bars.findIndex((h, k) => h < TARGET[k] - 0.001);
+    if (i < 0) return;
+    const g = barGeom(i);
+    blocks.push({ i, x: cx, y: cy, tx: g.x + g.bw / 2, ty: g.base - bars[i] * g.maxH, t: 0 });
   }
 
   function step(dt) {
-    dash = (dash + dt * 40) % 20;
-    const speed = W * (mobile ? 0.11 : 0.085);
-
-    for (const p of crowd) {
-      p.vx += rnd(-12, 12) * dt; p.vy += rnd(-12, 12) * dt;
-      // puxão suave para o centro da nuvem
-      p.vx += (0.145 * W - p.x) * 0.02 * dt; p.vy += (0.63 * H - p.y) * 0.03 * dt;
-      p.vx *= 0.98; p.vy *= 0.98;
-      p.x += p.vx * dt; p.y += p.vy * dt;
-      p.a += (p.ta - p.a) * dt * 1.5;
-    }
-
-    spawnAcc += dt * (mobile ? 9 : 16);
-    while (spawnAcc >= 1) { recruit(); spawnAcc--; }
-
-    for (const b of belt) {
-      if (b.phase === 'funnel') {
-        b.t += dt * 1.1;
-        const k = Math.min(1, b.t), e = k * k * (3 - 2 * k);
-        const ex = BELT_IN * W, ey = beltY;
-        const cx = (b.sx + ex) / 2, cy = b.sy < beltY ? beltY - H * 0.05 : beltY + H * 0.05;
-        b.x = (1 - e) * (1 - e) * b.sx + 2 * (1 - e) * e * cx + e * e * ex;
-        b.y = (1 - e) * (1 - e) * b.sy + 2 * (1 - e) * e * cy + e * e * ey;
-        b.alpha += (0.95 - b.alpha) * dt * 3;
-        if (k >= 1) { b.phase = 'belt'; b.y = beltY + rnd(-3, 3); }
-        continue;
+    for (const p of people) {
+      // quanto mais perto do núcleo, mais rápido gira e mais rápido cai
+      const k = 1 / Math.max(0.12, p.r);
+      p.a += p.spin * k * dt * 0.6;
+      p.r -= p.decay * dt * (0.6 + k * 0.25);
+      p.alpha = Math.min(1, p.alpha + dt * 1.5);
+      if (p.r * R < coreR * 0.9) {
+        Object.assign(p, newPerson(false));
+        pulse = 1;
+        if (++absorbed % 9 === 0) emit();
       }
-      b.x += speed * dt;
-      // Cruzou uma estação: muda de forma e só parte segue adiante (filtro)
-      for (let s = 0; s < 3; s++) {
-        if (b.stage === s && b.x >= STATIONS[s] * W) {
-          b.stage = s + 1;
-          flashes[s] = 1;
-          if (s === 1 && Math.random() < 0.55) b.dying = true;
-          if (s === 2) {
-            dealAcc += 1;
-            if (dealAcc >= (mobile ? 2 : 3)) { dealAcc = 0; b.card = true; } else b.dying = true;
-          }
-        }
+    }
+    for (const b of blocks) {
+      b.t += dt / 0.9;
+      if (b.t >= 1 && !b.done) {
+        b.done = true;
+        bars[b.i] = Math.min(TARGET[b.i], bars[b.i] + 0.07);
       }
-      if (b.dying) { b.alpha -= dt * 3.2; if (b.alpha <= 0) b.gone = true; }
-      if (b.x > BELT_OUT * W) { if (b.card) spawnDeal(b.x, b.y); b.gone = true; }
     }
-    belt = belt.filter(b => !b.gone);
+    blocks = blocks.filter(b => !b.done);
+    pulse = Math.max(0, pulse - dt * 2.5);
 
-    for (const d of deals) {
-      d.t += dt;
-      const k = Math.min(1, d.t / 0.9), e = 1 - Math.pow(1 - k, 3);
-      d.x = d.sx + (d.tx - d.sx) * e;
-      d.y = d.sy + (d.ty - d.sy) * e - Math.sin(k * Math.PI) * H * 0.12;
-      d.a = d.old ? d.a - dt * 2 : Math.min(1, d.a + dt * 4);
+    // gráfico completo: segura um instante, apaga e recomeça
+    if (bars.every((h, k) => h >= TARGET[k] - 0.001)) {
+      barsFade -= dt * 0.35;
+      if (barsFade <= 0) resetBars();
     }
-    deals = deals.filter(d => !d.old || d.a > 0);
-    for (let s = 0; s < 3; s++) flashes[s] = Math.max(0, flashes[s] - dt * 2.2);
-  }
-
-  // Negócio fechado: um card dourado voa para a pilha da direita
-  let dealCount = 0;
-  function spawnDeal(x, y) {
-    const cols = mobile ? 2 : 3, rows = mobile ? 6 : 6;
-    const cw = mobile ? 22 : 34, ch = mobile ? 14 : 20, gap = mobile ? 5 : 7;
-    // empilha de baixo para cima; com a pilha cheia, recomeça trocando os mais antigos
-    const slot = dealCount++ % (cols * rows);
-    const col = slot % cols, row = Math.floor(slot / cols);
-    const x0 = W * 0.97 - cols * (cw + gap) + gap;
-    const ty = H * 0.9 - (row + 1) * (ch + gap);
-    deals.forEach(d => { if (d.slot === slot) d.old = true; });
-    deals.push({ slot, sx: x, sy: y, x, y, tx: x0 + col * (cw + gap), ty, w: cw, h: ch, t: 0, a: 0 });
   }
 
   function roundRect(x, y, w, h, r) {
+    r = Math.min(r, h / 2, w / 2);
     ctx.beginPath();
     ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r);
     ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r);
@@ -134,76 +104,70 @@
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
-    // multidão
-    for (const p of crowd) {
-      ctx.globalAlpha = p.a;
-      ctx.fillStyle = '#F5F0E8';
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-
-    // esteira
-    const bx0 = BELT_IN * W, bx1 = BELT_OUT * W;
-    const grad = ctx.createLinearGradient(bx0, 0, bx1, 0);
-    grad.addColorStop(0, 'rgba(184,134,11,0.10)');
-    grad.addColorStop(1, 'rgba(232,201,106,0.35)');
-    ctx.fillStyle = grad;
-    roundRect(bx0, beltY - 9, bx1 - bx0, 18, 9); ctx.fill();
-    ctx.save();
-    ctx.strokeStyle = 'rgba(232,201,106,0.35)';
-    ctx.setLineDash([6, 14]); ctx.lineDashOffset = -dash; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(bx0 + 8, beltY); ctx.lineTo(bx1 - 8, beltY); ctx.stroke();
-    ctx.restore();
-
-    // estações (portais)
-    const gh = mobile ? 70 : 92, gw = mobile ? 26 : 34;
-    STATIONS.forEach((s, i) => {
-      const x = s * W, f = flashes[i];
-      if (f > 0) {
-        const g = ctx.createRadialGradient(x, beltY, 0, x, beltY, gh);
-        g.addColorStop(0, `rgba(232,201,106,${0.28 * f})`); g.addColorStop(1, 'rgba(232,201,106,0)');
-        ctx.fillStyle = g; ctx.fillRect(x - gh, beltY - gh, gh * 2, gh * 2);
-      }
-      ctx.fillStyle = 'rgba(20,15,4,0.85)';
-      roundRect(x - gw / 2, beltY - gh / 2, gw, gh, 10); ctx.fill();
-      ctx.strokeStyle = `rgba(200,168,75,${0.45 + 0.5 * f})`; ctx.lineWidth = 1.4;
-      roundRect(x - gw / 2, beltY - gh / 2, gw, gh, 10); ctx.stroke();
-      ctx.fillStyle = `rgba(232,201,106,${0.5 + 0.5 * f})`;
-      ctx.fillRect(x - 5, beltY - gh / 2 + 9, 10, 2);
+    // anéis guia
+    ctx.lineWidth = 1;
+    [0.35, 0.65, 0.95].forEach((f, i) => {
+      ctx.strokeStyle = `rgba(200,168,75,${0.06 + i * 0.02})`;
+      ctx.beginPath(); ctx.arc(cx, cy, R * f, 0, Math.PI * 2); ctx.stroke();
     });
 
-    // itens na esteira: ponto → ponto dourado → quadrado → (some ao virar negócio)
-    for (const b of belt) {
-      ctx.globalAlpha = Math.max(0, Math.min(1, b.alpha));
-      if (b.stage === 0) {
-        ctx.fillStyle = '#F5F0E8';
-        ctx.beginPath(); ctx.arc(b.x, b.y, 1.8, 0, Math.PI * 2); ctx.fill();
-      } else if (b.stage === 1) {
-        ctx.fillStyle = GOLD;
-        ctx.beginPath(); ctx.arc(b.x, b.y, 2.6, 0, Math.PI * 2); ctx.fill();
-      } else if (b.stage === 2 || !b.card) {
-        ctx.fillStyle = GOLD_BRIGHT;
-        ctx.fillRect(b.x - 3.5, b.y - 3.5, 7, 7);
-      } else {
-        const g = ctx.createLinearGradient(b.x - 9, b.y - 6, b.x + 9, b.y + 6);
-        g.addColorStop(0, '#B8860B'); g.addColorStop(1, '#E8C96A');
-        ctx.fillStyle = g; roundRect(b.x - 9, b.y - 6, 18, 12, 3); ctx.fill();
+    // audiência: branco longe, dourado perto do núcleo
+    for (const p of people) {
+      const t = Math.max(0, Math.min(1, 1 - (p.r - 0.12) / 0.8));
+      const x = cx + Math.cos(p.a) * p.r * R;
+      const y = cy + Math.sin(p.a) * p.r * R * 0.92;
+      const c0 = [245, 240, 232], c1 = [232, 201, 106];
+      ctx.fillStyle = `rgb(${lerp(c0[0], c1[0], t) | 0},${lerp(c0[1], c1[1], t) | 0},${lerp(c0[2], c1[2], t) | 0})`;
+      ctx.globalAlpha = p.alpha * (p.r > 1 ? Math.max(0, 1.2 - p.r) * 5 : lerp(0.35, 0.95, t));
+      const s = p.s * lerp(1, 1.4, t);
+      ctx.fillRect(x - s / 2, y - s / 2, s, s);
+    }
+    ctx.globalAlpha = 1;
+
+    // núcleo: brilho + os três quadrados da marca
+    const glowR = coreR * (2.6 + pulse * 0.8);
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR);
+    g.addColorStop(0, `rgba(232,201,106,${0.45 + pulse * 0.25})`);
+    g.addColorStop(1, 'rgba(232,201,106,0)');
+    ctx.fillStyle = g; ctx.fillRect(cx - glowR, cy - glowR, glowR * 2, glowR * 2);
+    ctx.fillStyle = '#0E0A02';
+    roundRect(cx - coreR, cy - coreR, coreR * 2, coreR * 2, coreR * 0.45); ctx.fill();
+    ctx.strokeStyle = 'rgba(232,201,106,0.6)'; ctx.lineWidth = 1.2;
+    roundRect(cx - coreR, cy - coreR, coreR * 2, coreR * 2, coreR * 0.45); ctx.stroke();
+    const q = coreR * 0.42;
+    const grad = ctx.createLinearGradient(cx - q, cy - q, cx + q, cy + q);
+    grad.addColorStop(0, '#B8860B'); grad.addColorStop(1, '#E8C96A');
+    ctx.fillStyle = grad;
+    ctx.fillRect(cx - q * 1.05, cy + q * 0.05, q, q);
+    ctx.fillRect(cx + q * 0.05, cy + q * 0.05, q, q);
+    ctx.fillRect(cx + q * 0.05, cy - q * 1.05, q, q);
+
+    // barras de negócio
+    ctx.globalAlpha = Math.max(0, barsFade);
+    for (let i = 0; i < BARS; i++) {
+      const b = barGeom(i);
+      ctx.fillStyle = 'rgba(255,255,255,0.05)';
+      roundRect(b.x, b.base - b.maxH * TARGET[i], b.bw, b.maxH * TARGET[i], 4); ctx.fill();
+      const h = bars[i] * b.maxH;
+      if (h > 0.5) {
+        const gb = ctx.createLinearGradient(0, b.base - h, 0, b.base);
+        gb.addColorStop(0, '#E8C96A'); gb.addColorStop(1, '#8B6508');
+        ctx.fillStyle = gb;
+        roundRect(b.x, b.base - h, b.bw, h, 4); ctx.fill();
       }
     }
     ctx.globalAlpha = 1;
 
-    // negócios
-    for (const d of deals) {
-      ctx.globalAlpha = Math.max(0, d.a);
-      const g = ctx.createLinearGradient(d.x, d.y, d.x + d.w, d.y + d.h);
-      g.addColorStop(0, '#B8860B'); g.addColorStop(1, '#E8C96A');
-      ctx.fillStyle = g;
-      roundRect(d.x, d.y, d.w, d.h, 4); ctx.fill();
-      ctx.fillStyle = 'rgba(10,8,0,0.55)';
-      ctx.fillRect(d.x + 5, d.y + d.h * 0.35, d.w * 0.5, 2);
-      ctx.fillRect(d.x + 5, d.y + d.h * 0.6, d.w * 0.32, 2);
+    // blocos voando do núcleo para as barras
+    for (const b of blocks) {
+      const e = b.t * b.t * (3 - 2 * b.t);
+      const x = lerp(b.x, b.tx, e), y = lerp(b.y, b.ty, e) - Math.sin(b.t * Math.PI) * H * 0.04;
+      const s = 7;
+      ctx.fillStyle = '#E8C96A';
+      ctx.shadowColor = 'rgba(232,201,106,0.8)'; ctx.shadowBlur = 10;
+      ctx.fillRect(x - s / 2, y - s / 2, s, s);
+      ctx.shadowBlur = 0;
     }
-    ctx.globalAlpha = 1;
   }
 
   function frame(t) {
@@ -213,21 +177,18 @@
     step(dt); draw();
     requestAnimationFrame(frame);
   }
-
   function start() { if (running || reduce) return; running = true; last = performance.now(); requestAnimationFrame(frame); }
   function stop() { running = false; }
 
   size();
-  if (reduce) {
-    // Sem movimento: simula alguns segundos e desenha um quadro parado
-    for (let i = 0; i < 900; i++) step(0.02);
-    draw();
-  } else {
-    for (let i = 0; i < 700; i++) step(0.02);
-  }
+  // começa com o gráfico pela metade, como se já estivesse rodando
+  for (let i = 0; i < 260; i++) step(0.03);
+  draw();
+
   new ResizeObserver(() => { size(); if (!running) draw(); }).observe(wrap);
+  let visible = true;
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(es => es.forEach(e => (e.isIntersecting ? start() : stop()))).observe(wrap);
+    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; visible ? start() : stop(); })).observe(wrap);
   } else start();
-  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+  document.addEventListener('visibilitychange', () => (document.hidden ? stop() : visible && start()));
 })();
