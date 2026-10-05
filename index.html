@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;600&family=Inter:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/relevantia.css?v=v7-2">
+<link rel="stylesheet" href="./assets/css/relevantia.css?v=v8-2">
 </head>
 <body>
 
@@ -30,6 +30,7 @@
       <a href="#intelligence">Intelligence</a>
       <a href="#the-edge">The Edge</a>
       <a href="#audiencia">Audiência S/A</a>
+      <a href="#lab">Lab</a>
       <div class="nav-mobile-extras">
         <a href="#contato" class="nav-mobile-cta" data-i18n="nav2.cta">Quero conhecer</a>
       </div>
@@ -56,28 +57,57 @@
 <main id="topo">
 
 <!-- ═════════ HERO ═════════ -->
-<section class="hero">
-  <div class="grid-bg"></div>
-  <div class="glow g1"></div>
-  <div class="glow g2"></div>
-  <div class="container hero-inner">
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <span class="t-eyebrow" data-i18n="eco.hero.eyebrow">Marketing · Negócios · Tecnologia</span>
-        <h1 class="lines" aria-label="Fazemos audiências virarem negócios." data-i18n-attr="aria-label" data-i18n="eco.hero.title.aria">
-          <span class="line" aria-hidden="true"><span style="--d:0" data-i18n="eco.hero.title.l1">Fazemos audiências</span></span>
-          <span class="line" aria-hidden="true"><span style="--d:1" data-i18n="eco.hero.title.l2">virarem negócios.</span></span>
-        </h1>
-        <p class="lead reveal reveal-delay-1" data-i18n="eco.hero.lead">A Relevantia é um ecossistema de marketing, negócios e tecnologia. Formamos quem tem audiência, estruturamos a estratégia de quem decide e operamos patrocínios e parcerias de ponta a ponta no Radar.</p>
-        <div class="hero-cta reveal reveal-delay-2">
-          <a href="#contato" class="btn btn-primary btn-lg"><span data-i18n="eco.hero.cta1">Quero conhecer</span><span class="arrow" aria-hidden="true">→</span></a>
-          <a href="#radar" class="btn btn-ghost btn-lg" data-i18n="eco.hero.cta2">Ver o ecossistema</a>
-        </div>
-      </div>
-      <div class="hero-anim" data-prodline role="img" aria-label="Animação: a audiência gira em espiral até o núcleo da Relevantia e vira barras de negócio que crescem." data-i18n-attr="aria-label" data-i18n="eco.prod.aria">
-        <canvas></canvas>
-        <span class="hero-anim-tag hero-anim-tag--in" data-i18n="eco.prod.in">Audiência</span>
-        <span class="hero-anim-tag hero-anim-tag--out" data-i18n="eco.prod.out">Negócio</span>
+<section class="hero hero--arc">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ig" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4D2"/><stop offset=".45" stop-color="#E8C96A"/><stop offset="1" stop-color="#8B6508"/></linearGradient></defs></svg>
+  <div class="arc" data-prodline aria-hidden="true">
+    <div class="arc-glow"></div>
+    <canvas></canvas>
+  </div>
+  <div class="container hero-center">
+    <a href="#ecossistema" class="hello reveal"><span data-i18n="eco.hello">Olá, somos a Relevantia</span><span aria-hidden="true">→</span></a>
+    <h1 class="lines" aria-label="Fazemos audiências virarem negócios." data-i18n-attr="aria-label" data-i18n="eco.hero.title.aria">
+      <span class="line" aria-hidden="true"><span style="--d:0" data-i18n="eco.hero.title.l1">Fazemos audiências</span></span>
+      <span class="line" aria-hidden="true"><span style="--d:1" data-i18n="eco.hero.title.l2">virarem negócios.</span></span>
+    </h1>
+    <p class="lead reveal reveal-delay-1" data-i18n="eco.hero.lead">A Relevantia é um ecossistema de marketing, negócios e tecnologia. Formamos quem tem audiência, estruturamos a estratégia de quem decide e operamos patrocínios e parcerias de ponta a ponta no Radar.</p>
+    <div class="hero-cta reveal reveal-delay-2">
+      <a href="#contato" class="btn btn-primary btn-lg"><span data-i18n="eco.hero.cta1">Quero conhecer</span><span class="arrow" aria-hidden="true">→</span></a>
+      <a href="#ecossistema" class="btn btn-ghost btn-lg" data-i18n="eco.hero.cta2">Ver o ecossistema</a>
+    </div>
+
+    <div class="hcards-wrap reveal reveal-delay-2">
+      <p class="hcards-title" data-i18n="eco.cards.title">Explore o ecossistema</p>
+      <div class="hcards">
+        <a class="hcard" href="#radar">
+          <span class="hcard-art"><svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="22" stroke="url(#ig)" stroke-width="2.4"/><circle cx="32" cy="32" r="14" stroke="url(#ig)" stroke-width="2" opacity=".7"/><circle cx="32" cy="32" r="6" stroke="url(#ig)" stroke-width="2" opacity=".5"/><path d="M32 32 L48 16" stroke="url(#ig)" stroke-width="2.6" stroke-linecap="round"/><circle cx="43" cy="24" r="2.6" fill="#E8C96A"/><circle cx="22" cy="38" r="2.2" fill="#E8C96A" opacity=".8"/></svg></span>
+          <b>Radar</b>
+          <small data-i18n="eco.card.radar">Sistema operacional de patrocínios e parcerias.</small>
+          <span class="hcard-go"><span data-i18n="eco.card.cta.radar">Conhecer</span> ↗</span>
+        </a>
+        <a class="hcard" href="#intelligence">
+          <span class="hcard-art"><svg viewBox="0 0 64 64" fill="none"><path d="M32 10 L51 21 V43 L32 54 L13 43 V21 Z" stroke="url(#ig)" stroke-width="2.4" stroke-linejoin="round"/><path d="M32 18 L44 25 V39 L32 46 L20 39 V25 Z" stroke="url(#ig)" stroke-width="1.8" opacity=".55"/><path d="M32 32 L44 25 M32 32 V46 M32 32 L20 25" stroke="url(#ig)" stroke-width="1.8" stroke-linecap="round"/><circle cx="32" cy="32" r="3" fill="#E8C96A"/></svg></span>
+          <b>Intelligence</b>
+          <small data-i18n="eco.card.intel">O Raio X da sua empresa em seis dimensões.</small>
+          <span class="hcard-go"><span data-i18n="eco.card.cta.soon">Em breve</span> ↗</span>
+        </a>
+        <a class="hcard" href="#the-edge">
+          <span class="hcard-art"><svg viewBox="0 0 64 64" fill="none"><path d="M12 48 L26 32 L36 40 L52 18" stroke="url(#ig)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 18 H52 V28" stroke="url(#ig)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 54 H52" stroke="url(#ig)" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg></span>
+          <b>The Edge</b>
+          <small data-i18n="eco.card.edge">Consultoria estratégica ao lado de quem decide.</small>
+          <span class="hcard-go"><span data-i18n="eco.card.cta.edge">Conhecer</span> ↗</span>
+        </a>
+        <a class="hcard" href="#audiencia">
+          <span class="hcard-art"><svg viewBox="0 0 64 64" fill="none"><rect x="10" y="16" width="44" height="32" rx="8" stroke="url(#ig)" stroke-width="2.4"/><path d="M28 25 V39 L40 32 Z" fill="url(#ig)"/><circle cx="48" cy="12" r="4" fill="#FF5E4D"/></svg></span>
+          <b>Audiência S/A</b>
+          <small data-i18n="eco.card.live">A live semanal sobre transformar atenção em negócio.</small>
+          <span class="hcard-go"><span data-i18n="eco.card.cta.live">Assistir</span> ↗</span>
+        </a>
+        <a class="hcard" href="#lab">
+          <span class="hcard-art"><svg viewBox="0 0 64 64" fill="none"><path d="M25 10 H39 M27 10 V26 L14 48 A5 5 0 0 0 18.5 55 H45.5 A5 5 0 0 0 50 48 L37 26 V10" stroke="url(#ig)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M19 42 H45" stroke="url(#ig)" stroke-width="2" opacity=".6"/><circle cx="28" cy="47" r="2.4" fill="#E8C96A"/><circle cx="36" cy="44" r="1.8" fill="#E8C96A" opacity=".7"/></svg></span>
+          <b>Lab</b>
+          <small data-i18n="eco.card.lab">A porta de entrada gratuita do ecossistema.</small>
+          <span class="hcard-go"><span data-i18n="eco.card.cta.lab">Entrar</span> ↗</span>
+        </a>
       </div>
     </div>
   </div>
@@ -94,203 +124,250 @@
   </div>
 </section>
 
-<!-- ═════════ RADAR ═════════ -->
-<section class="section section--white" id="radar">
-  <div class="container">
-    <div class="product">
-      <div>
-        <div class="radar-logo reveal" aria-label="Radar Relevantia">
-          <span class="radar-logo-mount" data-width="60" data-height="60"></span>
-          <img src="./assets/logos/radar-wordmark-dark.png" alt="Radar Relevantia" width="1200" height="500">
-        </div>
-        <h2 class="reveal" style="margin-top:22px" data-i18n="eco.radar.title">O sistema operacional dos patrocínios e parcerias</h2>
-        <p class="lead reveal reveal-delay-1" data-i18n="eco.radar.lead">Para quem investe, para quem capta e para quem gere. O Radar conecta marcas a personalidades, eventos, artistas musicais e mídia, com curadoria, dados e um fluxo único da proposta ao fechamento.</p>
-        <div class="product-cta reveal reveal-delay-2">
-          <a href="https://radar-relevantia.com.br/cadastro-marca.html" class="btn btn-primary"><span data-i18n="eco.radar.cta.marca">Sou uma marca</span><span class="arrow" aria-hidden="true">→</span></a>
-          <a href="https://radar-relevantia.com.br/cadastro-detentor.html" class="btn btn-outline" data-i18n="eco.radar.cta.detentor">Sou detentor de direitos</a>
-        </div>
-        <a href="https://radar-relevantia.com.br/" class="link-arrow reveal reveal-delay-2" style="margin-top:20px" data-i18n="eco.radar.cta1">Acessar o Radar</a>
+<!-- ═════════ ECOSSISTEMA (rolagem horizontal) ═════════ -->
+<section class="eco on-dark" id="ecossistema" style="--n:5">
+  <div class="eco-pin">
+    <div class="glow" style="width:700px;height:700px;right:-260px;top:-260px;background:radial-gradient(circle,rgba(184,134,11,.22),transparent 70%)"></div>
+    <div class="container eco-head">
+      <span class="t-eyebrow" data-i18n="eco.eco.eyebrow">O ecossistema</span>
+      <div class="eco-tabs" role="tablist" aria-label="Produtos">
+        <button class="eco-tab is-active" type="button" role="tab" data-go="0"><i>01</i>Radar</button>
+        <button class="eco-tab" type="button" role="tab" data-go="1"><i>02</i>Intelligence</button>
+        <button class="eco-tab" type="button" role="tab" data-go="2"><i>03</i>The Edge</button>
+        <button class="eco-tab" type="button" role="tab" data-go="3"><i>04</i>Audiência S/A</button>
+        <button class="eco-tab" type="button" role="tab" data-go="4"><i>05</i>Lab</button>
       </div>
-      <div class="reveal reveal-delay-1">
-        <div class="hero-radar" aria-hidden="true">
-          <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="rbase" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#6b5a14"/><stop offset="20%" stop-color="#504510"/>
-                <stop offset="40%" stop-color="#3a340c"/><stop offset="60%" stop-color="#282208"/>
-                <stop offset="80%" stop-color="#181404"/><stop offset="100%" stop-color="#0a0802"/>
-              </radialGradient>
-              <clipPath id="rdc"><circle cx="140" cy="140" r="118"/></clipPath>
-            </defs>
-            <circle cx="140" cy="140" r="121" fill="#060502"/>
-            <circle cx="140" cy="140" r="118" fill="url(#rbase)"/>
-            <g clip-path="url(#rdc)">
-              <circle cx="140" cy="140" r="116" fill="none" stroke="#9a8828" stroke-width="0.5" opacity="0.5"/>
-              <circle cx="140" cy="140" r="100" fill="none" stroke="#9a8828" stroke-width="0.45" opacity="0.4"/>
-              <circle cx="140" cy="140" r="80" fill="none" stroke="#9a8828" stroke-width="0.45" opacity="0.5"/>
-              <circle cx="140" cy="140" r="55" fill="none" stroke="#9a8828" stroke-width="0.45" opacity="0.6"/>
-              <circle cx="140" cy="140" r="29" fill="none" stroke="#9a8828" stroke-width="0.45" opacity="0.7"/>
-            </g>
-            <circle cx="140" cy="140" r="118" fill="none" stroke="#b89824" stroke-width="1.6" opacity="0.6"/>
-            <circle cx="140" cy="140" r="80" fill="none" stroke="#b89824" stroke-width="1.1" opacity="0.45"/>
-            <line x1="140" y1="22" x2="140" y2="258" stroke="#b89824" stroke-width="0.8" opacity="0.5"/>
-            <line x1="22" y1="140" x2="258" y2="140" stroke="#b89824" stroke-width="0.8" opacity="0.5"/>
-            <circle cx="140" cy="140" r="3" fill="#1a1608" stroke="#b89824" stroke-width="0.6"/>
-            <circle cx="190" cy="72" r="5" fill="#d8c890" opacity="0"><animate attributeName="opacity" values="0;1;1;0.3" keyTimes="0;0.1;0.6;1" dur="5s" begin="0.4s" repeatCount="indefinite"/></circle>
-            <circle cx="82" cy="170" r="5" fill="#d8c890" opacity="0"><animate attributeName="opacity" values="0;1;1;0.3" keyTimes="0;0.1;0.6;1" dur="5s" begin="1.8s" repeatCount="indefinite"/></circle>
-            <circle cx="222" cy="195" r="5" fill="#d8c890" opacity="0"><animate attributeName="opacity" values="0;1;1;0.3" keyTimes="0;0.1;0.6;1" dur="5s" begin="3.2s" repeatCount="indefinite"/></circle>
-          </svg>
-          <svg class="radar-sweep-layer" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="rswG" x1="0.5" y1="0" x2="0" y2="0.5"><stop offset="0%" stop-color="#c8a428" stop-opacity="0.28"/><stop offset="100%" stop-color="#c8a428" stop-opacity="0"/></linearGradient>
-              <clipPath id="rdc2"><circle cx="140" cy="140" r="118"/></clipPath>
-            </defs>
-            <g clip-path="url(#rdc2)">
-              <path d="M140 140 L140 22 A118 118 0 0 1 223.5 53.5 Z" fill="url(#rswG)"/>
-              <line x1="140" y1="140" x2="140" y2="22" stroke="#c8a428" stroke-width="1.8" opacity="0.7"/>
-            </g>
-          </svg>
-          <div class="radar-chips-wrap">
-            <span class="radar-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a4 4 0 014-4h6a4 4 0 014 4v2"/></svg><span data-i18n="eco.chip1">Personalidade</span></span>
-            <span class="radar-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span data-i18n="eco.chip2">Evento</span></span>
-            <span class="radar-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span data-i18n="eco.chip3">Artista musical</span></span>
-            <span class="radar-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg><span data-i18n="eco.chip4">Mídia</span></span>
-          </div>
-        </div>
-      </div>
+      <div class="eco-bar" aria-hidden="true"><i></i></div>
     </div>
-  </div>
-</section>
 
-<!-- ═════════ RELEVANTIA INTELLIGENCE (EM BREVE) ═════════ -->
-<section class="section section--dark" id="intelligence">
-  <div class="grid-bg"></div>
-  <div class="container">
-    <div class="product">
-      <div>
-        <div class="title-row reveal">
-          <span class="t-eyebrow">Relevantia Intelligence</span>
-          <span class="soon" data-i18n="eco.intel.soon">Em breve</span>
-        </div>
-        <h2 class="reveal" data-i18n="eco.intel.title">O Raio X da sua empresa em seis dimensões</h2>
-        <p class="lead reveal reveal-delay-1" data-i18n="eco.intel.lead">A plataforma de estratégia da Relevantia. Lê o negócio em Core, Brand, Audience, Business, Partnerships e Beyond, aponta a alavanca prioritária e mantém conversas, frameworks e prioridades num só lugar.</p>
-        <ul class="checks reveal reveal-delay-1">
-          <li data-i18n="eco.intel.b1"><strong>Onboarding guiado:</strong> brief com agente, unidades de negócio e canais</li>
-          <li data-i18n="eco.intel.b2"><strong>Chat do Intelligence:</strong> identifica o assunto e sugere o próximo passo</li>
-          <li data-i18n="eco.intel.b3"><strong>Biblioteca de frameworks</strong> para cada dimensão</li>
-        </ul>
-        <div class="product-cta reveal reveal-delay-2">
-          <a href="#contato" class="btn btn-primary" data-interest="intelligence"><span data-i18n="eco.intel.cta">Entrar na lista de espera</span><span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
+    <div class="eco-track">
 
-      <div class="intel reveal reveal-delay-1" aria-hidden="true">
-        <div class="intel-score">
-          <svg viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
-            <circle cx="50" cy="50" r="42" fill="none" stroke="url(#gscore)" stroke-width="8" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="85" transform="rotate(-90 50 50)"/>
-            <defs><linearGradient id="gscore" x1="0" x2="1"><stop offset="0" stop-color="#B8860B"/><stop offset="1" stop-color="#E8C96A"/></linearGradient></defs>
-            <text x="50" y="57" text-anchor="middle" fill="#fff" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="600">68</text>
-          </svg>
+      <!-- RADAR -->
+      <article class="eco-slide" id="radar" aria-label="Radar">
+        <div class="container eco-grid">
           <div>
-            <b data-i18n="eco.intel.score">Índice geral de relevância</b>
-            <small data-i18n="eco.intel.lever">Alavanca prioritária: Partnerships</small>
+            <div class="radar-logo" aria-label="Radar Relevantia">
+              <span class="radar-logo-mount" data-width="56" data-height="56"></span>
+              <img src="./assets/logos/radar-wordmark-light.png" alt="Radar Relevantia" width="1200" height="500">
+            </div>
+            <h2 data-i18n="eco.radar.title">O sistema operacional dos patrocínios e parcerias</h2>
+            <p class="lead" data-i18n="eco.radar.lead">Para quem investe, para quem capta e para quem gere. O Radar conecta marcas a personalidades, eventos, artistas musicais e mídia, com curadoria, dados e um fluxo único da proposta ao fechamento.</p>
+            <div class="product-cta">
+              <a href="https://radar-relevantia.com.br/cadastro-marca.html" class="btn btn-primary"><span data-i18n="eco.radar.cta.marca">Sou uma marca</span><span class="arrow" aria-hidden="true">→</span></a>
+              <a href="https://radar-relevantia.com.br/cadastro-detentor.html" class="btn btn-ghost" data-i18n="eco.radar.cta.detentor">Sou detentor de direitos</a>
+            </div>
+            <a href="https://radar-relevantia.com.br/" class="link-arrow eco-more" data-i18n="eco.radar.cta1">Acessar o Radar</a>
           </div>
-        </div>
-        <div class="intel-bars">
-          <div class="intel-bar"><span>Core</span><span class="track"><i style="--v:78%;background:var(--dim-core)"></i></span><b>78</b></div>
-          <div class="intel-bar"><span>Brand</span><span class="track"><i style="--v:71%;background:var(--dim-brand)"></i></span><b>71</b></div>
-          <div class="intel-bar"><span>Audience</span><span class="track"><i style="--v:84%;background:var(--dim-audience)"></i></span><b>84</b></div>
-          <div class="intel-bar"><span>Business</span><span class="track"><i style="--v:62%;background:var(--dim-business)"></i></span><b>62</b></div>
-          <div class="intel-bar"><span>Partnerships</span><span class="track"><i style="--v:41%;background:var(--dim-partnerships)"></i></span><b>41</b></div>
-          <div class="intel-bar"><span>Beyond</span><span class="track"><i style="--v:66%;background:var(--dim-beyond)"></i></span><b>66</b></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ THE EDGE ═════════ -->
-<section class="section section--white" id="the-edge">
-  <div class="container">
-    <div class="product">
-      <div>
-        <span class="t-eyebrow reveal" data-i18n="eco.edge.eyebrow">The Edge · Consultoria</span>
-        <h2 class="reveal" data-i18n="eco.edge.title">Estratégia ao lado de quem decide</h2>
-      </div>
-      <div>
-        <p class="lead reveal reveal-delay-1" data-i18n="eco.edge.lead">The Edge é a consultoria da Relevantia para fundadores, C-level e boards. Gente experiente trabalhando dentro das decisões de marca, portfólio, receita e parcerias. O Intelligence é a ferramenta que usamos para ler a empresa; quem conduz é o nosso time.</p>
-        <div class="product-cta reveal reveal-delay-2">
-          <a href="#contato" class="btn btn-primary" data-interest="edge"><span data-i18n="eco.edge.cta">Quero um diagnóstico</span><span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="pillars">
-      <div class="pillar reveal">
-        <span class="pillar-num">01</span>
-        <h3 data-i18n="edge2.w1.title">Mentoria executiva</h3>
-        <p data-i18n="edge2.w1.desc">Encontros estruturados com a liderança para construir a estratégia junto e fazer a leitura crítica dos movimentos.</p>
-      </div>
-      <div class="pillar reveal reveal-delay-1">
-        <span class="pillar-num">02</span>
-        <h3 data-i18n="edge2.w2.title">Conselho ampliado</h3>
-        <p data-i18n="edge2.w2.desc">Acesso a uma rede curada para discutir cenários, decisões estruturantes e leituras de mercado.</p>
-      </div>
-      <div class="pillar reveal reveal-delay-2">
-        <span class="pillar-num">03</span>
-        <h3 data-i18n="edge2.w3.title">Sprints estratégicos</h3>
-        <p data-i18n="edge2.w3.desc">Quando é preciso decidir rápido: ciclos curtos que vão do diagnóstico à recomendação.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════════ AUDIÊNCIA S/A ═════════ -->
-<section class="section section--cream" id="audiencia">
-  <div class="container">
-    <div class="product">
-      <div>
-        <span class="t-eyebrow reveal">Audiência S/A + Lab</span>
-        <h2 class="reveal" data-i18n="eco.live.title">Transforme sua audiência em um negócio de verdade</h2>
-        <p class="lead reveal reveal-delay-1" data-i18n="eco.live.lead">A live semanal de Isaac Araújo sobre ir além da publi: novas receitas, negociação com marcas, posicionamento e estratégia para a audiência virar empresa. Quem acompanha entra no Relevantia Lab.</p>
-        <ul class="checks reveal reveal-delay-1">
-          <li data-i18n="eco.live.b1"><strong>Toda terça, às 20h,</strong> ao vivo no YouTube</li>
-          <li data-i18n="eco.live.b2"><strong>Gratuito</strong> por tempo limitado</li>
-          <li data-i18n="eco.live.b3"><strong>Relevantia Lab:</strong> Raio X, votação dos temas e anotações com IA</li>
-        </ul>
-        <div class="product-cta reveal reveal-delay-2">
-          <a href="https://relevantia-lives.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary"><span data-i18n="eco.live.cta1">Quero participar das lives</span><span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-      </div>
-
-      <figure class="player reveal reveal-delay-1" aria-label="Prévia da live Audiência S/A, com Isaac Araújo">
-        <a class="screen" href="https://relevantia-lives.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir a página do Audiência S/A">
-          <img src="./assets/img/isaac-sorriso.jpg" alt="Isaac Araújo" width="933" height="1400" loading="lazy">
-          <div class="scr-top">
-            <span class="badge-live"><span class="live-dot" aria-hidden="true"></span><span data-i18n="eco.live.on">AO VIVO</span></span>
-            <span class="series-tag">Audiência S/A</span>
-          </div>
-          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
-          <div class="scr-bottom" aria-hidden="true">
-            <div class="scr-bar"><i></i></div>
-            <div class="scr-ctrl">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
-              <span class="sp"></span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 15h3M13 15h4"/></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+          <div>
+            <div class="hero-radar" aria-hidden="true">
+              <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="rbase" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#6b5a14"/><stop offset="20%" stop-color="#504510"/>
+                    <stop offset="40%" stop-color="#3a340c"/><stop offset="60%" stop-color="#282208"/>
+                    <stop offset="80%" stop-color="#181404"/><stop offset="100%" stop-color="#0a0802"/>
+                  </radialGradient>
+                  <clipPath id="rdc"><circle cx="140" cy="140" r="118"/></clipPath>
+                </defs>
+                <circle cx="140" cy="140" r="121" fill="#060502"/>
+                <circle cx="140" cy="140" r="118" fill="url(#rbase)"/>
+                <g clip-path="url(#rdc)">
+                  <circle cx="140" cy="140" r="116" fill="none" stroke="#9a8828" stroke-width="0.5" opacity="0.5"/>
+                  <circle cx="140" cy="140" r="100" fill="none" stroke="#9a8828" stroke-width="0.45" opacity="0.4"/>
+                  <circle cx="140" cy="140" r="80" fill="none" stroke="#9a8828" stroke-width="0.45" opacity="0.5"/>
+                  <circle cx="140" cy="140" r="55" fill="none" stroke="#9a8828" stroke-width="0.45" opacity="0.6"/>
+                  <circle cx="140" cy="140" r="29" fill="none" stroke="#9a8828" stroke-width="0.45" opacity="0.7"/>
+                </g>
+                <circle cx="140" cy="140" r="118" fill="none" stroke="#b89824" stroke-width="1.6" opacity="0.6"/>
+                <circle cx="140" cy="140" r="80" fill="none" stroke="#b89824" stroke-width="1.1" opacity="0.45"/>
+                <line x1="140" y1="22" x2="140" y2="258" stroke="#b89824" stroke-width="0.8" opacity="0.5"/>
+                <line x1="22" y1="140" x2="258" y2="140" stroke="#b89824" stroke-width="0.8" opacity="0.5"/>
+                <circle cx="140" cy="140" r="3" fill="#1a1608" stroke="#b89824" stroke-width="0.6"/>
+                <circle cx="190" cy="72" r="5" fill="#d8c890" opacity="0"><animate attributeName="opacity" values="0;1;1;0.3" keyTimes="0;0.1;0.6;1" dur="5s" begin="0.4s" repeatCount="indefinite"/></circle>
+                <circle cx="82" cy="170" r="5" fill="#d8c890" opacity="0"><animate attributeName="opacity" values="0;1;1;0.3" keyTimes="0;0.1;0.6;1" dur="5s" begin="1.8s" repeatCount="indefinite"/></circle>
+                <circle cx="222" cy="195" r="5" fill="#d8c890" opacity="0"><animate attributeName="opacity" values="0;1;1;0.3" keyTimes="0;0.1;0.6;1" dur="5s" begin="3.2s" repeatCount="indefinite"/></circle>
+              </svg>
+              <svg class="radar-sweep-layer" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="rswG" x1="0.5" y1="0" x2="0" y2="0.5"><stop offset="0%" stop-color="#c8a428" stop-opacity="0.28"/><stop offset="100%" stop-color="#c8a428" stop-opacity="0"/></linearGradient>
+                  <clipPath id="rdc2"><circle cx="140" cy="140" r="118"/></clipPath>
+                </defs>
+                <g clip-path="url(#rdc2)">
+                  <path d="M140 140 L140 22 A118 118 0 0 1 223.5 53.5 Z" fill="url(#rswG)"/>
+                  <line x1="140" y1="140" x2="140" y2="22" stroke="#c8a428" stroke-width="1.8" opacity="0.7"/>
+                </g>
+              </svg>
+              <div class="radar-chips-wrap">
+                <span class="radar-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5 21v-2a4 4 0 014-4h6a4 4 0 014 4v2"/></svg><span data-i18n="eco.chip1">Personalidade</span></span>
+                <span class="radar-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span data-i18n="eco.chip2">Evento</span></span>
+                <span class="radar-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span data-i18n="eco.chip3">Artista musical</span></span>
+                <span class="radar-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg><span data-i18n="eco.chip4">Mídia</span></span>
+              </div>
             </div>
           </div>
-        </a>
-        <figcaption class="vid-meta">
-          <img class="avatar" src="./assets/img/isaac-avatar.jpg" alt="" width="40" height="40">
-          <div class="vid-txt">
-            <b data-i18n="eco.live.vid">Audiência S/A · da atenção ao negócio</b>
-            <small>Isaac Araujo · @isaacgaraujo</small>
+        </div>
+      </article>
+
+      <!-- INTELLIGENCE -->
+      <article class="eco-slide" id="intelligence" aria-label="Relevantia Intelligence">
+        <div class="container eco-grid">
+          <div>
+            <div class="title-row">
+              <span class="eco-product">Relevantia Intelligence</span>
+              <span class="soon" data-i18n="eco.intel.soon">Em breve</span>
+            </div>
+            <h2 data-i18n="eco.intel.title">O Raio X da sua empresa em seis dimensões</h2>
+            <p class="lead" data-i18n="eco.intel.lead">A plataforma de estratégia da Relevantia. Lê o negócio em Core, Brand, Audience, Business, Partnerships e Beyond, aponta a alavanca prioritária e mantém conversas, frameworks e prioridades num só lugar.</p>
+            <ul class="checks">
+              <li data-i18n="eco.intel.b1"><strong>Onboarding guiado:</strong> brief com agente, unidades de negócio e canais</li>
+              <li data-i18n="eco.intel.b2"><strong>Chat do Intelligence:</strong> identifica o assunto e sugere o próximo passo</li>
+              <li data-i18n="eco.intel.b3"><strong>Biblioteca de frameworks</strong> para cada dimensão</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#contato" class="btn btn-primary" data-interest="intelligence"><span data-i18n="eco.intel.cta">Entrar na lista de espera</span><span class="arrow" aria-hidden="true">→</span></a>
+            </div>
           </div>
-          <a href="https://relevantia-lives.vercel.app/" target="_blank" rel="noopener" class="vid-btn" data-i18n="eco.live.join">Participar</a>
-        </figcaption>
-      </figure>
+          <div>
+            <div class="intel" aria-hidden="true">
+              <div class="intel-score">
+              <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
+                <circle cx="50" cy="50" r="42" fill="none" stroke="url(#gscore)" stroke-width="8" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="85" transform="rotate(-90 50 50)"/>
+                <defs><linearGradient id="gscore" x1="0" x2="1"><stop offset="0" stop-color="#B8860B"/><stop offset="1" stop-color="#E8C96A"/></linearGradient></defs>
+                <text x="50" y="57" text-anchor="middle" fill="#fff" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="600">68</text>
+              </svg>
+              <div>
+                <b data-i18n="eco.intel.score">Índice geral de relevância</b>
+                <small data-i18n="eco.intel.lever">Alavanca prioritária: Partnerships</small>
+              </div>
+            </div>
+            <div class="intel-bars">
+              <div class="intel-bar"><span>Core</span><span class="track"><i style="--v:78%;background:var(--dim-core)"></i></span><b>78</b></div>
+              <div class="intel-bar"><span>Brand</span><span class="track"><i style="--v:71%;background:var(--dim-brand)"></i></span><b>71</b></div>
+              <div class="intel-bar"><span>Audience</span><span class="track"><i style="--v:84%;background:var(--dim-audience)"></i></span><b>84</b></div>
+              <div class="intel-bar"><span>Business</span><span class="track"><i style="--v:62%;background:var(--dim-business)"></i></span><b>62</b></div>
+              <div class="intel-bar"><span>Partnerships</span><span class="track"><i style="--v:41%;background:var(--dim-partnerships)"></i></span><b>41</b></div>
+              <div class="intel-bar"><span>Beyond</span><span class="track"><i style="--v:66%;background:var(--dim-beyond)"></i></span><b>66</b></div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- THE EDGE -->
+      <article class="eco-slide" id="the-edge" aria-label="The Edge">
+        <div class="container eco-grid">
+          <div>
+            <span class="eco-product">The Edge</span>
+            <h2 data-i18n="eco.edge.title">Estratégia ao lado de quem decide</h2>
+            <p class="lead" data-i18n="eco.edge.lead">The Edge é a consultoria da Relevantia para fundadores, C-level e boards. Gente experiente trabalhando dentro das decisões de marca, portfólio, receita e parcerias. O Intelligence é a ferramenta que usamos para ler a empresa; quem conduz é o nosso time.</p>
+            <div class="product-cta">
+              <a href="#contato" class="btn btn-primary" data-interest="edge"><span data-i18n="eco.edge.cta">Quero um diagnóstico</span><span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div class="eco-stack">
+            <div class="pillar"><span class="pillar-num">01</span><h3 data-i18n="edge2.w1.title">Mentoria executiva</h3><p data-i18n="edge2.w1.desc">Encontros estruturados com a liderança para construir a estratégia junto e fazer a leitura crítica dos movimentos.</p></div>
+            <div class="pillar"><span class="pillar-num">02</span><h3 data-i18n="edge2.w2.title">Conselho ampliado</h3><p data-i18n="edge2.w2.desc">Acesso a uma rede curada para discutir cenários, decisões estruturantes e leituras de mercado.</p></div>
+            <div class="pillar"><span class="pillar-num">03</span><h3 data-i18n="edge2.w3.title">Sprints estratégicos</h3><p data-i18n="edge2.w3.desc">Quando é preciso decidir rápido: ciclos curtos que vão do diagnóstico à recomendação.</p></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- AUDIÊNCIA S/A -->
+      <article class="eco-slide" id="audiencia" aria-label="Audiência S/A">
+        <div class="container eco-grid">
+          <div>
+            <span class="eco-product">Audiência S/A</span>
+            <h2 data-i18n="eco.live.title">Transforme sua audiência em um negócio de verdade</h2>
+            <p class="lead" data-i18n="eco.live.lead2">A live semanal de Isaac Araújo sobre ir além da publi: novas receitas, negociação com marcas, posicionamento e estratégia para a audiência virar empresa.</p>
+            <ul class="checks">
+              <li data-i18n="eco.live.b1"><strong>Toda terça, às 20h,</strong> ao vivo no YouTube</li>
+              <li data-i18n="eco.live.b2"><strong>Gratuito</strong> por tempo limitado</li>
+            </ul>
+            <div class="product-cta">
+              <a href="https://relevantia-lives.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary"><span data-i18n="eco.live.cta1">Quero participar das lives</span><span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div>
+            <figure class="player" aria-label="Prévia da live Audiência S/A, com Isaac Araújo">
+            <a class="screen" href="https://relevantia-lives.vercel.app/" target="_blank" rel="noopener" aria-label="Abrir a página do Audiência S/A">
+              <img src="./assets/img/isaac-sorriso.jpg" alt="Isaac Araújo" width="933" height="1400" loading="lazy">
+              <div class="scr-top">
+                <span class="badge-live"><span class="live-dot" aria-hidden="true"></span><span data-i18n="eco.live.on">AO VIVO</span></span>
+                <span class="series-tag">Audiência S/A</span>
+              </div>
+              <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+              <div class="scr-bottom" aria-hidden="true">
+                <div class="scr-bar"><i></i></div>
+                <div class="scr-ctrl">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+                  <span class="sp"></span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 15h3M13 15h4"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+                </div>
+              </div>
+            </a>
+            <figcaption class="vid-meta">
+              <img class="avatar" src="./assets/img/isaac-avatar.jpg" alt="" width="40" height="40">
+              <div class="vid-txt">
+                <b data-i18n="eco.live.vid">Audiência S/A · da atenção ao negócio</b>
+                <small>Isaac Araujo · @isaacgaraujo</small>
+              </div>
+              <a href="https://relevantia-lives.vercel.app/" target="_blank" rel="noopener" class="vid-btn" data-i18n="eco.live.join">Participar</a>
+            </figcaption>
+          </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- LAB -->
+      <article class="eco-slide" id="lab" aria-label="Relevantia Lab">
+        <div class="container eco-grid">
+          <div>
+            <span class="eco-product">Relevantia Lab</span>
+            <h2 data-i18n="eco.lab.title">A porta de entrada gratuita do ecossistema</h2>
+            <p class="lead" data-i18n="eco.lab.lead">Faça o Raio X da sua empresa, receba o laudo e acompanhe as lives do Audiência S/A num só lugar. Sem pagar nada, e com o próximo passo recomendado para o seu momento.</p>
+            <ul class="checks">
+              <li data-i18n="eco.lab.b1"><strong>Raio X em 9 perguntas,</strong> uma por vez</li>
+              <li data-i18n="eco.lab.b2"><strong>Laudo gratuito:</strong> o momento da empresa e a dimensão que pede atenção</li>
+              <li data-i18n="eco.lab.b3"><strong>Lives, dúvidas, votações</strong> e anotações com IA</li>
+            </ul>
+            <div class="product-cta">
+              <a href="#contato" class="btn btn-primary" data-interest="lab"><span data-i18n="eco.lab.cta">Quero entrar no Lab</span><span class="arrow" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div>
+            <div class="laudo" aria-hidden="true">
+              <div class="laudo-head"><small data-i18n="eco.lab.l.tag">Laudo gratuito</small><span class="soon soon--ghost">Raio X</span></div>
+              <div class="laudo-stage">
+                <small data-i18n="eco.lab.l.moment">Momento da empresa</small>
+                <div class="laudo-steps">
+                  <span data-i18n="eco.lab.m1">Em ajuste</span>
+                  <span data-i18n="eco.lab.m2">Em travessia</span>
+                  <span class="on" data-i18n="eco.lab.m3">Em tração</span>
+                  <span data-i18n="eco.lab.m4">Pronta para escalar</span>
+                </div>
+              </div>
+              <div class="laudo-row">
+                <div><small data-i18n="eco.lab.l.att">Pede atenção</small><b><i style="background:var(--dim-partnerships)"></i>Partnerships</b></div>
+                <div><small data-i18n="eco.lab.l.next">Próximo passo</small><b>Radar</b></div>
+              </div>
+              <div class="laudo-lock">
+                <span>Core · Brand · Audience · Business · Partnerships · Beyond</span>
+                <small data-i18n="eco.lab.l.lock">Notas completas no Intelligence</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="container eco-nav">
+      <button class="eco-arrow" type="button" data-step="-1" aria-label="Anterior">←</button>
+      <span class="eco-count"><b>01</b> / 05</span>
+      <button class="eco-arrow" type="button" data-step="1" aria-label="Próximo">→</button>
     </div>
   </div>
 </section>
@@ -358,7 +435,8 @@
                 <label class="opt"><input type="checkbox" name="interesse" value="radar"><span>Radar</span></label>
                 <label class="opt"><input type="checkbox" name="interesse" value="edge"><span>The Edge</span></label>
                 <label class="opt"><input type="checkbox" name="interesse" value="intelligence"><span data-i18n="lead.f.intel">Intelligence (lista de espera)</span></label>
-                <label class="opt"><input type="checkbox" name="interesse" value="audiencia"><span>Audiência S/A + Lab</span></label>
+                <label class="opt"><input type="checkbox" name="interesse" value="audiencia"><span>Audiência S/A</span></label>
+                <label class="opt"><input type="checkbox" name="interesse" value="lab"><span>Lab</span></label>
                 <label class="opt"><input type="checkbox" name="interesse" value="nao-sei"><span data-i18n="lead.f.naosei">Ainda não sei</span></label>
               </div>
             </div>
@@ -401,6 +479,7 @@
         <a href="#intelligence">Relevantia Intelligence</a>
         <a href="#the-edge">The Edge</a>
         <a href="#audiencia">Audiência S/A</a>
+        <a href="#lab">Relevantia Lab</a>
       </div>
       <div>
         <h4>Social</h4>
@@ -416,9 +495,10 @@
   </div>
 </footer>
 
-<script src="./assets/js/i18n-v5.js?v=v7-2"></script>
-<script src="./assets/js/main.js?v=v7-2"></script>
-<script src="./assets/js/radar-logo.js?v=v7-2"></script>
-<script src="./assets/js/prodline.js?v=v7-2"></script>
+<script src="./assets/js/i18n-v5.js?v=v8-2"></script>
+<script src="./assets/js/main.js?v=v8-2"></script>
+<script src="./assets/js/radar-logo.js?v=v8-2"></script>
+<script src="./assets/js/eco.js?v=v8-2"></script>
+<script src="./assets/js/prodline.js?v=v8-2"></script>
 </body>
 </html>

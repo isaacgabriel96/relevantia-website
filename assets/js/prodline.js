@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════
-   Animação do hero: a audiência (centenas de pontos) gira em
-   espiral até o núcleo da Relevantia; cada lote absorvido vira
-   um bloco dourado que empilha nas barras de negócio embaixo.
+   Arco de luz do hero: a audiência (pontos) sobe pelas laterais
+   do horizonte dourado até o topo, onde vira brilho. É a mesma
+   ideia de "audiência virando negócio", no visual da referência.
    ═══════════════════════════════════════════════ */
 (function () {
   const wrap = document.querySelector('[data-prodline]');
@@ -10,14 +10,13 @@
   const ctx = cv.getContext('2d');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const BARS = 7;
-  const TARGET = [0.28, 0.38, 0.46, 0.58, 0.68, 0.84, 1];   // curva de crescimento
-  let W = 0, H = 0, cx = 0, cy = 0, R = 0, coreR = 0;
-  let people = [], blocks = [], bars = [], pulse = 0, absorbed = 0, barsFade = 1;
-  let running = false, last = 0;
-
+  let W = 0, H = 0, cx = 0, apexY = 0, rx = 0, ry = 0;
+  let dots = [], pulse = 0, running = false, last = 0, time = 0;
+  let glow = null;   // brilho do horizonte pré-renderizado (blur é caro por quadro)
   const rnd = (a, b) => a + Math.random() * (b - a);
-  const lerp = (a, b, t) => a + (b - a) * t;
+
+  // ponto do arco no ângulo th (0 = topo; ±π/2 = laterais)
+  const arcPt = th => [cx + rx * Math.sin(th), apexY + ry * (1 - Math.cos(th))];
 
   function size() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -25,149 +24,99 @@
     W = r.width; H = r.height;
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    cx = W / 2; cy = H * 0.4;
-    R = Math.min(W * 0.5, H * 0.42);
-    coreR = Math.max(16, R * 0.11);
-    const n = W < 480 ? 360 : 640;
-    while (people.length < n) people.push(newPerson(true));
-    people.length = n;
-    if (!bars.length) resetBars();
+    const mobile = W < 720;
+    cx = W / 2;
+    apexY = H * (mobile ? 0.3 : 0.32);
+    rx = W * (mobile ? 1.05 : 0.72);
+    ry = H * (mobile ? 0.9 : 1.05);
+    glow = document.createElement('canvas');
+    glow.width = cv.width; glow.height = cv.height;
+    const gctx = glow.getContext('2d');
+    gctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    gctx.lineCap = 'round';
+    [[70, 'rgba(184,134,11,0.20)', 60], [18, 'rgba(232,201,106,0.32)', 24]].forEach(([w, c, b]) => {
+      gctx.shadowColor = c; gctx.shadowBlur = b;
+      strokeArc(gctx, w, c);
+    });
+    gctx.shadowBlur = 0;
+    const n = mobile ? 150 : 300;
+    while (dots.length < n) dots.push(newDot(true));
+    dots.length = n;
   }
 
-  function newPerson(initial) {
+  function newDot(initial) {
+    const side = Math.random() < 0.5 ? -1 : 1;
     return {
-      a: rnd(0, Math.PI * 2),
-      r: initial ? rnd(0.18, 1.15) : rnd(0.95, 1.2),
-      decay: rnd(0.035, 0.09),       // velocidade com que cai para o centro
-      spin: rnd(0.18, 0.32),
-      s: rnd(0.8, 1.8),
-      alpha: initial ? 1 : 0,
+      th: side * (initial ? rnd(0.02, 1.25) : rnd(0.9, 1.3)),
+      off: rnd(8, 120) * (Math.random() < 0.75 ? -1 : 1),   // distância do arco (negativo = acima)
+      v: rnd(0.05, 0.12),
+      s: rnd(0.7, 1.7),
+      a: initial ? 1 : 0,
+      tw: rnd(0, Math.PI * 2),
     };
   }
 
-  function resetBars() { bars = TARGET.map(() => 0); barsFade = 1; }
-
-  function barGeom(i) {
-    const bw = Math.min(28, W * 0.055), gap = bw * 0.55;
-    const total = BARS * bw + (BARS - 1) * gap;
-    const x = cx - total / 2 + i * (bw + gap);
-    const base = H * 0.95, maxH = H * 0.2;
-    return { x, bw, base, maxH };
-  }
-
-  function emit() {
-    // próxima barra que ainda não chegou na meta
-    const i = bars.findIndex((h, k) => h < TARGET[k] - 0.001);
-    if (i < 0) return;
-    const g = barGeom(i);
-    blocks.push({ i, x: cx, y: cy, tx: g.x + g.bw / 2, ty: g.base - bars[i] * g.maxH, t: 0 });
-  }
-
   function step(dt) {
-    for (const p of people) {
-      // quanto mais perto do núcleo, mais rápido gira e mais rápido cai
-      const k = 1 / Math.max(0.12, p.r);
-      p.a += p.spin * k * dt * 0.6;
-      p.r -= p.decay * dt * (0.6 + k * 0.25);
-      p.alpha = Math.min(1, p.alpha + dt * 1.5);
-      if (p.r * R < coreR * 0.9) {
-        Object.assign(p, newPerson(false));
-        pulse = 1;
-        if (++absorbed % 9 === 0) emit();
-      }
+    time += dt;
+    for (const d of dots) {
+      const k = Math.abs(d.th);
+      // acelera e cola no arco perto do topo
+      d.th -= Math.sign(d.th) * d.v * dt * (0.5 + (1.3 - k) * 0.9);
+      d.off *= Math.pow(0.55, dt);
+      d.a = Math.min(1, d.a + dt * 0.8);
+      if (Math.abs(d.th) < 0.015) { Object.assign(d, newDot(false)); pulse = Math.min(1, pulse + 0.35); }
     }
-    for (const b of blocks) {
-      b.t += dt / 0.9;
-      if (b.t >= 1 && !b.done) {
-        b.done = true;
-        bars[b.i] = Math.min(TARGET[b.i], bars[b.i] + 0.07);
-      }
-    }
-    blocks = blocks.filter(b => !b.done);
-    pulse = Math.max(0, pulse - dt * 2.5);
-
-    // gráfico completo: segura um instante, apaga e recomeça
-    if (bars.every((h, k) => h >= TARGET[k] - 0.001)) {
-      barsFade -= dt * 0.35;
-      if (barsFade <= 0) resetBars();
-    }
+    pulse = Math.max(0, pulse - dt * 1.4);
   }
 
-  function roundRect(x, y, w, h, r) {
-    r = Math.min(r, h / 2, w / 2);
-    ctx.beginPath();
-    ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r);
-    ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r);
-    ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  function strokeArc(c, width, color) {
+    c.beginPath();
+    for (let i = 0; i <= 120; i++) {
+      const th = -Math.PI / 2 + (Math.PI * i) / 120;
+      const [x, y] = arcPt(th);
+      i ? c.lineTo(x, y) : c.moveTo(x, y);
+    }
+    c.lineWidth = width; c.strokeStyle = color; c.stroke();
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
-    // anéis guia
-    ctx.lineWidth = 1;
-    [0.35, 0.65, 0.95].forEach((f, i) => {
-      ctx.strokeStyle = `rgba(200,168,75,${0.06 + i * 0.02})`;
-      ctx.beginPath(); ctx.arc(cx, cy, R * f, 0, Math.PI * 2); ctx.stroke();
-    });
-
-    // audiência: branco longe, dourado perto do núcleo
-    for (const p of people) {
-      const t = Math.max(0, Math.min(1, 1 - (p.r - 0.12) / 0.8));
-      const x = cx + Math.cos(p.a) * p.r * R;
-      const y = cy + Math.sin(p.a) * p.r * R * 0.92;
-      const c0 = [245, 240, 232], c1 = [232, 201, 106];
-      ctx.fillStyle = `rgb(${lerp(c0[0], c1[0], t) | 0},${lerp(c0[1], c1[1], t) | 0},${lerp(c0[2], c1[2], t) | 0})`;
-      ctx.globalAlpha = p.alpha * (p.r > 1 ? Math.max(0, 1.2 - p.r) * 5 : lerp(0.35, 0.95, t));
-      const s = p.s * lerp(1, 1.4, t);
-      ctx.fillRect(x - s / 2, y - s / 2, s, s);
-    }
+    // brilho do horizonte: várias passadas largas e suaves + linha central
+    const breathe = 0.85 + Math.sin(time * 0.8) * 0.15;
+    ctx.save();
+    ctx.globalAlpha = breathe;
+    ctx.drawImage(glow, 0, 0, W, H);
     ctx.globalAlpha = 1;
+    ctx.lineCap = 'round';
+    const lg = ctx.createLinearGradient(cx - rx, 0, cx + rx, 0);
+    lg.addColorStop(0, 'rgba(232,201,106,0)');
+    lg.addColorStop(0.5, 'rgba(255,244,210,0.95)');
+    lg.addColorStop(1, 'rgba(232,201,106,0)');
+    strokeArc(ctx, 1.6, lg);
+    ctx.restore();
 
-    // núcleo: brilho + os três quadrados da marca
-    const glowR = coreR * (2.6 + pulse * 0.8);
-    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR);
-    g.addColorStop(0, `rgba(232,201,106,${0.45 + pulse * 0.25})`);
+    // ponto de luz no topo, pulsando a cada pessoa que chega
+    const gR = 90 + pulse * 50;
+    const g = ctx.createRadialGradient(cx, apexY, 0, cx, apexY, gR);
+    g.addColorStop(0, `rgba(255,244,210,${0.55 + pulse * 0.35})`);
+    g.addColorStop(0.3, `rgba(232,201,106,${0.22 + pulse * 0.2})`);
     g.addColorStop(1, 'rgba(232,201,106,0)');
-    ctx.fillStyle = g; ctx.fillRect(cx - glowR, cy - glowR, glowR * 2, glowR * 2);
-    ctx.fillStyle = '#0E0A02';
-    roundRect(cx - coreR, cy - coreR, coreR * 2, coreR * 2, coreR * 0.45); ctx.fill();
-    ctx.strokeStyle = 'rgba(232,201,106,0.6)'; ctx.lineWidth = 1.2;
-    roundRect(cx - coreR, cy - coreR, coreR * 2, coreR * 2, coreR * 0.45); ctx.stroke();
-    const q = coreR * 0.42;
-    const grad = ctx.createLinearGradient(cx - q, cy - q, cx + q, cy + q);
-    grad.addColorStop(0, '#B8860B'); grad.addColorStop(1, '#E8C96A');
-    ctx.fillStyle = grad;
-    ctx.fillRect(cx - q * 1.05, cy + q * 0.05, q, q);
-    ctx.fillRect(cx + q * 0.05, cy + q * 0.05, q, q);
-    ctx.fillRect(cx + q * 0.05, cy - q * 1.05, q, q);
+    ctx.fillStyle = g; ctx.fillRect(cx - gR, apexY - gR, gR * 2, gR * 2);
 
-    // barras de negócio
-    ctx.globalAlpha = Math.max(0, barsFade);
-    for (let i = 0; i < BARS; i++) {
-      const b = barGeom(i);
-      ctx.fillStyle = 'rgba(255,255,255,0.05)';
-      roundRect(b.x, b.base - b.maxH * TARGET[i], b.bw, b.maxH * TARGET[i], 4); ctx.fill();
-      const h = bars[i] * b.maxH;
-      if (h > 0.5) {
-        const gb = ctx.createLinearGradient(0, b.base - h, 0, b.base);
-        gb.addColorStop(0, '#E8C96A'); gb.addColorStop(1, '#8B6508');
-        ctx.fillStyle = gb;
-        roundRect(b.x, b.base - h, b.bw, h, 4); ctx.fill();
-      }
+    // audiência
+    for (const d of dots) {
+      const [ax, ay] = arcPt(d.th);
+      const x = ax, y = ay + d.off;
+      if (y < -10 || y > H + 10 || x < -10 || x > W + 10) continue;
+      const near = 1 - Math.min(1, Math.abs(d.th) / 1.2);
+      const tw = 0.6 + 0.4 * Math.sin(time * 3 + d.tw);
+      ctx.globalAlpha = d.a * (0.25 + near * 0.7) * tw;
+      ctx.fillStyle = near > 0.55 ? '#F3DC95' : '#F5F0E8';
+      const s = d.s * (1 + near * 0.6);
+      ctx.fillRect(x - s / 2, y - s / 2, s, s);
     }
     ctx.globalAlpha = 1;
-
-    // blocos voando do núcleo para as barras
-    for (const b of blocks) {
-      const e = b.t * b.t * (3 - 2 * b.t);
-      const x = lerp(b.x, b.tx, e), y = lerp(b.y, b.ty, e) - Math.sin(b.t * Math.PI) * H * 0.04;
-      const s = 7;
-      ctx.fillStyle = '#E8C96A';
-      ctx.shadowColor = 'rgba(232,201,106,0.8)'; ctx.shadowBlur = 10;
-      ctx.fillRect(x - s / 2, y - s / 2, s, s);
-      ctx.shadowBlur = 0;
-    }
   }
 
   function frame(t) {
@@ -181,8 +130,7 @@
   function stop() { running = false; }
 
   size();
-  // começa com o gráfico pela metade, como se já estivesse rodando
-  for (let i = 0; i < 260; i++) step(0.03);
+  for (let i = 0; i < 200; i++) step(0.03);
   draw();
 
   new ResizeObserver(() => { size(); if (!running) draw(); }).observe(wrap);
