@@ -312,4 +312,33 @@
     'eco.rx.t1': 'Match calculated', 'eco.rx.t2': 'Proposal sent', 'eco.rx.t3': 'Negotiation', 'eco.rx.t4': 'Contract', 'eco.rx.t5': 'Activation and results',
     'lead.b3': 'A clear next step: Radar, The Edge, Intelligence, Audiência S/A or a combined path',
   });
+  /* v9 — Lab, Intelligence (chat) e The Edge (material institucional) */
+  Object.assign(I.en, {
+    'eco.lab.title': 'You don\'t leave the live shows with just notes',
+    'eco.lab.lead': 'Relevantia Lab is a 100% free community with updates, guidance and content to turn your audience into a business.',
+    'eco.lab.b1': '<strong>100% free,</strong> start to finish',
+    'eco.lab.b2': '<strong>Updates and guidance</strong> after every live show',
+    'eco.lab.b3': '<strong>Exclusive access</strong> through the link shared in the Audiência S/A live shows',
+    'eco.lab.cta': 'Get my access',
+    'eco.lab.free': 'Free',
+    'eco.lab.note': 'Access via the live show link',
+    'eco.intel.title': 'Business strategy, in a conversation',
+    'eco.intel.lead': 'Relevantia\'s strategy platform. You talk about your business and get guidance across Core, Brand, Audience, Business, Partnerships and Beyond, with frameworks and priorities in one place.',
+    'eco.ichat.hi': 'Hi, welcome',
+    'eco.ichat.ph': 'How can I help your business today?',
+    'eco.ichat.s1': 'Where should I focus in the next 90 days?',
+    'eco.ichat.s2': 'How do I diversify revenue?',
+    'eco.ichat.s3': 'How do I engage my audience?',
+    'eco.edge.title': 'The strategic direction for your company\'s new business',
+    'eco.edge.lead': 'New business is everyone\'s priority and no one\'s responsibility. The Edge puts Relevantia in that seat, continuously and with direct access to the people who decide. We are not an agency, and not just consultants: we work where there is real value to unlock.',
+    'eco.edge.dims': 'The Edge X-ray',
+    'eco.edge.cta': 'Talk to us about The Edge',
+    'eco.edge.p1.when': 'At the start', 'eco.edge.p1.title': 'The Edge Immersion',
+    'eco.edge.p1.desc': 'Two days (14h+) with leadership: a business diagnosis across six dimensions and a growth thesis with prioritized fronts.',
+    'eco.edge.p2.when': 'Every month', 'eco.edge.p2.title': 'New business rhythm',
+    'eco.edge.p2.b1': 'Strategic alignment meeting', 'eco.edge.p2.b2': 'Updated opportunity map',
+    'eco.edge.p2.b3': 'Qualified introductions to Relevantia\'s network', 'eco.edge.p2.b4': 'Direct line for decisions and access to Radar',
+    'eco.edge.p3.when': 'Every quarter', 'eco.edge.p3.title': 'Strategic review',
+    'eco.edge.p3.desc': 'What moved forward, what changes priority and the new plan for new business.',
+  });
 })();

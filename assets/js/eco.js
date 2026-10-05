@@ -129,4 +129,27 @@
   // chegou por /#radar, /#the-edge (inclusive pelos redirects das páginas antigas)
   const fromHash = slides.findIndex(s => '#' + s.id === location.hash);
   if (fromHash >= 0) setTimeout(() => goTo(fromHash, false), 50);
+  // Chat do Intelligence: alterna a pergunta e as sugestões, digitando
+  const typed = sec.querySelector('[data-typed]');
+  if (typed) {
+    const ph = sec.querySelector('.ichat-ph');
+    const sugs = [...sec.querySelectorAll('.ichat-sug [data-i18n]')];
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let k = 0;
+    const show = (text, isPh) => { typed.textContent = text; typed.classList.toggle('is-ph', isPh); };
+    show(ph.textContent, true);
+    if (!reduce) {
+      const next = () => {
+        const text = sugs[k++ % sugs.length].textContent.trim();
+        let i = 0;
+        const tick = () => {
+          show(text.slice(0, ++i), false);
+          if (i < text.length) setTimeout(tick, 45);
+          else setTimeout(() => { show(ph.textContent, true); setTimeout(next, 1400); }, 2200);
+        };
+        tick();
+      };
+      setTimeout(next, 1500);
+    }
+  }
 })();

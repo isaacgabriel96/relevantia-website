@@ -14,11 +14,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;600&family=Inter:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/css/relevantia.css?v=v9-4">
+<link rel="stylesheet" href="./assets/css/relevantia.css?v=v10-1">
 </head>
 <body>
 
-<div class="progress" aria-hidden="true"></div>
 <header class="topbar">
   <div class="topbar-inner">
     <a href="#topo" class="brand" aria-label="Relevantia">
@@ -157,36 +156,35 @@
         <div class="container eco-grid">
           <div>
             <span class="eco-product">Relevantia Lab</span>
-            <h2 data-i18n="eco.lab.title">A porta de entrada gratuita do ecossistema</h2>
-            <p class="lead" data-i18n="eco.lab.lead">Faça o Raio X da sua empresa, receba o laudo e acompanhe as lives do Audiência S/A num só lugar. Sem pagar nada, e com o próximo passo recomendado para o seu momento.</p>
+            <h2 data-i18n="eco.lab.title">Você não sai das lives só com anotações</h2>
+            <p class="lead" data-i18n="eco.lab.lead">O Relevantia Lab é uma comunidade 100% gratuita com atualizações, direcionamentos e conteúdos para fazer a sua audiência virar negócio.</p>
             <ul class="checks">
-              <li data-i18n="eco.lab.b1"><strong>Raio X em 9 perguntas,</strong> uma por vez</li>
-              <li data-i18n="eco.lab.b2"><strong>Laudo gratuito:</strong> o momento da empresa e a dimensão que pede atenção</li>
-              <li data-i18n="eco.lab.b3"><strong>Lives, dúvidas, votações</strong> e anotações com IA</li>
+              <li data-i18n="eco.lab.b1"><strong>100% gratuito,</strong> do começo ao fim</li>
+              <li data-i18n="eco.lab.b2"><strong>Atualizações e direcionamentos</strong> a cada live</li>
+              <li data-i18n="eco.lab.b3"><strong>Acesso exclusivo</strong> pelo link liberado nas lives do Audiência S/A</li>
             </ul>
             <div class="product-cta">
-              <a href="#contato" class="btn btn-primary" data-interest="lab"><span data-i18n="eco.lab.cta">Quero entrar no Lab</span><span class="arrow" aria-hidden="true">→</span></a>
+              <a href="https://relevantia-lives.vercel.app/" target="_blank" rel="noopener" class="btn btn-primary"><span data-i18n="eco.lab.cta">Quero meu acesso</span><span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </div>
           <div>
-            <div class="laudo" aria-hidden="true">
-              <div class="laudo-head"><small data-i18n="eco.lab.l.tag">Laudo gratuito</small><span class="soon soon--ghost">Raio X</span></div>
-              <div class="laudo-stage">
-                <small data-i18n="eco.lab.l.moment">Momento da empresa</small>
-                <div class="laudo-steps">
-                  <span data-i18n="eco.lab.m1">Em ajuste</span>
-                  <span data-i18n="eco.lab.m2">Em travessia</span>
-                  <span class="on" data-i18n="eco.lab.m3">Em tração</span>
-                  <span data-i18n="eco.lab.m4">Pronta para escalar</span>
+            <div class="lab-vis" aria-hidden="true">
+              <div class="lab-back b2"></div>
+              <div class="lab-back"></div>
+              <div class="lab-card">
+                <div class="lab-top">
+                  <div class="t">
+                    <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path class="shackle" d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+                    <b>Relevantia Lab</b>
+                  </div>
+                  <span class="access"><i></i><span data-i18n="eco.lab.free">Gratuito</span></span>
                 </div>
-              </div>
-              <div class="laudo-row">
-                <div><small data-i18n="eco.lab.l.att">Pede atenção</small><b><i style="background:var(--dim-partnerships)"></i>Partnerships</b></div>
-                <div><small data-i18n="eco.lab.l.next">Próximo passo</small><b>Radar</b></div>
-              </div>
-              <div class="laudo-lock">
-                <span>Core · Brand · Audience · Business · Partnerships · Beyond</span>
-                <small data-i18n="eco.lab.l.lock">Notas completas no Intelligence</small>
+                <div class="lab-rows">
+                  <div class="lab-row"><span class="sq"></span><div><div class="sk"></div><div class="sk"></div></div></div>
+                  <div class="lab-row"><span class="sq"></span><div><div class="sk"></div><div class="sk"></div></div></div>
+                  <div class="lab-row"><span class="sq"></span><div><div class="sk"></div><div class="sk"></div></div></div>
+                </div>
+                <div class="lab-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="eco.lab.note">Acesso pelo link das lives</span></div>
               </div>
             </div>
           </div>
@@ -264,8 +262,8 @@
               <span class="eco-product">Relevantia Intelligence</span>
               <span class="soon" data-i18n="eco.intel.soon">Em breve</span>
             </div>
-            <h2 data-i18n="eco.intel.title">O Raio X da sua empresa em seis dimensões</h2>
-            <p class="lead" data-i18n="eco.intel.lead">A plataforma de estratégia da Relevantia. Lê o negócio em Core, Brand, Audience, Business, Partnerships e Beyond, aponta a alavanca prioritária e mantém conversas, frameworks e prioridades num só lugar.</p>
+            <h2 data-i18n="eco.intel.title">Estratégia de negócio, numa conversa</h2>
+            <p class="lead" data-i18n="eco.intel.lead">A plataforma de estratégia da Relevantia. Você conversa sobre o seu negócio e recebe direcionamento em Core, Brand, Audience, Business, Partnerships e Beyond, com frameworks e prioridades num só lugar.</p>
             <ul class="checks">
               <li data-i18n="eco.intel.b1"><strong>Onboarding guiado:</strong> brief com agente, unidades de negócio e canais</li>
               <li data-i18n="eco.intel.b2"><strong>Chat do Intelligence:</strong> identifica o assunto e sugere o próximo passo</li>
@@ -276,27 +274,23 @@
             </div>
           </div>
           <div>
-            <div class="intel" aria-hidden="true">
-              <div class="intel-score">
-              <svg viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
-                <circle cx="50" cy="50" r="42" fill="none" stroke="url(#gscore)" stroke-width="8" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="85" transform="rotate(-90 50 50)"/>
-                <defs><linearGradient id="gscore" x1="0" x2="1"><stop offset="0" stop-color="#B8860B"/><stop offset="1" stop-color="#E8C96A"/></linearGradient></defs>
-                <text x="50" y="57" text-anchor="middle" fill="#fff" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="600">68</text>
-              </svg>
-              <div>
-                <b data-i18n="eco.intel.score">Índice geral de relevância</b>
-                <small data-i18n="eco.intel.lever">Alavanca prioritária: Partnerships</small>
+            <div class="ichat-wrap" aria-hidden="true">
+              <div class="ichat-back"></div>
+              <div class="ichat">
+                <div class="ichat-top">
+                  <span class="ichat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"/></svg></span>
+                  <div><small>Relevantia Intelligence</small><b data-i18n="eco.ichat.hi">Olá, seja bem-vindo</b></div>
+                </div>
+                <div class="ichat-input">
+                  <span class="ichat-ph" data-i18n="eco.ichat.ph" hidden>Como posso ajudar no seu negócio hoje?</span><span class="ichat-typed" data-typed></span><span class="ichat-caret"></span>
+                  <div class="ichat-foot"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l1.8 5.4L19 10l-5.2 1.6L12 17l-1.8-5.4L5 10l5.2-1.6z"/></svg>Intelligence</span><span class="ichat-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span></div>
+                </div>
+                <div class="ichat-sug">
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg><span data-i18n="eco.ichat.s1">Onde devo focar nos próximos 90 dias?</span></span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5h8v2M3 12h18"/></svg><span data-i18n="eco.ichat.s2">Como diversificar as receitas?</span></span>
+                  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M3 19c.8-3 3.2-4.5 6-4.5s5.2 1.5 6 4.5M14 14.6c.6-.1 1.3-.1 2-.1 2.8 0 5.2 1.5 6 4.5"/></svg><span data-i18n="eco.ichat.s3">Como engajar a audiência?</span></span>
+                </div>
               </div>
-            </div>
-            <div class="intel-bars">
-              <div class="intel-bar"><span>Core</span><span class="track"><i style="--v:78%;background:var(--dim-core)"></i></span><b>78</b></div>
-              <div class="intel-bar"><span>Brand</span><span class="track"><i style="--v:71%;background:var(--dim-brand)"></i></span><b>71</b></div>
-              <div class="intel-bar"><span>Audience</span><span class="track"><i style="--v:84%;background:var(--dim-audience)"></i></span><b>84</b></div>
-              <div class="intel-bar"><span>Business</span><span class="track"><i style="--v:62%;background:var(--dim-business)"></i></span><b>62</b></div>
-              <div class="intel-bar"><span>Partnerships</span><span class="track"><i style="--v:41%;background:var(--dim-partnerships)"></i></span><b>41</b></div>
-              <div class="intel-bar"><span>Beyond</span><span class="track"><i style="--v:66%;background:var(--dim-beyond)"></i></span><b>66</b></div>
-            </div>
             </div>
           </div>
         </div>
@@ -306,17 +300,43 @@
       <article class="eco-slide" id="the-edge" aria-label="The Edge">
         <div class="container eco-grid">
           <div>
-            <span class="eco-product">The Edge</span>
-            <h2 data-i18n="eco.edge.title">Estratégia ao lado de quem decide</h2>
-            <p class="lead" data-i18n="eco.edge.lead">The Edge é a consultoria da Relevantia para fundadores, C-level e boards. Gente experiente trabalhando dentro das decisões de marca, portfólio, receita e parcerias. O Intelligence é a ferramenta que usamos para ler a empresa; quem conduz é o nosso time.</p>
+            <div class="title-row">
+              <span class="eco-product">The Edge</span>
+              <span class="soon soon--dark">New Business as a Service</span>
+            </div>
+            <h2 data-i18n="eco.edge.title">A direção estratégica de novos negócios da sua empresa</h2>
+            <p class="lead" data-i18n="eco.edge.lead">Novos negócios são prioridade de todo mundo e responsabilidade de ninguém. O The Edge coloca a Relevantia nessa cadeira, de forma contínua e com acesso direto a quem decide. Não somos agência, nem apenas consultoria: atuamos onde há valor real a ser destravado.</p>
+            <div class="edge-dims">
+              <small data-i18n="eco.edge.dims">Raio X The Edge</small>
+              <div><span>Core</span><span>Brand</span><span>Audience</span><span>Business</span><span>Partnerships</span><span>Beyond</span></div>
+            </div>
             <div class="product-cta">
-              <a href="#contato" class="btn btn-primary" data-interest="edge"><span data-i18n="eco.edge.cta">Quero um diagnóstico</span><span class="arrow" aria-hidden="true">→</span></a>
+              <a href="#contato" class="btn btn-primary" data-interest="edge"><span data-i18n="eco.edge.cta">Quero conversar sobre o The Edge</span><span class="arrow" aria-hidden="true">→</span></a>
             </div>
           </div>
-          <div class="eco-stack">
-            <div class="pillar"><span class="pillar-num">01</span><h3 data-i18n="edge2.w1.title">Mentoria executiva</h3><p data-i18n="edge2.w1.desc">Encontros estruturados com a liderança para construir a estratégia junto e fazer a leitura crítica dos movimentos.</p></div>
-            <div class="pillar"><span class="pillar-num">02</span><h3 data-i18n="edge2.w2.title">Conselho ampliado</h3><p data-i18n="edge2.w2.desc">Acesso a uma rede curada para discutir cenários, decisões estruturantes e leituras de mercado.</p></div>
-            <div class="pillar"><span class="pillar-num">03</span><h3 data-i18n="edge2.w3.title">Sprints estratégicos</h3><p data-i18n="edge2.w3.desc">Quando é preciso decidir rápido: ciclos curtos que vão do diagnóstico à recomendação.</p></div>
+          <div>
+            <div class="edge-plan">
+              <div class="edge-step">
+                <small data-i18n="eco.edge.p1.when">No início</small>
+                <b data-i18n="eco.edge.p1.title">Imersão The Edge</b>
+                <p data-i18n="eco.edge.p1.desc">Dois dias (+14h) com a liderança: diagnóstico do negócio nas seis dimensões e tese de crescimento com as frentes priorizadas.</p>
+              </div>
+              <div class="edge-step">
+                <small data-i18n="eco.edge.p2.when">Todo mês</small>
+                <b data-i18n="eco.edge.p2.title">Ritmo de novos negócios</b>
+                <ul>
+                  <li data-i18n="eco.edge.p2.b1">Reunião de alinhamento estratégico</li>
+                  <li data-i18n="eco.edge.p2.b2">Mapa de oportunidades atualizado</li>
+                  <li data-i18n="eco.edge.p2.b3">Introduções qualificadas à rede da Relevantia</li>
+                  <li data-i18n="eco.edge.p2.b4">Canal direto para decisões e acesso ao Radar</li>
+                </ul>
+              </div>
+              <div class="edge-step">
+                <small data-i18n="eco.edge.p3.when">A cada trimestre</small>
+                <b data-i18n="eco.edge.p3.title">Revisão estratégica</b>
+                <p data-i18n="eco.edge.p3.desc">O que avançou, o que muda de prioridade e o novo plano de novos negócios.</p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
@@ -454,9 +474,9 @@
   </div>
 </footer>
 
-<script src="./assets/js/i18n-v5.js?v=v9-4"></script>
-<script src="./assets/js/main.js?v=v9-4"></script>
-<script src="./assets/js/eco.js?v=v9-4"></script>
-<script src="./assets/js/prodline.js?v=v9-4"></script>
+<script src="./assets/js/i18n-v5.js?v=v10-1"></script>
+<script src="./assets/js/main.js?v=v10-1"></script>
+<script src="./assets/js/eco.js?v=v10-1"></script>
+<script src="./assets/js/prodline.js?v=v10-1"></script>
 </body>
 </html>
