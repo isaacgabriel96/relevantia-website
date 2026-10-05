@@ -17,6 +17,19 @@
   const pad = n => String(n).padStart(2, '0');
   let idx = -1;
 
+  // Trava: cada produto segura a tela por um trecho da rolagem (HOLD)
+  // antes de deslizar para o próximo (MOVE).
+  const HOLD = 0.7, MOVE = 1, SEG = HOLD + MOVE;
+  const UNITS = N * HOLD + (N - 1) * MOVE;
+  const ease = t => t * t * (3 - 2 * t);
+  function position(p) {             // progresso 0..1 → posição 0..N-1
+    const u = p * UNITS, k = Math.floor(u / SEG), r = u - k * SEG;
+    if (k >= N - 1) return N - 1;
+    return r < HOLD ? k : k + ease((r - HOLD) / MOVE);
+  }
+  const progressFor = i => (i * SEG + HOLD / 2) / UNITS;   // meio da trava do produto i
+  let pos = 0;
+
   const pinned = () => pinnedMq.matches;
 
   function setActive(i, progress) {
@@ -38,8 +51,10 @@
     if (!pinned()) return;
     const total = sec.offsetHeight - window.innerHeight;
     const p = total > 0 ? Math.min(1, Math.max(0, -sec.getBoundingClientRect().top / total)) : 0;
-    track.style.transform = `translate3d(${(-p * (N - 1) / N) * 100}%,0,0)`;
-    setActive(Math.round(p * (N - 1)), (1 + p * (N - 1)) / N);
+    pos = position(p);
+    track.style.transform = `translate3d(${(-pos / N) * 100}%,0,0)`;
+    setActive(Math.round(pos), (1 + pos) / N);
+    scheduleSnap();
   }
 
   // Celular: slide mais próximo do centro do carrossel
@@ -60,7 +75,7 @@
     if (pinned()) {
       const total = sec.offsetHeight - window.innerHeight;
       const top = sec.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: top + total * (i / (N - 1)) + 1, behavior });
+      window.scrollTo({ top: top + total * progressFor(i), behavior });
     } else {
       const r = sec.getBoundingClientRect();
       if (r.top > window.innerHeight * 0.5 || r.bottom < window.innerHeight * 0.3) {
@@ -68,6 +83,19 @@
       }
       track.scrollTo({ left: slides[i].offsetLeft, behavior });
     }
+  }
+
+  // Se a rolagem parar no meio de uma transição, completa até o produto mais próximo
+  let snapTimer = 0;
+  function scheduleSnap() {
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(() => {
+      if (!pinned()) return;
+      const r = sec.getBoundingClientRect();
+      if (r.top > 0 || r.bottom < window.innerHeight) return;   // fora da área presa
+      const frac = pos - Math.floor(pos);
+      if (frac > 0.02 && frac < 0.98) goTo(Math.round(pos));
+    }, 180);
   }
 
   function reset() {

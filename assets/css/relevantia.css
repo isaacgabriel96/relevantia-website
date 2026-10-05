@@ -999,22 +999,19 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 .lead-wrap { gap: clamp(32px, 4vw, 64px); }
 
 /* ═════════ HERO — arco de luz, tudo centralizado ═════════ */
-.hero--arc { padding: 0 0 clamp(56px, 7vw, 96px); background: #050300; }
+.hero--arc { padding: 0 0 clamp(72px, 8vw, 120px); background: radial-gradient(120% 70% at 50% 0%, #1A1406 0%, #0A0702 55%, #050300 100%); }
 .hero--arc::before, .hero--arc::after { display: none; }
-.arc { position: absolute; left: 0; right: 0; top: 0; height: clamp(420px, 52vw, 640px); pointer-events: none; }
+.arc { position: absolute; left: 0; right: 0; top: 0; height: clamp(440px, 50vw, 660px); pointer-events: none; }
 .arc canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.arc-glow {
-  position: absolute; inset: 0;
-  background: radial-gradient(60% 55% at 50% 62%, rgba(184,134,11,0.16), transparent 70%);
-}
+.arc-glow { display: none; }
 .arc::after {
   /* escurece o que fica abaixo do horizonte, como na referência */
   content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 40%;
   background: linear-gradient(180deg, transparent, #050300);
 }
-.hero-center { position: relative; z-index: 2; text-align: center; padding-top: calc(var(--nav-h) + clamp(150px, 17vw, 230px)); }
-.hero-center h1 { margin: 22px auto 0; max-width: none; font-size: clamp(38px, 6vw, 80px); }
-.hero-center .lead { margin: 22px auto 0; max-width: 58ch; }
+.hero-center { position: relative; z-index: 2; text-align: center; padding-top: calc(var(--nav-h) + clamp(130px, 14vw, 210px)); }
+.hero-center h1 { margin: 26px auto 0; max-width: none; font-size: clamp(36px, 4.8vw, 66px); letter-spacing: -0.035em; }
+.hero-center .lead { margin: 20px auto 0; max-width: 54ch; font-size: clamp(15.5px, 1.25vw, 18px); }
 .hero-center .hero-cta { justify-content: center; margin-top: 32px; }
 .hello {
   display: inline-flex; align-items: center; gap: 10px;
@@ -1108,7 +1105,7 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 .eco-slide.is-current .player .scr-bar i { transform: none; }
 
 @media (min-width: 961px) and (min-height: 620px) {
-  .eco { height: calc(var(--n) * 100vh); }
+  .eco { height: calc(var(--n) * 130vh); }
   .eco-pin { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; padding: calc(var(--nav-h) + 20px) 0 24px; }
   .eco-track { flex: 1; min-height: 0; overflow: visible; width: calc(var(--n) * 100%); scroll-snap-type: none; will-change: transform; }
   .eco-slide { flex: 0 0 calc(100% / var(--n)); display: flex; align-items: center; padding: 16px 0; }
