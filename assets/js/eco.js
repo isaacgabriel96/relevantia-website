@@ -99,7 +99,24 @@
     }, 180);
   }
 
+  // Celular: se o conteúdo de um produto for mais alto que a tela, encolhe
+  // o bloco inteiro (escala) em vez de esconder partes dele.
+  const smallMq = matchMedia('(max-width: 960px)');
+  function fit() {
+    slides.forEach(s => {
+      const g = s.querySelector('.eco-grid');
+      if (!g) return;
+      g.style.setProperty('--fit', '1');
+      if (!smallMq.matches || !pinned()) return;
+      const cs = getComputedStyle(s);
+      const avail = s.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 12;
+      const need = g.offsetHeight;
+      if (need > avail && avail > 0) g.style.setProperty('--fit', Math.max(0.55, avail / need).toFixed(3));
+    });
+  }
+
   function reset() {
+    fit();
     if (!pinned()) track.style.transform = '';
     idx = -1;
     pinned() ? onScroll() : onTrackScroll();
@@ -126,6 +143,9 @@
   pinnedMq.addEventListener('change', reset);
 
   reset();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  window.addEventListener('load', fit);
+  document.addEventListener('relevantia:lang', () => requestAnimationFrame(fit));
   // chegou por /#radar, /#the-edge (inclusive pelos redirects das páginas antigas)
   const fromHash = slides.findIndex(s => '#' + s.id === location.hash);
   if (fromHash >= 0) setTimeout(() => goTo(fromHash, false), 50);
