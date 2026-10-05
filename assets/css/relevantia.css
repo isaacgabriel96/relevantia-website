@@ -1104,7 +1104,7 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 .eco-slide.is-current .intel-bar .track i { width: var(--v); }
 .eco-slide.is-current .player .scr-bar i { transform: none; }
 
-@media (min-width: 961px) and (min-height: 620px) {
+@media (min-height: 500px) {
   .eco { height: calc(var(--n) * 130vh); }
   .eco-pin { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; padding: calc(var(--nav-h) + 20px) 0 24px; }
   .eco-track { flex: 1; min-height: 0; overflow: visible; width: calc(var(--n) * 100%); scroll-snap-type: none; will-change: transform; }
@@ -1126,28 +1126,21 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 
 
 /* ═════════ MOBILE / TELAS SEM A SEÇÃO PRESA ═════════ */
-@media not all and (min-width: 961px) and (min-height: 620px) {
-  /* carrossel em cards, com a ponta do próximo aparecendo */
-  .eco-pin { padding: 48px 0 28px; }
-  .eco-head { gap: 14px; }
-  .eco-tabs { margin-left: 0; margin-right: calc(var(--gutter) * -1); padding-right: var(--gutter); }
-  .eco-track {
-    align-items: flex-start; gap: 12px;
-    padding: 20px var(--gutter) 4px; scroll-padding: 0 var(--gutter);
-  }
+@media (max-height: 499px) {
+  /* celular deitado / telas muito baixas: carrossel em cards de arrastar */
+  .eco-track { align-items: flex-start; gap: 12px; padding: 20px var(--gutter) 4px; scroll-padding: 0 var(--gutter); }
   .eco-slide {
-    flex: 0 0 calc(100% - 28px); padding: 22px 20px 24px;
-    border-radius: 20px;
+    flex: 0 0 calc(100% - 28px); padding: 22px 20px 24px; border-radius: 20px;
     background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
     border: 1px solid rgba(255,255,255,0.08);
   }
   .eco-slide > .container { padding: 0; }
-  .eco-grid { gap: 28px; }
-  .eco-slide h2 { font-size: clamp(24px, 6.4vw, 32px); margin-top: 10px; }
+}
+@media (max-width: 960px) {
+  .eco-head { gap: 14px; }
+  .eco-tabs { margin-left: 0; margin-right: calc(var(--gutter) * -1); padding-right: var(--gutter); }
   .eco-slide .lead { font-size: 15px; line-height: 1.6; }
-  .eco-slide .product-cta { margin-top: 20px; }
   .eco-slide .product-cta .btn { flex: 1 1 100%; }
-  .eco .hero-radar { max-width: 250px; }
   .eco .player { margin: 0; }
   .intel { padding: 18px; }
   .intel-score svg { width: 76px; height: 76px; }
@@ -1247,7 +1240,7 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 [dir="rtl"] .edge-step { padding: 18px 50px 18px 20px; }
 [dir="rtl"] .edge-step::before { left: auto; right: 16px; }
 [dir="rtl"] .edge-plan::before { left: auto; right: 21px; }
-@media not all and (min-width: 961px) and (min-height: 620px) {
+@media (max-width: 960px) {
   .lab-vis, .ichat-wrap, .edge-plan { margin: 0; }
   .lab-back, .ichat-back { display: none; }
   .ichat { transform: none !important; padding: 18px; }
@@ -1277,12 +1270,12 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 
 /* telas do tamanho da janela do usuário (svh evita a barra do navegador no celular) */
 .hero--arc { min-height: 100vh; min-height: 100svh; }
-@media (min-width: 961px) and (min-height: 620px) {
+@media (min-height: 500px) {
   .eco-pin { height: 100vh; height: 100svh; }
 }
 
 /* celular: cada card do ecossistema cabe numa tela */
-@media not all and (min-width: 961px) and (min-height: 620px) {
+@media (max-width: 960px) {
   .eco-pin { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; padding: calc(var(--nav-h) + 8px) 0 20px; }
   .eco-track { flex: 1; }
   .eco-slide .checks, .edge-dims, .ichat-sug, .lab-row:nth-child(3), .edge-step ul, .edge-step p { display: none; }
@@ -1304,7 +1297,7 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 @media (max-width: 960px) {
   .hero--arc { display: flex; flex-direction: column; justify-content: center; }
 }
-@media not all and (min-width: 961px) and (min-height: 620px) {
+@media (max-width: 960px) {
   .eco-head > .t-eyebrow { display: none; }   /* as abas já dizem onde a pessoa está */
 }
 @media (max-width: 600px) {
@@ -1320,4 +1313,24 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
   .edge-step::before { top: 18px; }
   .edge-step ul { display: none; }
   .edge-dims { margin-top: 16px; }
+}
+
+/* celular com a seção presa: o botão vem depois do card do produto */
+@media (max-width: 960px) {
+  .eco-grid { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .eco-slide .eco-product, .eco-slide .title-row { align-self: flex-start; }
+  .eco-grid > div:first-child { display: contents; }
+  .eco-grid > div:last-child { order: 2; margin-top: 18px; }
+  .eco-slide .product-cta { order: 3; margin-top: 18px; }
+  .eco-slide .eco-product, .eco-slide .title-row { order: 0; }
+  .eco-slide h2, .eco-slide .lead { order: 1; }
+  .eco-slide { align-items: flex-start; padding: 8px 0 0; }
+}
+@media (max-width: 960px) and (max-height: 740px) {
+  /* celulares baixos: menos texto para o card e o botão caberem */
+  .eco-slide .lead { -webkit-line-clamp: 3; }
+  .eco .hero-radar { max-width: 150px; }
+  .lab-row:nth-child(2) { display: none; }
+  .ichat-input { min-height: 64px; }
+  .edge-step:nth-child(3) { display: none; }
 }

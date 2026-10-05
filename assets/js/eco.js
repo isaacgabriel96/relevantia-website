@@ -13,7 +13,7 @@
   const bar = sec.querySelector('.eco-bar i');
   const count = sec.querySelector('.eco-count b');
   const N = slides.length;
-  const pinnedMq = matchMedia('(min-width: 961px) and (min-height: 620px)');
+  const pinnedMq = matchMedia('(min-height: 500px)');
   const pad = n => String(n).padStart(2, '0');
   let idx = -1;
 
