@@ -1,30 +1,34 @@
 # Relevantia — Site institucional
 
-Site guarda-chuva da Relevantia. Apresenta o ecossistema (Radar, Intelligence, The Edge, Shift), o manifesto e os canais de contato.
+Site da Relevantia em página única (one pager): ecossistema de marketing, negócios e tecnologia que faz audiências virarem negócios. Seções: hero com a animação da linha de produção, Radar (mockup da plataforma e os 4 formatos de ativo), Relevantia Intelligence (em breve), The Edge (consultoria), Audiência S/A + Lab, Sobre e o formulário "Quero conhecer" (#contato).
 
 ## Stack
 
-- HTML + CSS + JS puro (sem build step)
-- i18n via JS dictionary (PT-BR / EN), persistente em localStorage
-- Design System Relevantia v3.2 (Poppins + DM Sans + Playfair Display + Space Grotesk)
+- HTML + CSS + JS puro, sem build. Tudo em `index.html`.
+- Design System v3.2 (mesmos tokens do Intelligence e do CRM). Sem itálico: `<em>`/`<i>` herdam fonte, peso e cor. Título num peso e numa cor só.
+- UX da landing do Audiência S/A: nav transparente que ganha fundo ao rolar, barra de progresso, título linha a linha, marquee e reveal ao rolar.
 
-## Estrutura
+## Arquivos
 
 ```
-.
-├── index.html              # Landing guarda-chuva
-├── radar.html              # Marketplace de patrocínio
-├── intelligence.html       # Diagnóstico estratégico
-├── the-edge.html           # Consultoria contínua (com formulário)
-├── shift.html              # Imersão presencial (com formulário)
-├── manifesto.html          # Manifesto
-├── contato.html            # Contato + formulário geral
-└── assets/
-    ├── css/relevantia.css  # Design system completo
-    ├── js/i18n.js          # Dicionário PT-BR / EN
-    ├── js/main.js          # Runtime: nav, FAQ, reveal, forms, lang toggle
-    └── logos/              # Marca + lockups Radar
+index.html                 # o site inteiro
+assets/css/relevantia.css  # tokens + componentes
+assets/js/main.js          # nav, idioma, reveal, progresso, formulário (CONTACT no topo)
+assets/js/prodline.js      # animação do hero: audiência → linha de produção → negócio (canvas)
+assets/js/radar-logo.js    # radar animado oficial (cópia de MVP/js/radar-svg-logo.js)
+assets/js/i18n-v5.js       # traduções (o português fica no HTML)
+assets/img, assets/logos
 ```
+
+As páginas antigas (`/the-edge`, `/contato`, `/sobre`, `/manifesto`, `/shift`, `/intelligence`) redirecionam para as seções do one pager (`vercel.json`).
+
+## Formulário
+
+Sem backend: ao enviar, abre o e-mail (ou o WhatsApp, se `CONTACT.whatsapp` estiver preenchido em `assets/js/main.js`) com a mensagem pronta. Links com `data-interest="radar|edge|intelligence|audiencia"` já marcam o interesse.
+
+## Idiomas
+
+PT é o texto do HTML; EN fica em `i18n-v5.js`. ES, ZH e AR caem no inglês. Ao mudar CSS ou JS, suba o `?v=` no `index.html` (cache imutável na Vercel).
 
 ## Rodar localmente
 
@@ -32,26 +36,6 @@ Site guarda-chuva da Relevantia. Apresenta o ecossistema (Radar, Intelligence, T
 python3 -m http.server 8000
 # abrir http://localhost:8000
 ```
-
-## Fluxo de cadastro
-
-The Edge e Shift têm formulários que:
-1. Validam campos obrigatórios
-2. Persistem dados em `localStorage` (`relevantia.leads`) — pickup futuro
-3. Exibem confirmação de sucesso
-4. Redirecionam para `/radar.html` após 4.5s
-
-Para integrar com backend (Supabase, HubSpot, etc.), edite `assets/js/main.js → initForms()`.
-
-## Bilíngue
-
-Toggle PT/EN no topbar. Idioma persistido em `localStorage`. Detecção automática:
-1. `?lang=pt` ou `?lang=en` na URL
-2. localStorage
-3. `navigator.language`
-4. Default: PT
-
-Para adicionar/editar texto: `assets/js/i18n.js`. Cada elemento tem `data-i18n="key"`.
 
 ## Deploy
 

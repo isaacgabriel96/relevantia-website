@@ -2,28 +2,103 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/radar", "destination": "https://radar-relevantia.com.br/", "permanent": false },
-    { "source": "/radar.html", "destination": "https://radar-relevantia.com.br/", "permanent": false },
-    { "source": "/intelligence", "destination": "https://radar-relevantia.com.br/", "permanent": false },
-    { "source": "/intelligence.html", "destination": "https://radar-relevantia.com.br/", "permanent": false }
+    {
+      "source": "/radar",
+      "destination": "https://radar-relevantia.com.br/",
+      "permanent": false
+    },
+    {
+      "source": "/radar.html",
+      "destination": "https://radar-relevantia.com.br/",
+      "permanent": false
+    },
+    {
+      "source": "/intelligence",
+      "destination": "/#intelligence",
+      "permanent": true
+    },
+    {
+      "source": "/intelligence.html",
+      "destination": "/#intelligence",
+      "permanent": true
+    },
+    {
+      "source": "/the-edge",
+      "destination": "/#the-edge",
+      "permanent": true
+    },
+    {
+      "source": "/the-edge.html",
+      "destination": "/#the-edge",
+      "permanent": true
+    },
+    {
+      "source": "/contato",
+      "destination": "/#contato",
+      "permanent": true
+    },
+    {
+      "source": "/contato.html",
+      "destination": "/#contato",
+      "permanent": true
+    },
+    {
+      "source": "/sobre",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
+      "source": "/sobre.html",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
+      "source": "/manifesto",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
+      "source": "/manifesto.html",
+      "destination": "/#sobre",
+      "permanent": true
+    },
+    {
+      "source": "/shift",
+      "destination": "/#contato",
+      "permanent": true
+    },
+    {
+      "source": "/shift.html",
+      "destination": "/#contato",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/assets/css/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/assets/js/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/assets/logos/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ]
