@@ -1,7 +1,11 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/audiencia",
+      "destination": "/audiencia/",
+      "permanent": true
+    },
     {
       "source": "/radar",
       "destination": "https://radar-relevantia.com.br/",
@@ -71,6 +75,16 @@
       "source": "/shift.html",
       "destination": "/#contato",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/audiencia/",
+      "destination": "https://relevantia-lives.vercel.app/"
+    },
+    {
+      "source": "/audiencia/:path*",
+      "destination": "https://relevantia-lives.vercel.app/:path*"
     }
   ],
   "headers": [
