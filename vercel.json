@@ -7,8 +7,8 @@
       "permanent": true
     },
     {
-      "source": "/audiencetobusiness",
-      "destination": "/audiencetobusiness/",
+      "source": "/audience-to-business",
+      "destination": "/audience-to-business/",
       "permanent": true
     },
     {
@@ -92,11 +92,11 @@
       "destination": "https://relevantia-lives.vercel.app/:path*"
     },
     {
-      "source": "/audiencetobusiness/",
+      "source": "/audience-to-business/",
       "destination": "https://isaacgabriel96.github.io/lab-relevantia/formacao/"
     },
     {
-      "source": "/audiencetobusiness/:path*",
+      "source": "/audience-to-business/:path*",
       "destination": "https://isaacgabriel96.github.io/lab-relevantia/formacao/:path*"
     }
   ],
