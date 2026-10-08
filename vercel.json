@@ -7,6 +7,11 @@
       "permanent": true
     },
     {
+      "source": "/audiencetobusiness",
+      "destination": "/audiencetobusiness/",
+      "permanent": true
+    },
+    {
       "source": "/radar",
       "destination": "https://radar-relevantia.com.br/",
       "permanent": false
@@ -85,6 +90,14 @@
     {
       "source": "/audiencia/:path*",
       "destination": "https://relevantia-lives.vercel.app/:path*"
+    },
+    {
+      "source": "/audiencetobusiness/",
+      "destination": "https://isaacgabriel96.github.io/lab-relevantia/formacao/"
+    },
+    {
+      "source": "/audiencetobusiness/:path*",
+      "destination": "https://isaacgabriel96.github.io/lab-relevantia/formacao/:path*"
     }
   ],
   "headers": [
