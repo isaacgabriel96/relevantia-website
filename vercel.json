@@ -17,16 +17,6 @@
       "permanent": false
     },
     {
-      "source": "/intelligence",
-      "destination": "/#intelligence",
-      "permanent": true
-    },
-    {
-      "source": "/intelligence.html",
-      "destination": "/#intelligence",
-      "permanent": true
-    },
-    {
       "source": "/the-edge",
       "destination": "/#the-edge",
       "permanent": true
