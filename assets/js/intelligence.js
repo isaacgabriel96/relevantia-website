@@ -229,6 +229,9 @@
     }
   }
 
+  // Com "reduzir movimento", os dados param de circular na rede do comparativo
+  if (reduce) document.querySelectorAll('.vs-rede-svg').forEach(svg => svg.pauseAnimations && svg.pauseAnimations());
+
   function conta(el) {
     const alvo = Number(el.dataset.count);
     const fmt = n => n.toLocaleString('pt-BR');
