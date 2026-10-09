@@ -193,32 +193,38 @@
 /* ── O que é: tabela "o que trava hoje" × "como o Intelligence resolve" ──
    Cada linha entra ao aparecer na tela: a dor é riscada e a solução desliza. */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.in-tab-wrap { margin-top: clamp(36px, 5vw, 56px); border-radius: 22px; overflow: hidden; background: var(--white); border: 1px solid var(--gray-2); box-shadow: var(--shadow-md); }
+.in-tab-wrap { --claro: var(--gray-1); --escuro: #120E06; margin-top: clamp(36px, 5vw, 56px); border-radius: 22px; overflow: hidden; border: 1px solid var(--gray-2); box-shadow: var(--shadow-md); background: var(--claro); }
 .in-tab { width: 100%; border-collapse: collapse; table-layout: fixed; }
-.in-tab th { padding: 18px 28px; text-align: left; font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
-.in-tab th i { display: inline-grid; place-items: center; width: 20px; height: 20px; margin-right: 10px; border-radius: 50%; font-style: normal; font-size: 10px; letter-spacing: 0; vertical-align: -5px; }
-.in-tab th.antes { background: var(--gray-1); color: var(--gray-3); }
-.in-tab th.antes i { background: rgba(168,152,128,0.2); color: var(--gray-4); }
-.in-tab th.depois { background: linear-gradient(135deg, #1C160A, #0D0A03); color: var(--gold-light); }
+/* Esquerda clara, direita escura; a coluna da seta divide as duas cores ao meio
+   (cabeçalho e corpo iguais), para a seta ficar exatamente na divisa. */
+.in-tab .antes { background: var(--claro); }
+.in-tab .depois { background: var(--escuro); }
+.in-tab .seta { width: 56px; padding: 0; text-align: center; background: linear-gradient(90deg, var(--claro) 50%, var(--escuro) 50%); }
+.in-tab th { padding: 20px 28px; text-align: left; font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; box-shadow: inset 0 -1px 0 var(--gray-2); }
+.in-tab th.depois { box-shadow: inset 0 -1px 0 rgba(232,201,106,0.18); }
+.in-tab thead .seta { box-shadow: inset 0 -1px 0 rgba(120,100,70,0.16); }
+.th-in { display: inline-flex; align-items: center; gap: 10px; }
+.th-in i { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; font-style: normal; font-size: 10px; letter-spacing: 0; }
+.in-tab th.antes { color: var(--gray-4); }
+.in-tab th.antes i { background: rgba(168,152,128,0.22); color: var(--gray-4); }
+.in-tab th.depois { color: var(--gold-light); }
 .in-tab th.depois i { background: var(--gold-fill); color: var(--white); }
-.in-tab .seta { width: 64px; padding: 0; text-align: center; }
-.in-tab thead .seta { background: linear-gradient(90deg, var(--gray-1) 50%, #16110A 50%); }
-.in-tab td { padding: 22px 28px; vertical-align: middle; border-top: 1px solid var(--gray-2); }
-.in-tab td.antes { background: var(--gray-body); }
+.in-tab td { padding: 24px 28px; vertical-align: middle; }
+.in-tab tbody tr + tr td.antes { border-top: 1px solid var(--gray-2); }
+.in-tab tbody tr + tr td.depois { border-top: 1px solid rgba(232,201,106,0.14); }
 .in-tab td b { display: block; font-family: var(--font-heading); font-size: 17px; font-weight: 600; line-height: 1.3; }
 .in-tab td p { margin-top: 4px; font-size: 14.5px; line-height: 1.55; }
 .in-tab td.antes b { color: var(--gray-4); }
 .in-tab td.antes p { color: var(--gray-3); }
 .in-tab td.antes b span { background-image: linear-gradient(var(--gray-3), var(--gray-3)); background-repeat: no-repeat; background-position: 0 58%; background-size: 0% 2px; transition: background-size .7s var(--ease) .4s; }
 .in-tab tr.in td.antes b span { background-size: 100% 2px; }
-.in-tab td.seta span { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--gold-fill); color: var(--white); font-size: 15px; font-weight: 700; box-shadow: var(--shadow-gold); transform: scale(0) rotate(-90deg); transition: transform .5s var(--ease) .8s; }
+.in-tab td.seta span { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--gold-fill); color: var(--white); font-size: 15px; font-weight: 700; box-shadow: 0 0 0 5px var(--escuro), var(--shadow-gold); transform: scale(0) rotate(-90deg); transition: transform .5s var(--ease) .8s; }
 .in-tab tr.in td.seta span { transform: none; }
-.in-tab td.depois b { color: var(--black); }
-.in-tab td.depois p { color: var(--gray-4); }
+.in-tab td.depois b { color: var(--white); }
+.in-tab td.depois p { color: rgba(255,255,255,0.66); }
 .in-tab td.depois > * { opacity: 0; transform: translateX(-12px); transition: opacity .55s var(--ease) 1s, transform .6s var(--ease) 1s; }
 .in-tab tr.in td.depois > * { opacity: 1; transform: none; }
-.in-tab tbody tr { transition: background .3s; }
-.in-tab tbody tr:hover td.depois { background: var(--gold-ghost); }
+.in-tab tbody tr:hover td.depois { background: #1B150A; }
 /* a linha da tabela não desloca (só aparece); quem se move é o conteúdo */
 .in-tab tr.reveal { transform: none; }
 
@@ -394,13 +400,18 @@
   .in-dx-grid { grid-template-columns: 1fr; }
   .in-tab, .in-tab tbody, .in-tab tr, .in-tab td { display: block; width: 100%; }
   .in-tab thead { display: none; }
-  .in-tab tbody tr { border-top: 1px solid var(--gray-2); }
-  .in-tab tbody tr:first-child { border-top: 0; }
-  .in-tab td { border-top: 0; padding: 18px 20px; }
-  .in-tab td.antes::before { content: '✕  Hoje'; display: block; margin-bottom: 6px; font-family: var(--font-ui); font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gray-3); }
-  .in-tab td.depois::before { content: '✓  Com o Intelligence'; display: block; margin-bottom: 6px; font-family: var(--font-ui); font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-dark); }
-  .in-tab td.seta { height: 0; padding: 0; text-align: left; position: relative; }
-  .in-tab td.seta span { position: absolute; left: 20px; top: -17px; transform: scale(0) rotate(0deg); }
+  .in-tab-wrap { border-radius: 18px; background: transparent; border: 0; box-shadow: none; }
+  .in-tab tbody { display: flex; flex-direction: column; gap: 14px; }
+  .in-tab tbody tr { border-radius: 16px; overflow: hidden; border: 1px solid var(--gray-2); box-shadow: var(--shadow-sm); }
+  .in-tab tbody tr + tr td.antes, .in-tab tbody tr + tr td.depois { border-top: 0; }
+  .in-tab td { padding: 18px 20px; }
+  .in-tab td.antes { padding-bottom: 24px; }
+  .in-tab td.depois { padding-top: 26px; }
+  .in-tab td.antes::before, .in-tab td.depois::before { display: block; margin-bottom: 6px; font-family: var(--font-ui); font-size: 10px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+  .in-tab td.antes::before { content: '✕  Hoje'; color: var(--gray-3); }
+  .in-tab td.depois::before { content: '✓  Com o Intelligence'; color: var(--gold-light); }
+  .in-tab td.seta { position: relative; height: 0; padding: 0; background: none; }
+  .in-tab td.seta span { position: absolute; left: 20px; top: -18px; z-index: 1; transform: scale(0); }
   .in-tab tr.in td.seta span { transform: rotate(90deg); }
   .in-orb-in { font-size: 11px; padding: 4px 9px 4px 4px; gap: 5px; }
   .in-orb-in .lg, .in-orb-in .lg-txt, .in-orb-in .lg-radar { width: 20px; height: 20px; }
