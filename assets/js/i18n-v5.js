@@ -9,6 +9,7 @@
   ['pt', 'en', 'es', 'zh', 'ar'].forEach(l => { I[l] = I[l] || {}; });
 
   Object.assign(I.en, {
+    'eco.intel.more': 'Discover Intelligence',
     /* meta */
     'eco.meta.title': 'Relevantia | We turn audiences into businesses',
     'eco.meta.desc': 'A marketing, business and technology ecosystem. Audiência S/A, The Edge + Intelligence and Radar, the operating system for sponsorships and partnerships.',

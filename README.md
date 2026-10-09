@@ -20,7 +20,9 @@ assets/js/i18n-v5.js       # traduções (o português fica no HTML)
 assets/img, assets/logos
 ```
 
-As páginas antigas (`/the-edge`, `/contato`, `/sobre`, `/manifesto`, `/shift`, `/intelligence`) redirecionam para as seções do one pager (`vercel.json`).
+As páginas antigas (`/the-edge`, `/contato`, `/sobre`, `/manifesto`, `/shift`) redirecionam para as seções do one pager (`vercel.json`).
+
+`/intelligence` é a página própria do Relevantia Intelligence (`intelligence.html`, com `assets/css/intelligence.css` e `assets/js/intelligence.js`): como funciona, as 6 dimensões, os agentes, as formas de acesso (Audience to Business, assinatura e The Edge), perguntas e a lista de espera (o mesmo formulário da home, com Intelligence marcado). Só em português por enquanto.
 
 ## Formulário
 

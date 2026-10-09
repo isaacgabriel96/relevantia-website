@@ -1,0 +1,59 @@
+/* ═══════════════════════════════════════════════
+   /intelligence — página do Relevantia Intelligence
+   Usa os tokens e componentes de relevantia.css;
+   aqui ficam só as peças desta página.
+   ═══════════════════════════════════════════════ */
+
+/* Hero: mesmo fundo do site, chat do Intelligence à direita */
+.in-hero .title-row { margin-bottom: 2px; }
+.in-hero h1 { max-width: 14ch; }
+.in-chat .ichat { transform: rotate(-3deg); }
+
+/* Como funciona */
+.in-steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: clamp(36px, 5vw, 56px); }
+.in-step { background: var(--white); border: 1px solid var(--gray-2); border-radius: var(--radius-lg); padding: 28px; }
+.in-step-num { display: block; font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--gold-dark); margin-bottom: 18px; }
+.in-step h3 { font-size: 21px; }
+.in-step p { margin-top: 10px; color: var(--gray-4); font-size: 15.5px; line-height: 1.65; }
+
+/* Dimensões (cor da dimensão só no acento) */
+.in-dims { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(36px, 5vw, 56px); }
+.in-dim { position: relative; padding: 24px 24px 22px; border-radius: var(--radius-lg); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); }
+.in-dim::before { content: ''; position: absolute; left: 24px; top: 0; width: 36px; height: 3px; border-radius: 0 0 3px 3px; background: var(--dim); }
+.in-dim small { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+.in-dim small::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--dim); }
+.in-dim h3 { margin-top: 12px; font-size: 20px; color: var(--white); }
+.in-dim p { margin-top: 8px; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.68); }
+
+/* Agentes */
+.in-agents { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 16px; margin-top: clamp(36px, 5vw, 56px); }
+.in-agent { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 24px; border-radius: var(--radius-lg); background: var(--gray-body); border: 1px solid var(--gray-2); }
+.in-agent-ico { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-gradient); color: var(--ink); font-size: 15px; margin-bottom: 6px; }
+.in-agent.soonish .in-agent-ico { background: var(--gray-1); color: var(--gold-dark); border: 1px solid var(--gold-border); }
+.in-agent-tag { position: absolute; top: 24px; right: 20px; font-family: var(--font-ui); font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); }
+.in-agent h3 { font-size: 18px; }
+.in-agent p { font-size: 14.5px; line-height: 1.6; color: var(--gray-4); }
+
+/* Formas de acesso */
+.in-tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: clamp(36px, 5vw, 56px); align-items: stretch; }
+.in-tier { display: flex; flex-direction: column; padding: 30px 28px 28px; border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--gray-2); }
+.in-tier.destaque { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold), var(--shadow-md); }
+.in-tier small { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-dark); }
+.in-tier h3 { margin-top: 10px; font-size: 24px; }
+.in-tier > p { margin-top: 10px; font-size: 15.5px; line-height: 1.65; color: var(--gray-4); }
+.in-tier .checks { margin: 20px 0 26px; gap: 9px; flex: 1; }
+.in-tier .checks li { font-size: 15px; }
+.in-tier .btn { align-self: flex-start; }
+
+/* FAQ */
+.in-faq { margin-top: 28px; border-top: 1px solid var(--gray-2); }
+
+@media (max-width: 960px) {
+  .in-steps, .in-tiers { grid-template-columns: 1fr; }
+  .in-dims { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .in-chat { margin: 8px 0 0; }
+}
+@media (max-width: 600px) {
+  .in-dims { grid-template-columns: 1fr; }
+  .in-hero .hero-cta .btn { width: 100%; }
+}
