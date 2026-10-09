@@ -561,7 +561,7 @@
 .vs-kick { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #D6DAE0; }
 .vs-kick svg { width: 20px; height: 20px; color: #D6DAE0; }
 .vs-kick em { font-style: normal; padding: 6px 12px; border-radius: 100px; font-size: 10.5px; letter-spacing: .14em; color: #E8C96A; border: 1px solid rgba(200,168,75,0.55); background: rgba(184,134,11,0.10); }
-.vs-tit .vs-nome { display: inline-block; margin-top: 10px; font-family: var(--font-heading); font-size: clamp(38px, 4vw, 54px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; background: var(--prata); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.vs-tit .vs-nome { display: inline-block; margin-top: 10px; font-family: var(--font-heading); font-size: clamp(38px, 4vw, 54px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.1; padding-bottom: .14em; margin-bottom: -.14em; background: var(--prata); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .vs-intel .vs-sub { color: rgba(220,224,230,0.62); }
 .vs-intel .vs-rede-svg .raio { stroke: rgba(214,218,224,0.32); }
 .vs-intel .vs-rede-svg .arco { stroke: rgba(214,218,224,0.14); }
@@ -573,8 +573,10 @@
 @keyframes vs-no-prata { 0%, 12% { box-shadow: 0 0 0 0 rgba(214,218,224,0); } 6% { box-shadow: 0 0 0 6px rgba(214,218,224,0.16), 0 0 22px rgba(214,218,224,0.35); } }
 .vs-intel .vs-ctx i { background: var(--prata); }
 .vs-intel .vs-lista li::before { background: var(--prata); color: #0B0B0D; }
-.vs-intel .vs-radar { background: rgba(255,255,255,0.03); border-color: var(--linha-prata); }
-.vs-intel .vs-radar .link-arrow { color: #D6DAE0; }
+.vs-intel .vs-radar { background: radial-gradient(80% 140% at 0% 0%, rgba(232,201,106,0.20), transparent 60%), linear-gradient(135deg, #2A1F0A 0%, #160F04 55%, #0B0802 100%); border-color: rgba(232,201,106,0.45); box-shadow: 0 14px 34px rgba(184,134,11,0.18); }
+.vs-intel .vs-radar p { color: rgba(255,248,230,0.75); }
+.vs-intel .vs-radar p b { color: #E8C96A; }
+.vs-intel .vs-radar .link-arrow { color: #E8C96A; }
 @media (min-width: 961px) {
   .vs-radar-faixa { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px; margin-top: 0; }
   .vs-radar-faixa img { margin: 0; }
