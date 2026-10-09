@@ -250,7 +250,7 @@
 .vs-cmp.na-esquerda .vs-handle span { translate: 0 -50%; }
 .vs-cmp.na-direita .vs-handle span { translate: -100% -50%; }
 .vs-body { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 3.4vw, 48px); align-items: start; margin-top: 22px; }
-@media (min-width: 961px) { .vs-geral .vs-body { flex: 1; align-content: center; align-items: center; } }
+@media (min-width: 961px) { .vs-geral { justify-content: center; } .vs-geral .vs-body { align-items: center; } }
 .vs-col { display: flex; flex-direction: column; gap: 22px; }
 .vs-tags { position: absolute; top: 18px; left: 18px; right: 18px; z-index: 3; display: flex; justify-content: space-between; gap: 8px; pointer-events: none; }
 .vs-tag { pointer-events: auto; padding: 7px 13px; border-radius: 100px; font-family: var(--font-ui); font-size: 10.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; transition: transform .2s, background .3s, color .3s; }
@@ -268,17 +268,18 @@
 .vs-cmp[data-lado] .vs-intel { margin-top: 0; }
 .vs-dica .curto { display: none; }
 .vs-geral { background: var(--gray-body); }
-.vs-intel { color: var(--white);
-  background: radial-gradient(70% 50% at 85% 0%, rgba(220,224,230,0.09), transparent 70%), radial-gradient(60% 45% at 0% 100%, rgba(184,134,11,0.12), transparent 70%), linear-gradient(180deg, #0B0B0D, #050506); }
+.vs-intel { --prata: linear-gradient(110deg, #8E9196 0%, #F4F5F7 42%, #BFC3C8 62%, #7C8087 100%); --linha-prata: rgba(214,218,224,0.28); color: var(--white);
+  background: radial-gradient(70% 55% at 80% 0%, rgba(220,224,230,0.10), transparent 70%), linear-gradient(160deg, #1D1E21 0%, #0D0E10 55%, #070708 100%); }
 .vs-tit small { display: block; font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gray-3); }
 .vs-intel .vs-tit small { color: var(--gold-light); }
 .vs-tit { padding-top: 40px; }
 /* Foco: o lado que ocupa menos espaço fica desfocado e mais apagado (--bg/--og e --bi/--oi vêm do JS) */
 .vs-geral > * { filter: blur(var(--bg, 0px)); opacity: var(--og, 1); transition: filter .25s, opacity .25s; }
 .vs-intel > * { filter: blur(var(--bi, 0px)); opacity: var(--oi, 1); transition: filter .25s, opacity .25s; }
-.vs-ias { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-.vs-ias span { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 9px; border-radius: 100px; font-family: var(--font-heading); font-size: 13px; font-weight: 600; color: var(--black); background: var(--white); border: 1px solid var(--gray-2); }
-.vs-ias .lg { width: 16px; height: 16px; }
+.vs-ias { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.vs-ias span { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 12px; border-radius: 100px; font-family: var(--font-heading); font-size: 17px; font-weight: 600; color: var(--black); background: var(--white); border: 1px solid var(--gray-2); }
+.vs-ias .lg { width: 24px; height: 24px; }
+.vs-sub { margin-top: 10px; max-width: 52ch; font-size: 15.5px; line-height: 1.6; color: var(--gray-4); }
 .vs-tit b { display: block; margin-top: 4px; font-family: var(--font-heading); font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; letter-spacing: -0.02em; }
 
 /* lado geral: um chat isolado que pede contexto */
@@ -501,7 +502,7 @@
   .vs-geral { padding-top: 18px; }
   .vs-lado { animation: in-panel .45s var(--ease); }
   .vs-lado > * { filter: none !important; opacity: 1 !important; }
-  .vs-tit { padding-top: 0; }
+  .vs-tit, .vs-tit-intel { padding-top: 0; }
   .vs-geral, .vs-intel { padding: var(--pad); }
   .vs-handle { display: none; }
   .vs-dica .longo { display: none; } .vs-dica .curto { display: inline; }
@@ -552,4 +553,30 @@
   .in-rot-word { transition: none; }
   .is-on .in-v-lib .fw, .is-on .in-v-agents .pb i, .is-on .in-v-units .u, .is-on .in-v-units .lns line, .is-on .in-v-canais .s { animation-duration: .01s !important; animation-delay: 0s !important; }
   .in-steps::before, .in-step-num { transition: none; }
+}
+
+/* ── Comparador: lado do Intelligence em preto e prata ── */
+.vs-tit-intel { padding-top: 40px; }
+@media (min-width: 961px) { .vs-intel .vs-rede { max-width: 330px; margin-left: auto; margin-right: auto; } }
+.vs-kick { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-family: var(--font-ui); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #D6DAE0; }
+.vs-kick svg { width: 20px; height: 20px; color: #D6DAE0; }
+.vs-kick em { font-style: normal; padding: 6px 12px; border-radius: 100px; font-size: 10.5px; letter-spacing: .14em; color: #E8C96A; border: 1px solid rgba(200,168,75,0.55); background: rgba(184,134,11,0.10); }
+.vs-tit .vs-nome { display: inline-block; margin-top: 10px; font-family: var(--font-heading); font-size: clamp(38px, 4vw, 54px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.02; background: var(--prata); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.vs-intel .vs-sub { color: rgba(220,224,230,0.62); }
+.vs-intel .vs-rede-svg .raio { stroke: rgba(214,218,224,0.32); }
+.vs-intel .vs-rede-svg .arco { stroke: rgba(214,218,224,0.14); }
+.vs-intel .vs-rede-svg .dado { fill: #F4F5F7; filter: drop-shadow(0 0 4px rgba(244,245,247,0.85)); }
+.vs-intel .vs-rede-svg .dado.b { fill: #E8C96A; filter: drop-shadow(0 0 4px rgba(232,201,106,0.8)); }
+.vs-intel .vs-centro { background: radial-gradient(circle at 30% 25%, #2A2C30, #0B0B0D 70%); border-color: #BFC3C8; animation-name: vs-pulso-prata; }
+@keyframes vs-pulso-prata { 0% { box-shadow: 0 0 0 0 rgba(214,218,224,0.4); } 100% { box-shadow: 0 0 0 24px rgba(214,218,224,0); } }
+.vs-intel .vs-no { background: rgba(22,23,26,0.95); border-color: var(--linha-prata); color: #F4F5F7; animation-name: vs-no-prata; }
+@keyframes vs-no-prata { 0%, 12% { box-shadow: 0 0 0 0 rgba(214,218,224,0); } 6% { box-shadow: 0 0 0 6px rgba(214,218,224,0.16), 0 0 22px rgba(214,218,224,0.35); } }
+.vs-intel .vs-ctx i { background: var(--prata); }
+.vs-intel .vs-lista li::before { background: var(--prata); color: #0B0B0D; }
+.vs-intel .vs-radar { background: rgba(255,255,255,0.03); border-color: var(--linha-prata); }
+.vs-intel .vs-radar .link-arrow { color: #D6DAE0; }
+@media (min-width: 961px) {
+  .vs-radar-faixa { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px; margin-top: 0; }
+  .vs-radar-faixa img { margin: 0; }
+  .vs-radar-faixa .link-arrow { margin-top: 0; white-space: nowrap; }
 }

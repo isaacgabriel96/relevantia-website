@@ -316,17 +316,7 @@
       if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) lado(dx < 0 ? 'intel' : 'geral');
       x0 = null;
     });
-    // Na primeira vez que aparece: começa na IA geral e desliza até o Intelligence
-    if (!reduce && 'IntersectionObserver' in window) {
-      const io = new IntersectionObserver(async es => {
-        if (!es.some(e => e.isIntersecting)) return;
-        io.disconnect();
-        await wait(700);
-        if (celular.matches) return;
-        if (!arrastando) poe(SNAP_L, true);
-      }, { threshold: 0.45 });
-      io.observe(cmp);
-    }
+    // Começa com a IA de uso geral aberta; o visitante arrasta para ver o Intelligence
   }
 
   // Com "reduzir movimento", os dados param de circular na rede do comparativo
