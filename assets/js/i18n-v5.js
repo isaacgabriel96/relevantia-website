@@ -342,4 +342,16 @@
     'eco.edge.p3.when': 'Every quarter', 'eco.edge.p3.title': 'Strategic review',
     'eco.edge.p3.desc': 'What moved forward, what changes priority and the new plan for new business.',
   });
+  /* Audience to Business (no lugar do Lab) */
+  Object.assign(I.en, {
+    'eco.atb.eyebrow': 'Live program',
+    'eco.atb.lead': 'Two months to take your audience to recurring revenue, your own products and a real company.',
+    'eco.atb.b1': '<strong>6 live classes</strong> + 2 bonus classes and graduation',
+    'eco.atb.b2': '<strong>2 one-on-one mentoring sessions</strong> with Isaac',
+    'eco.atb.b3': '<strong>Intelligence + Radar</strong> throughout the program',
+    'eco.atb.cta': 'Save my spot',
+    'eco.atb.l1': 'Concept', 'eco.atb.l2': 'Audience', 'eco.atb.l3': 'Monetization', 'eco.atb.l4': 'Diversification', 'eco.atb.l5': 'Business',
+    'eco.atb.stuck': 'Most get stuck at audience',
+    'eco.atb.goal': 'The program takes you to business',
+  });
 })();
