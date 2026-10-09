@@ -288,6 +288,34 @@
 .in-v-canais .leg i { width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
 .in-v-canais .leg b { margin-left: auto; color: var(--white); font-weight: 600; }
 
+/* ── Integrações: as ferramentas girando em volta do Intelligence ──
+   Os anéis giram e cada selo gira ao contrário, para o texto ficar sempre em pé. */
+.in-int { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; margin-top: clamp(36px, 5vw, 56px); }
+.in-orb { position: relative; width: 100%; max-width: 520px; aspect-ratio: 1; margin: 0 auto; container-type: inline-size; }
+.in-orb::before { content: ''; position: absolute; inset: 30%; border-radius: 50%; background: radial-gradient(circle, rgba(184,134,11,0.18), transparent 70%); animation: in-breath 6s ease-in-out infinite; }
+.in-orb-ring { position: absolute; border-radius: 50%; border: 1.5px dashed rgba(122,92,30,0.25); animation: in-orbit var(--dur) linear infinite; }
+.in-orb-ring.r2 { inset: 7%; --dur: 70s; --R: 43cqw; }
+.in-orb-ring.r1 { inset: 25%; --dur: 50s; --R: 25cqw; animation-direction: reverse; }
+@keyframes in-orbit { to { transform: rotate(360deg); } }
+.in-orb-chip { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: rotate(var(--a)) translateY(calc(var(--R) * -1)) rotate(calc(var(--a) * -1)); }
+.in-orb-in { position: absolute; left: 0; top: 0; translate: -50% -50%; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; padding: 6px 12px 6px 6px; border-radius: 100px; background: var(--white); border: 1px solid var(--gray-2); box-shadow: var(--shadow-md); font-family: var(--font-heading); font-size: 12.5px; font-weight: 600; color: var(--black); animation: in-orbit var(--dur) linear infinite reverse; }
+.r1 .in-orb-in { animation-direction: normal; }
+.in-orb-in i { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-family: var(--font-display); font-size: 10.5px; font-weight: 600; color: var(--white); background: var(--gold-fill); }
+.r2 .in-orb-in i { background: linear-gradient(135deg, #6B7078, #9EA3AA); }
+.in-orb-core { position: absolute; left: 50%; top: 50%; width: 110px; height: 110px; margin: -55px 0 0 -55px; border-radius: 50%; display: grid; place-content: center; justify-items: center; gap: 4px; color: var(--white); background: radial-gradient(circle at 30% 25%, #2A2112, #0B0B0D 70%); border: 1px solid rgba(232,201,106,0.4); box-shadow: 0 20px 50px rgba(26,18,0,0.35); animation: in-core 2.6s ease-out infinite; }
+.in-orb-core svg { width: 26px; height: 26px; color: var(--gold-bright); animation: in-spin 10s linear infinite; }
+.in-orb-core b { font-family: var(--font-heading); font-size: 13px; font-weight: 600; }
+
+.in-int-list { display: flex; flex-direction: column; gap: 14px; }
+.in-int-g { padding: 20px 22px; border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--gray-2); }
+.in-int-gh { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.in-int-gh b { font-family: var(--font-heading); font-size: 17px; font-weight: 600; }
+.in-int-st { padding: 4px 10px; border-radius: 100px; font-family: var(--font-ui); font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); background: var(--gold-ghost); border: 1px solid var(--gold-border); }
+.in-int-st.ok { color: #15803D; background: rgba(22,163,74,0.08); border-color: rgba(22,163,74,0.3); }
+.in-int-g p { margin-top: 6px; font-size: 14.5px; line-height: 1.6; color: var(--gray-4); }
+.in-int-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.in-int-tags span { padding: 5px 11px; border-radius: 100px; font-size: 12.5px; font-weight: 500; color: var(--black); background: var(--gray-body); border: 1px solid var(--gray-2); }
+
 /* ── Como funciona: linha que se desenha entre os passos ── */
 .in-steps { position: relative; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: clamp(36px, 5vw, 56px); }
 .in-steps::before { content: ''; position: absolute; left: 28px; right: 28px; top: 27px; height: 2px; background: var(--gold-fill); transform: scaleX(0); transform-origin: left; transition: transform 1.6s var(--ease) .3s; }
@@ -332,7 +360,7 @@
   .in-demo { margin: 8px auto 0; }
   .in-tiers { grid-template-columns: 1fr; }
   .in-dores { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .in-sol, .in-dx, .in-conv { grid-template-columns: 1fr; }
+  .in-sol, .in-dx, .in-conv, .in-int { grid-template-columns: 1fr; }
   .in-cap { margin: 10px auto 0; max-width: 520px; }
   .in-dx-list { flex-direction: row; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter); }
   .in-dx-list::-webkit-scrollbar { display: none; }
@@ -358,6 +386,10 @@
   .in-msg { font-size: 13.5px; }
   .in-dx-grid { grid-template-columns: 1fr; }
   .in-dores { grid-template-columns: 1fr; }
+  .in-orb-in { font-size: 11px; padding: 4px 9px 4px 4px; gap: 5px; }
+  .in-orb-in i { width: 20px; height: 20px; font-size: 9px; }
+  .in-orb-core { width: 88px; height: 88px; margin: -44px 0 0 -44px; }
+  .in-orb-core b { font-size: 11px; }
   .in-cap-card { width: 54%; padding: 10px 12px; }
   .in-cap-card b { font-size: 13px; }
   .in-cap-card p { font-size: 11.5px; }
@@ -368,7 +400,7 @@
   .in-v-lib { height: 200px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .in-demo-card, .in-demo-ico svg, .in-dots i, .in-demo-ctx i, .in-cap-glow, .in-cap-core, .in-cap-core svg, .in-cap-radar .v.on { animation: none !important; }
+  .in-demo-card, .in-demo-ico svg, .in-dots i, .in-demo-ctx i, .in-cap-glow, .in-cap-core, .in-cap-core svg, .in-cap-radar .v.on, .in-orb::before, .in-orb-ring, .in-orb-in, .in-orb-core, .in-orb-core svg { animation: none !important; }
   .in-dor-antes h3 span, .in-dor-seta span, .in-dor-depois { transition: none !important; }
   .in-dx-panel .st { animation: none; opacity: 1; transform: none; }
   .in-rot-word { transition: none; }
