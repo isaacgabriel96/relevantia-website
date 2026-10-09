@@ -21,6 +21,8 @@
   --gold-gradient-h:      linear-gradient(90deg,  #B8860B, #C8A84B);
   --gold-gradient-soft:   linear-gradient(135deg, #8B6508, #B8860B);
   --gold-gradient-subtle: linear-gradient(135deg, rgba(184,134,11,0.10), rgba(200,168,75,0.04));
+  /* Botões e selos dourados: texto sempre branco (nunca preto no ouro) */
+  --gold-fill:            linear-gradient(135deg, #9A7009, #B8860B 55%, #C29A36);
 
   /* ── Base ── */
   --black:       #1A1200;
@@ -314,8 +316,8 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 20px;
   border-radius: var(--radius-pill);
-  background: var(--gold-gradient);
-  color: var(--ink) !important;
+  background: var(--gold-fill);
+  color: var(--white) !important;
   font-weight: 600; font-size: 14px;
   transition: transform var(--t-med), box-shadow var(--t-med);
 }
@@ -359,7 +361,7 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
   transition: background var(--t-fast), color var(--t-fast);
 }
 .lang-menu button:hover { background: rgba(255,255,255,0.06); color: var(--white); }
-.lang-menu button.active { color: var(--ink); background: var(--gold-gradient); font-weight: 600; }
+.lang-menu button.active { color: var(--white); background: var(--gold-fill); font-weight: 600; }
 .lang-code { font-size: 10.5px; opacity: 0.55; letter-spacing: 0.06em; }
 
 .menu-trigger {
@@ -419,8 +421,8 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
     display: inline-flex; align-items: center; justify-content: center;
     width: 100%; min-height: 52px; padding: 14px 24px;
     border-radius: var(--radius-pill);
-    background: var(--gold-gradient);
-    color: var(--ink);
+    background: var(--gold-fill);
+    color: var(--white);
     font-weight: 600; font-size: 16px;
   }
 }
@@ -443,7 +445,7 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
   cursor: pointer; white-space: nowrap;
   transition: transform .35s var(--ease), box-shadow .35s var(--ease), background var(--t-med), color var(--t-med), border-color var(--t-med);
 }
-.btn-primary, .btn-gold { color: var(--ink); background: var(--gold-gradient); box-shadow: var(--shadow-gold); }
+.btn-primary, .btn-gold { color: var(--white); background: var(--gold-fill); box-shadow: var(--shadow-gold); }
 .btn-primary::before, .btn-gold::before {
   content: ''; position: absolute; inset: 0; z-index: -1;
   background: var(--gold-gradient-soft); opacity: 0; transition: opacity .35s;
@@ -777,7 +779,7 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 .form-success-ico {
   width: 60px; height: 60px; margin: 0 auto 18px;
   border-radius: 50%; display: grid; place-items: center;
-  background: var(--gold-gradient); color: var(--ink);
+  background: var(--gold-fill); color: var(--white);
   font-size: 26px; font-weight: 700;
 }
 .form-success h3 { font-size: 22px; }
@@ -912,9 +914,9 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
   display: inline-flex; align-items: center; gap: 8px;
   padding: 6px 12px; border-radius: 100px;
   font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink); background: var(--gold-gradient);
+  color: var(--white); background: var(--gold-fill);
 }
-.soon::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); animation: ping 2.2s var(--ease) infinite; }
+.soon::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--white); animation: ping 2.2s var(--ease) infinite; }
 .title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 
 /* Player do Audiência S/A (mesmo card do hero da landing) */
@@ -1071,8 +1073,8 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 }
 .eco-tab i { font-family: var(--font-display); font-size: 11px; color: var(--gold-light); }
 .eco-tab:hover { color: var(--white); border-color: rgba(232,201,106,0.4); }
-.eco-tab.is-active { background: var(--gold-gradient); color: var(--ink); border-color: transparent; }
-.eco-tab.is-active i { color: var(--ink); opacity: .7; }
+.eco-tab.is-active { background: var(--gold-fill); color: var(--white); border-color: transparent; }
+.eco-tab.is-active i { color: var(--white); opacity: .7; }
 .eco-bar { flex-basis: 100%; height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
 .eco-bar i { display: block; height: 100%; background: var(--gold-gradient-h); transform-origin: left; transform: scaleX(.2); transition: transform .2s linear; }
 .eco-track { position: relative; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
@@ -1248,7 +1250,7 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 .ichat-foot { margin-top: auto; padding-top: 14px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.6); }
 .ichat-foot > span:first-child { display: inline-flex; align-items: center; gap: 6px; }
 .ichat-foot > span:first-child svg { width: 12px; height: 12px; color: var(--gold-light); }
-.ichat-send { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--gold-gradient); color: var(--ink); }
+.ichat-send { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--gold-fill); color: var(--white); }
 .ichat-send svg { width: 16px; height: 16px; }
 .ichat-sug { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 16px; }
 .ichat-sug > span { display: inline-flex; align-items: center; gap: 9px; padding: 9px 14px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(232,201,106,0.22); font-size: 13.5px; color: rgba(255,255,255,0.85); }
@@ -1417,3 +1419,22 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
   .lab-note { margin-top: 10px; }
   .player .vid-meta { margin-top: 10px; }
 }
+
+/* ═════════ Intelligence: identidade preto e prata (como no Audience to Business e em /intelligence) ═════════ */
+#intelligence { --silver-grad: linear-gradient(110deg, #8E9196 0%, #F4F5F7 42%, #BFC3C8 62%, #7C8087 100%); --graphite: linear-gradient(135deg, #2A2D32 0%, #3E434A 55%, #555B63 100%); }
+#intelligence .eco-product { background: var(--silver-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+#intelligence .soon { background: transparent; color: var(--white); border: 1px solid rgba(214,218,224,0.32); }
+#intelligence .soon::before { background: #D6DAE0; }
+#intelligence .checks li::before { background: var(--silver-grad); }
+#intelligence .btn-primary { background: var(--graphite); border: 1px solid rgba(214,218,224,0.38); box-shadow: 0 12px 34px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12); }
+#intelligence .btn-primary::before { background: linear-gradient(135deg, #3A3E45, #5E646D); }
+#intelligence .btn-primary:hover { box-shadow: 0 18px 44px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.16); }
+#intelligence .link-arrow { color: #D6DAE0; }
+#intelligence .ichat { background: radial-gradient(70% 60% at 85% 0%, rgba(214,218,224,0.10), transparent 60%), linear-gradient(160deg, #1A1C20, #0B0C0E); border-color: rgba(214,218,224,0.28); }
+#intelligence .ichat-back { border-color: rgba(214,218,224,0.14); }
+#intelligence .ichat-ico { border-color: rgba(214,218,224,0.3); color: #D6DAE0; }
+#intelligence .ichat-top small { color: #BFC3C8; }
+#intelligence .ichat-input, #intelligence .ichat-sug > span { border-color: rgba(214,218,224,0.20); }
+#intelligence .ichat-caret { background: #D6DAE0; }
+#intelligence .ichat-foot > span:first-child svg, #intelligence .ichat-sug svg { color: #BFC3C8; }
+#intelligence .ichat-send { background: var(--graphite); color: var(--white); border: 1px solid rgba(214,218,224,0.3); }

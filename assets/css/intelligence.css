@@ -1,22 +1,99 @@
 /* ═══════════════════════════════════════════════
    /intelligence — página do Relevantia Intelligence
-   Usa os tokens e componentes de relevantia.css;
-   aqui ficam só as peças desta página.
+   Identidade do Intelligence: preto e prata (a mesma
+   da página do Audience to Business). Usa os componentes
+   de relevantia.css e troca aqui o ouro pelo prata.
+   Botões sempre com texto branco.
    ═══════════════════════════════════════════════ */
 
-/* Hero: mesmo fundo do site, chat do Intelligence à direita */
+.page-intel {
+  --silver-grad: linear-gradient(110deg, #8E9196 0%, #F4F5F7 42%, #BFC3C8 62%, #7C8087 100%);
+  --silver:      #BFC3C8;
+  --silver-2:    #D6DAE0;
+  --silver-dark: #6B7078;
+  --silver-line: rgba(214,218,224,0.30);
+  --graphite:    linear-gradient(135deg, #2A2D32 0%, #3E434A 55%, #555B63 100%);
+  --night:       #08090A;
+  --night-2:     #111317;
+}
+
+/* ── Superfícies: preto neutro e cinza frio no lugar do marrom e do creme ── */
+.page-intel .hero,
+.page-intel .section--dark { background: linear-gradient(180deg, #050506 0%, var(--night) 60%, var(--night-2) 100%); }
+.page-intel .hero .g1 { background: radial-gradient(circle, rgba(200,204,210,0.16), transparent 70%); }
+.page-intel .hero .g2 { background: radial-gradient(circle, rgba(120,125,132,0.18), transparent 70%); }
+.page-intel .section--cream { background: linear-gradient(180deg, #FAFAFB 0%, #EEF0F2 100%); }
+.page-intel .footer { background: var(--night); }
+.page-intel .progress { background: var(--silver-grad); }
+.page-intel .topbar.scrolled { background: rgba(8,9,10,0.82); border-bottom-color: rgba(214,218,224,0.12); }
+
+/* ── Texto em prata (como "no seu negócio." no Audience to Business) ── */
+.page-intel .silver { background: var(--silver-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ── Selos e eyebrows ── */
+.page-intel .t-eyebrow { color: #4A4F57; background: rgba(120,125,132,0.06); border-color: rgba(120,125,132,0.28); }
+.page-intel .t-eyebrow::before { background: var(--silver-dark); animation-name: ping-silver; }
+.page-intel .hero .t-eyebrow,
+.page-intel .section--dark .t-eyebrow { color: var(--silver-2); background: rgba(220,224,230,0.06); border-color: var(--silver-line); }
+.page-intel .hero .t-eyebrow::before,
+.page-intel .section--dark .t-eyebrow::before { background: var(--silver); }
+@keyframes ping-silver {
+  0%        { box-shadow: 0 0 0 0 rgba(214,218,224,0.55); }
+  80%, 100% { box-shadow: 0 0 0 8px rgba(214,218,224,0); }
+}
+.page-intel .soon { background: transparent; color: var(--white); border: 1px solid var(--silver-line); }
+.page-intel .soon::before { background: var(--silver-2); animation-name: ping-silver; }
+
+/* ── Botões: grafite com borda prata e texto branco ── */
+.page-intel .btn-primary,
+.page-intel .nav-cta,
+.page-intel .nav-mobile-cta {
+  background: var(--graphite);
+  color: var(--white) !important;
+  border: 1px solid rgba(214,218,224,0.38);
+  box-shadow: 0 12px 34px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.12);
+}
+.page-intel .btn-primary::before { background: linear-gradient(135deg, #3A3E45, #5E646D); }
+.page-intel .btn-primary:hover { color: var(--white); box-shadow: 0 18px 44px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.16); }
+.page-intel .nav-cta:hover { box-shadow: 0 10px 28px rgba(0,0,0,0.35); }
+.page-intel .btn-ghost:hover { border-color: var(--silver); }
+.page-intel .section:not(.section--dark) .in-tier--atb .btn-ghost { border-color: rgba(255,255,255,0.28); color: var(--white); }
+.page-intel .section:not(.section--dark) .in-tier--atb .btn-ghost:hover { border-color: var(--silver-2); color: var(--white); }
+
+/* ── Detalhes que eram dourados ── */
+.page-intel .checks li::before { background: var(--silver-grad); }
+.page-intel .faq-q::after { color: var(--silver-dark); }
+.page-intel .opt input:checked + span { border-color: var(--silver-dark); background: rgba(120,125,132,0.08); }
+.page-intel .opt input:checked + span::before { background: var(--graphite); border-color: var(--silver-dark); }
+.page-intel .form-label .req { color: var(--silver-dark); }
+.page-intel .form-success-ico { background: var(--graphite); }
+.page-intel ::selection { background: rgba(120,125,132,0.22); }
+
+/* ── Chat do Intelligence em preto e prata ── */
+.page-intel .ichat { background: radial-gradient(70% 60% at 85% 0%, rgba(214,218,224,0.10), transparent 60%), linear-gradient(160deg, #1A1C20, #0B0C0E); border-color: rgba(214,218,224,0.28); }
+.page-intel .ichat-back { border-color: rgba(214,218,224,0.14); }
+.page-intel .ichat-ico { border-color: var(--silver-line); color: var(--silver-2); }
+.page-intel .ichat-top small { color: var(--silver); }
+.page-intel .ichat-input,
+.page-intel .ichat-sug > span { border-color: rgba(214,218,224,0.20); }
+.page-intel .ichat-caret { background: var(--silver-2); }
+.page-intel .ichat-foot > span:first-child svg,
+.page-intel .ichat-sug svg { color: var(--silver); }
+.page-intel .ichat-send { background: var(--graphite); color: var(--white); border: 1px solid var(--silver-line); }
+
+/* ── Hero ── */
 .in-hero .title-row { margin-bottom: 2px; }
 .in-hero h1 { max-width: 14ch; }
 .in-chat .ichat { transform: rotate(-3deg); }
 
-/* Como funciona */
+/* ── Como funciona ── */
 .in-steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: clamp(36px, 5vw, 56px); }
-.in-step { background: var(--white); border: 1px solid var(--gray-2); border-radius: var(--radius-lg); padding: 28px; }
-.in-step-num { display: block; font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--gold-dark); margin-bottom: 18px; }
+.in-step { background: var(--white); border: 1px solid #DDE0E4; border-radius: var(--radius-lg); padding: 28px; }
+.in-step-num { display: block; font-family: var(--font-display); font-size: 15px; font-weight: 600; margin-bottom: 18px; background: var(--silver-grad); -webkit-background-clip: text; background-clip: text; color: transparent; filter: brightness(.8); }
 .in-step h3 { font-size: 21px; }
-.in-step p { margin-top: 10px; color: var(--gray-4); font-size: 15.5px; line-height: 1.65; }
+.in-step p { margin-top: 10px; color: #4A4F57; font-size: 15.5px; line-height: 1.65; }
 
-/* Dimensões (cor da dimensão só no acento) */
+/* ── Dimensões (a cor da dimensão só no acento) ── */
 .in-dims { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(36px, 5vw, 56px); }
 .in-dim { position: relative; padding: 24px 24px 22px; border-radius: var(--radius-lg); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.09); }
 .in-dim::before { content: ''; position: absolute; left: 24px; top: 0; width: 36px; height: 3px; border-radius: 0 0 3px 3px; background: var(--dim); }
@@ -25,28 +102,40 @@
 .in-dim h3 { margin-top: 12px; font-size: 20px; color: var(--white); }
 .in-dim p { margin-top: 8px; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.68); }
 
-/* Agentes */
+/* ── Agentes ── */
 .in-agents { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 16px; margin-top: clamp(36px, 5vw, 56px); }
-.in-agent { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 24px; border-radius: var(--radius-lg); background: var(--gray-body); border: 1px solid var(--gray-2); }
-.in-agent-ico { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-gradient); color: var(--ink); font-size: 15px; margin-bottom: 6px; }
-.in-agent.soonish .in-agent-ico { background: var(--gray-1); color: var(--gold-dark); border: 1px solid var(--gold-border); }
-.in-agent-tag { position: absolute; top: 24px; right: 20px; font-family: var(--font-ui); font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-dark); }
+.in-agent { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 24px; border-radius: var(--radius-lg); background: #F6F7F8; border: 1px solid #DDE0E4; }
+.in-agent-ico { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--graphite); color: var(--white); font-size: 15px; margin-bottom: 6px; border: 1px solid var(--silver-line); }
+.in-agent.soonish .in-agent-ico { background: var(--white); color: var(--silver-dark); border-color: #CDD1D6; }
+.in-agent-tag { position: absolute; top: 24px; right: 20px; font-family: var(--font-ui); font-size: 10.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--silver-dark); }
 .in-agent h3 { font-size: 18px; }
-.in-agent p { font-size: 14.5px; line-height: 1.6; color: var(--gray-4); }
+.in-agent p { font-size: 14.5px; line-height: 1.6; color: #4A4F57; }
 
-/* Formas de acesso */
+/* ── Formas de acesso ── */
 .in-tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: clamp(36px, 5vw, 56px); align-items: stretch; }
-.in-tier { display: flex; flex-direction: column; padding: 30px 28px 28px; border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--gray-2); }
-.in-tier.destaque { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold), var(--shadow-md); }
-.in-tier small { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-dark); }
+.in-tier { display: flex; flex-direction: column; padding: 30px 28px 28px; border-radius: var(--radius-lg); background: var(--white); border: 1px solid #DDE0E4; }
+.in-tier.destaque { border-color: #9EA3AA; box-shadow: inset 0 0 0 1px #9EA3AA, var(--shadow-md); }
+.in-tier small { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--silver-dark); }
 .in-tier h3 { margin-top: 10px; font-size: 24px; }
-.in-tier > p { margin-top: 10px; font-size: 15.5px; line-height: 1.65; color: var(--gray-4); }
+.in-tier > p { margin-top: 10px; font-size: 15.5px; line-height: 1.65; color: #4A4F57; }
 .in-tier .checks { margin: 20px 0 26px; gap: 9px; flex: 1; }
-.in-tier .checks li { font-size: 15px; }
+.in-tier .checks li { font-size: 15px; color: #4A4F57; }
 .in-tier .btn { align-self: flex-start; }
 
-/* FAQ */
-.in-faq { margin-top: 28px; border-top: 1px solid var(--gray-2); }
+/* Audience to Business com a identidade da formação: cartão escuro e o nome
+   na mesma fonte da página dela (Poppins 700, "Business" em itálico creme) */
+.in-tier--atb { background: radial-gradient(90% 70% at 100% 0%, rgba(232,201,106,0.10), transparent 60%), linear-gradient(160deg, #120D02, #050300); border-color: rgba(232,201,106,0.22); color: var(--white); }
+.in-tier--atb small { color: #C8A84B; }
+.in-tier--atb > p, .in-tier--atb .checks li { color: rgba(255,255,255,0.72); }
+.in-tier--atb .checks li::before { background: linear-gradient(180deg, #F1E6C2, #D9C487); }
+.atb-name { font-family: var(--font-heading); font-weight: 700; font-size: 30px; line-height: 1; letter-spacing: -0.04em; color: var(--white); }
+.in-tier .atb-name { font-size: 30px; }
+.atb-name em { display: block; font-style: italic; padding-right: .08em; background: linear-gradient(180deg, #F1E6C2 0%, #E8D9A8 55%, #D9C487 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* ── FAQ ── */
+.in-faq { margin-top: 28px; border-top: 1px solid #DDE0E4; }
+.page-intel .faq-item { border-bottom-color: #DDE0E4; }
+.page-intel .faq-a { color: #4A4F57; }
 
 @media (max-width: 960px) {
   .in-steps, .in-tiers { grid-template-columns: 1fr; }
