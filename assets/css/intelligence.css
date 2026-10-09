@@ -234,7 +234,14 @@
    de --pos. Arrastar o controle muda --pos (assets/js/intelligence.js). */
 .vs-cmp { position: relative; display: grid; margin-top: clamp(36px, 5vw, 56px); border-radius: 24px; overflow: hidden; box-shadow: 0 30px 70px rgba(26,18,0,0.18); user-select: none; -webkit-user-select: none; }
 .vs-cmp > .vs-lado { grid-area: 1 / 1; }
-.vs-lado { display: flex; flex-direction: column; padding: clamp(24px, 3.4vw, 44px); }
+.vs-lado { --pad: clamp(24px, 3.4vw, 44px); display: flex; flex-direction: column; padding: var(--pad); }
+/* Posições de encaixe: com o Intelligence em foco sobra uma faixa do lado geral
+   (0 a --snap-l) e vice-versa. O conteúdo de cada lado fica só na área que ele
+   ocupa quando está em foco. */
+.vs-cmp { --snap-l: 28%; --snap-r: 72%; }
+.vs-geral { padding-right: calc(100% - var(--snap-r) + var(--pad)); }
+.vs-intel { padding-left: calc(var(--snap-l) + var(--pad)); }
+.vs-tag .curto { display: none; }
 .vs-intel { clip-path: inset(0 0 0 var(--pos)); }
 .vs-cmp.suave .vs-intel { transition: clip-path .75s cubic-bezier(.22,1,.36,1); }
 .vs-cmp.suave .vs-handle { transition: left .75s cubic-bezier(.22,1,.36,1); }
@@ -272,7 +279,6 @@
 .vs-ias { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 .vs-ias span { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px 6px 9px; border-radius: 100px; font-family: var(--font-heading); font-size: 13px; font-weight: 600; color: var(--black); background: var(--white); border: 1px solid var(--gray-2); }
 .vs-ias .lg { width: 16px; height: 16px; }
-.vs-tit-r { text-align: right; }
 .vs-tit b { display: block; margin-top: 4px; font-family: var(--font-heading); font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; letter-spacing: -0.02em; }
 
 /* lado geral: um chat isolado que pede contexto */
@@ -310,8 +316,8 @@
 .vs-intel .vs-lista li::before { content: '✓'; background: var(--gold-fill); color: var(--white); }
 
 /* Radar, dentro do lado do Intelligence */
-.vs-radar { padding: 18px 20px; border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(232,201,106,0.22); }
-.vs-radar img { width: 120px; height: auto; margin: -6px 0 2px -4px; }
+.vs-radar { margin-top: 4px; padding: 16px 18px; border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(232,201,106,0.22); }
+.vs-radar img { width: 104px; height: auto; margin: -6px 0 0 -4px; }
 .vs-radar p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
 .vs-radar p b { color: var(--white); font-weight: 600; }
 .vs-radar .link-arrow { margin-top: 10px; font-size: 14px; color: var(--gold-light); }
@@ -462,6 +468,10 @@
   .in-demo { margin: 8px auto 0; }
   .in-tiers { grid-template-columns: 1fr; }
   .in-sol, .in-dx, .in-conv, .in-int, .vs-body { grid-template-columns: 1fr; }
+  /* no celular e tablet, o Radar vai para depois da lista */
+  .vs-intel .vs-body > div:first-child { display: contents; }
+  .vs-intel .vs-col { order: 2; }
+  .vs-intel .vs-radar { order: 3; }
   .in-cap { margin: 10px auto 0; max-width: 520px; }
   .in-dx-list { flex-direction: row; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter); }
   .in-dx-list::-webkit-scrollbar { display: none; }
@@ -492,7 +502,7 @@
   .vs-lado { animation: in-panel .45s var(--ease); }
   .vs-lado > * { filter: none !important; opacity: 1 !important; }
   .vs-tit { padding-top: 0; }
-  .vs-tit-r { text-align: left; }
+  .vs-geral, .vs-intel { padding: var(--pad); }
   .vs-handle { display: none; }
   .vs-dica .longo { display: none; } .vs-dica .curto { display: inline; }
 }
