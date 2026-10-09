@@ -582,3 +582,7 @@
   .vs-radar-faixa img { margin: 0; }
   .vs-radar-faixa .link-arrow { margin-top: 0; white-space: nowrap; }
 }
+@media (min-width: 961px) {
+  .vs-intel .vs-lista { gap: 10px; }
+  .vs-intel .vs-lista li { font-size: 14.5px; line-height: 1.5; }
+}
