@@ -229,43 +229,98 @@
     }
   }
 
-  /* ── 4. Comparador: IA de uso geral × Intelligence ── */
+  /* ── 4. Comparador: IA de uso geral × Intelligence ──
+     Computador: arrastar o controle; o lado que ocupa menos espaço fica
+     desfocado. Celular (até 720px): um lado inteiro por vez, trocando pelo
+     seletor ou deslizando o dedo. */
   const cmp = document.querySelector('[data-cmp]');
   if (cmp) {
     const range = cmp.querySelector('.vs-range');
     const handle = cmp.querySelector('.vs-handle');
+    const tagL = cmp.querySelector('.vs-tag.l'), tagR = cmp.querySelector('.vs-tag.r');
+    const celular = matchMedia('(max-width: 720px)');
     let pos = 50;
+    const foco = () => {
+      const g = Math.max(0, Math.min(1, (50 - pos) / 25));   // geral perde foco quando o Intelligence cresce
+      const i = Math.max(0, Math.min(1, (pos - 50) / 25));
+      cmp.style.setProperty('--bg', (g * 5).toFixed(2) + 'px');
+      cmp.style.setProperty('--og', (1 - g * 0.45).toFixed(2));
+      cmp.style.setProperty('--bi', (i * 5).toFixed(2) + 'px');
+      cmp.style.setProperty('--oi', (1 - i * 0.45).toFixed(2));
+    };
+    const marca = () => {
+      const intel = celular.matches ? cmp.dataset.lado === 'intel' : pos < 50;
+      tagR.setAttribute('aria-pressed', intel); tagL.setAttribute('aria-pressed', !intel);
+    };
     const poe = (p, suave) => {
       pos = Math.max(0, Math.min(100, p));
       cmp.classList.toggle('suave', !!suave);
       cmp.style.setProperty('--pos', pos + '%');
+      cmp.classList.toggle('na-esquerda', pos <= 0);
+      cmp.classList.toggle('na-direita', pos >= 100);
       range.value = Math.round(pos);
+      foco();
+      marca();
     };
+    const lado = (qual) => { cmp.dataset.lado = qual; marca(); };
+    const modo = () => { if (celular.matches) lado(cmp.dataset.lado || 'geral'); else { delete cmp.dataset.lado; poe(pos); } };
+    celular.addEventListener('change', modo);
+    modo();
+    poe(50);
+
     const pelaX = x => { const r = cmp.getBoundingClientRect(); return ((x - r.left) / r.width) * 100; };
-    // Arrastar: pelo controle (mouse e toque) e, com mouse, em qualquer ponto
-    let arrastando = false;
-    const inicio = e => {
+    let arrastando = false, inicioPos = 50, ultimo = 50, direcao = 0;
+    cmp.addEventListener('pointerdown', e => {
+      if (celular.matches) return;
       if (e.pointerType !== 'mouse' && !handle.contains(e.target)) return;
       if (e.target.closest('a, button')) return;
       arrastando = true;
+      inicioPos = pos; ultimo = pos; direcao = 0;
       cmp.classList.add('arrastando');
       cmp.setPointerCapture(e.pointerId);
       poe(pelaX(e.clientX));
       e.preventDefault();
+    });
+    cmp.addEventListener('pointermove', e => {
+      if (!arrastando) return;
+      const p = pelaX(e.clientX);
+      if (Math.abs(p - ultimo) > 0.4) direcao = Math.sign(p - ultimo);
+      ultimo = p;
+      poe(p);
+    });
+    // Ao soltar, encaixa num lado em largura total: segue a direção do último
+    // movimento; sem arrastar de verdade, vai para o lado mais próximo
+    const fim = () => {
+      if (!arrastando) return;
+      arrastando = false;
+      cmp.classList.remove('arrastando');
+      const moveu = Math.abs(pos - inicioPos) > 4;
+      const alvo = moveu && direcao ? (direcao < 0 ? 0 : 100) : (pos < 50 ? 0 : 100);
+      poe(alvo, true);
     };
-    cmp.addEventListener('pointerdown', inicio);
-    cmp.addEventListener('pointermove', e => { if (arrastando) poe(pelaX(e.clientX)); });
-    const fim = () => { arrastando = false; cmp.classList.remove('arrastando'); };
     cmp.addEventListener('pointerup', fim);
     cmp.addEventListener('pointercancel', fim);
     range.addEventListener('input', () => poe(Number(range.value)));
-    cmp.querySelectorAll('[data-cmp-ir]').forEach(b => b.addEventListener('click', () => poe(Number(b.dataset.cmpIr), true)));
-    // Dica na primeira vez que aparece: o controle anda para os dois lados e volta ao meio
+    cmp.querySelectorAll('[data-cmp-ir]').forEach(b => b.addEventListener('click', () => {
+      const p = Number(b.dataset.cmpIr);
+      if (celular.matches) lado(p === 0 ? 'intel' : 'geral'); else poe(p, true);
+    }));
+    // Celular: deslizar o dedo para o lado troca
+    let x0 = null, y0 = null;
+    cmp.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    cmp.addEventListener('touchend', e => {
+      if (!celular.matches || x0 == null) return;
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) lado(dx < 0 ? 'intel' : 'geral');
+      x0 = null;
+    });
+    // Dica na primeira vez que aparece
     if (!reduce && 'IntersectionObserver' in window) {
       const io = new IntersectionObserver(async es => {
         if (!es.some(e => e.isIntersecting)) return;
         io.disconnect();
-        await wait(600);
+        await wait(700);
+        if (celular.matches) return;
         for (const p of [32, 66, 50]) { if (arrastando) break; poe(p, true); await wait(700); }
         cmp.classList.remove('suave');
       }, { threshold: 0.45 });

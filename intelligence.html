@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;600&family=Inter:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/css/relevantia.css?v=v12-11">
-<link rel="stylesheet" href="./assets/css/intelligence.css?v=i17">
+<link rel="stylesheet" href="./assets/css/intelligence.css?v=i19">
 </head>
 <body class="page-intel">
 
@@ -223,7 +223,7 @@
     <!-- Comparador: arraste o controle para passar da IA de uso geral para o Intelligence -->
     <div class="vs-cmp reveal" data-cmp style="--pos:50%">
       <article class="vs-lado vs-geral">
-        <div class="vs-tit"><b>Um chat, uma conversa</b></div>
+        <div class="vs-tit"><div class="vs-ias"><span><i class="lg" style="--lg:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/openai.svg);--c:#0F0F0F"></i>ChatGPT</span><span><i class="lg" style="--lg:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/claude.svg);--c:#D97757"></i>Claude</span></div><b>Um chat, uma conversa</b></div>
         <div class="vs-body">
           <div class="vs-chat" aria-hidden="true">
           <div class="b eu">Me ajuda com a estratégia do meu negócio?</div>
@@ -266,12 +266,14 @@
         </div>
       </article>
 
-      <button type="button" class="vs-tag l" data-cmp-ir="100"><span class="longo">IA de uso geral</span><span class="curto">IA geral</span></button>
-      <button type="button" class="vs-tag r" data-cmp-ir="0"><span class="longo">Relevantia Intelligence</span><span class="curto">Intelligence</span></button>
+      <div class="vs-tags" role="group" aria-label="Escolha o lado">
+        <button type="button" aria-pressed="false" class="vs-tag l" data-cmp-ir="100"><span class="longo">IA de uso geral</span><span class="curto">IA geral</span></button>
+      <button type="button" aria-pressed="false" class="vs-tag r" data-cmp-ir="0"><span class="longo">Relevantia Intelligence</span><span class="curto">Intelligence</span></button>
+      </div>
       <div class="vs-handle" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
       <input class="vs-range" type="range" min="0" max="100" value="50" aria-label="Comparar: arraste para a esquerda para ver o Intelligence e para a direita para ver a IA de uso geral">
     </div>
-    <p class="vs-dica reveal">Arraste para comparar</p>
+    <p class="vs-dica reveal"><span class="longo">Arraste para comparar</span><span class="curto">Toque ou deslize para trocar de lado</span></p>
   </div>
 </section>
 
@@ -623,6 +625,6 @@
 </footer>
 
 <script src="./assets/js/main.js?v=v12-11"></script>
-<script src="./assets/js/intelligence.js?v=i17"></script>
+<script src="./assets/js/intelligence.js?v=i19"></script>
 </body>
 </html>
