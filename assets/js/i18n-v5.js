@@ -342,4 +342,19 @@
     'eco.edge.p3.when': 'Every quarter', 'eco.edge.p3.title': 'Strategic review',
     'eco.edge.p3.desc': 'What moved forward, what changes priority and the new plan for new business.',
   });
+  /* Audience to Business (no lugar do Lab) */
+  Object.assign(I.en, {
+    'eco.atb.title': 'From audience to business, in two months',
+    'eco.atb.lead': 'Relevantia\'s live program with Isaac Araújo to turn your audience into recurring revenue, your own products and a real company.',
+    'eco.atb.b1': '<strong>6 live classes</strong> + 2 bonus classes and graduation',
+    'eco.atb.b2': '<strong>2 one-on-one mentoring sessions</strong> with Isaac',
+    'eco.atb.b3': '<strong>Intelligence + Radar</strong> throughout the program',
+    'eco.atb.cta': 'Save my spot',
+    'eco.atb.by': 'with Isaac Araújo',
+    'eco.atb.tag': 'Class 01',
+    'eco.atb.f1': 'Duration', 'eco.atb.f1v': '2 months',
+    'eco.atb.f2': 'Classes', 'eco.atb.f2v': '6 + 2 bonus',
+    'eco.atb.f3': 'Mentoring', 'eco.atb.f3v': '2 with Isaac',
+    'eco.atb.note': 'Live, with a graduation at the end',
+  });
 })();

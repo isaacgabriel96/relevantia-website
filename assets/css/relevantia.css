@@ -1185,6 +1185,18 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
 .sk + .sk { margin-top: 8px; width: 60%; }
 @keyframes sk { to { background-position: -200% 0; } }
 .lab-note { position: relative; margin-top: 16px; font-family: var(--font-display); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--gray-3); display: flex; align-items: center; gap: 8px; }
+/* Audience to Business: card no lugar do antigo Lab, clicável para a página da formação */
+.atb-vis { display: block; color: inherit; text-decoration: none; }
+.atb-vis .lab-card { transition: transform .5s var(--ease, ease), border-color .4s; }
+.atb-vis:hover .lab-card { transform: translateY(-4px); border-color: rgba(232,201,106,0.6); }
+.atb-face { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; object-position: 50% 18%; filter: grayscale(1); border: 1px solid rgba(232,201,106,0.35); }
+.atb-by { display: block; margin-top: 2px; font-size: 12px; color: var(--gray-3); }
+.atb-tag { color: #E8C96A; background: rgba(184,134,11,0.12); border-color: rgba(232,201,106,0.45); }
+.atb-tag i { background: #E8C96A; }
+.atb-rows .sq { display: grid; place-items: center; color: #E8C96A; }
+.atb-rows .sq svg { width: 18px; height: 18px; }
+.atb-rows .lab-row small { display: block; font-family: var(--font-display); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--gray-3); }
+.atb-rows .lab-row b { display: block; margin-top: 2px; font-family: var(--font-heading); font-weight: 600; font-size: 16px; color: #fff; }
 
 /* ═════════ MOCKUP DO INTELLIGENCE (chat) ═════════ */
 .ichat-wrap { position: relative; max-width: 480px; margin-left: auto; padding: 10px 0; }
