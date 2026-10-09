@@ -229,6 +229,50 @@
     }
   }
 
+  /* ── 4. Comparador: IA de uso geral × Intelligence ── */
+  const cmp = document.querySelector('[data-cmp]');
+  if (cmp) {
+    const range = cmp.querySelector('.vs-range');
+    const handle = cmp.querySelector('.vs-handle');
+    let pos = 50;
+    const poe = (p, suave) => {
+      pos = Math.max(0, Math.min(100, p));
+      cmp.classList.toggle('suave', !!suave);
+      cmp.style.setProperty('--pos', pos + '%');
+      range.value = Math.round(pos);
+    };
+    const pelaX = x => { const r = cmp.getBoundingClientRect(); return ((x - r.left) / r.width) * 100; };
+    // Arrastar: pelo controle (mouse e toque) e, com mouse, em qualquer ponto
+    let arrastando = false;
+    const inicio = e => {
+      if (e.pointerType !== 'mouse' && !handle.contains(e.target)) return;
+      if (e.target.closest('a, button')) return;
+      arrastando = true;
+      cmp.classList.add('arrastando');
+      cmp.setPointerCapture(e.pointerId);
+      poe(pelaX(e.clientX));
+      e.preventDefault();
+    };
+    cmp.addEventListener('pointerdown', inicio);
+    cmp.addEventListener('pointermove', e => { if (arrastando) poe(pelaX(e.clientX)); });
+    const fim = () => { arrastando = false; cmp.classList.remove('arrastando'); };
+    cmp.addEventListener('pointerup', fim);
+    cmp.addEventListener('pointercancel', fim);
+    range.addEventListener('input', () => poe(Number(range.value)));
+    cmp.querySelectorAll('[data-cmp-ir]').forEach(b => b.addEventListener('click', () => poe(Number(b.dataset.cmpIr), true)));
+    // Dica na primeira vez que aparece: o controle anda para os dois lados e volta ao meio
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(async es => {
+        if (!es.some(e => e.isIntersecting)) return;
+        io.disconnect();
+        await wait(600);
+        for (const p of [32, 66, 50]) { if (arrastando) break; poe(p, true); await wait(700); }
+        cmp.classList.remove('suave');
+      }, { threshold: 0.45 });
+      io.observe(cmp);
+    }
+  }
+
   // Com "reduzir movimento", os dados param de circular na rede do comparativo
   if (reduce) document.querySelectorAll('.vs-rede-svg').forEach(svg => svg.pauseAnimations && svg.pauseAnimations());
 
