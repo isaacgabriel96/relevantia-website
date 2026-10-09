@@ -31,6 +31,10 @@
 
 /* Parte do título em prata (como "no seu negócio." no Audience to Business) */
 .page-intel .silver { background: var(--silver-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* O recorte do degradê (background-clip: text) corta g, j, p e q quando a caixa
+   do texto acaba na linha de base: um respiro embaixo deixa as pernas inteiras. */
+.page-intel .silver, .in-rot-word { padding-bottom: .16em; margin-bottom: -.16em; }
+.page-intel span.silver { display: inline-block; }
 
 /* Eyebrows das partes escuras em prata; as claras seguem o padrão do site */
 .page-intel .hero .t-eyebrow,
