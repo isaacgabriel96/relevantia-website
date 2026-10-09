@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;600&family=Inter:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/css/relevantia.css?v=v12-11">
-<link rel="stylesheet" href="./assets/css/intelligence.css?v=i19">
+<link rel="stylesheet" href="./assets/css/intelligence.css?v=i22">
 </head>
 <body class="page-intel">
 
@@ -221,7 +221,7 @@
     </div>
 
     <!-- Comparador: arraste o controle para passar da IA de uso geral para o Intelligence -->
-    <div class="vs-cmp reveal" data-cmp style="--pos:50%">
+    <div class="vs-cmp reveal" data-cmp style="--pos:72%">
       <article class="vs-lado vs-geral">
         <div class="vs-tit"><div class="vs-ias"><span><i class="lg" style="--lg:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/openai.svg);--c:#0F0F0F"></i>ChatGPT</span><span><i class="lg" style="--lg:url(https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/claude.svg);--c:#D97757"></i>Claude</span></div><b>Um chat, uma conversa</b></div>
         <div class="vs-body">
@@ -240,7 +240,7 @@
       </article>
 
       <article class="vs-lado vs-intel">
-        <div class="vs-tit vs-tit-r"><b>Um sistema operacional</b></div>
+        <div class="vs-tit"><b>Um sistema operacional</b></div>
         <div class="vs-body">
           <div>
             <div class="vs-rede" aria-hidden="true">
@@ -249,6 +249,11 @@
             <span class="vs-no" style="left:50.00%;top:12.35%;--i:0">Chat</span><span class="vs-no" style="left:77.71%;top:31.18%;--i:1">Agentes</span><span class="vs-no" style="left:77.71%;top:68.82%;--i:2">Raio X</span><span class="vs-no" style="left:50.00%;top:87.65%;--i:3">Biblioteca</span><span class="vs-no" style="left:22.29%;top:68.82%;--i:4">Canais</span><span class="vs-no" style="left:22.29%;top:31.18%;--i:5">Radar</span>
           </div>
             <div class="vs-ctx" aria-hidden="true"><span>Contexto do seu negócio</span><b><i></i></b></div>
+            <div class="vs-radar">
+              <img src="./assets/logos/radar-wordmark-light.png" alt="Radar Relevantia" width="132" height="55" loading="lazy">
+              <p><b>Conectado ao Radar.</b> O Intelligence prepara, o Radar conecta: inventário, cotas e propostas montados aqui chegam ao Radar, onde marcas buscam onde investir.</p>
+              <a href="https://radar-relevantia.com.br/" class="link-arrow" target="_blank" rel="noopener">Conhecer o Radar</a>
+            </div>
           </div>
           <div class="vs-col">
             <ul class="vs-lista">
@@ -257,21 +262,16 @@
           <li><strong>Soluções que se comunicam:</strong> chat, agentes, Raio X, biblioteca e canais trocam informação entre si</li>
           <li><strong>Quanto mais ele sabe, mais ajuda:</strong> cada dado novo melhora a gestão de marketing, negócios e tecnologia</li>
         </ul>
-            <div class="vs-radar">
-              <img src="./assets/logos/radar-wordmark-light.png" alt="Radar Relevantia" width="132" height="55" loading="lazy">
-              <p><b>Conectado ao Radar.</b> O Intelligence prepara, o Radar conecta: inventário, cotas e propostas montados aqui chegam ao Radar, o sistema operacional de patrocínios e parcerias da Relevantia, onde marcas buscam onde investir.</p>
-              <a href="https://radar-relevantia.com.br/" class="link-arrow" target="_blank" rel="noopener">Conhecer o Radar</a>
-            </div>
           </div>
         </div>
       </article>
 
       <div class="vs-tags" role="group" aria-label="Escolha o lado">
-        <button type="button" aria-pressed="false" class="vs-tag l" data-cmp-ir="100"><span class="longo">IA de uso geral</span><span class="curto">IA geral</span></button>
-      <button type="button" aria-pressed="false" class="vs-tag r" data-cmp-ir="0"><span class="longo">Relevantia Intelligence</span><span class="curto">Intelligence</span></button>
+        <button type="button" aria-pressed="false" class="vs-tag l" data-cmp-ir><span class="longo">IA de uso geral</span><span class="curto">IA geral</span></button>
+      <button type="button" aria-pressed="false" class="vs-tag r" data-cmp-ir><span class="longo">Relevantia Intelligence</span><span class="curto">Intelligence</span></button>
       </div>
       <div class="vs-handle" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
-      <input class="vs-range" type="range" min="0" max="100" value="50" aria-label="Comparar: arraste para a esquerda para ver o Intelligence e para a direita para ver a IA de uso geral">
+      <input class="vs-range" type="range" min="0" max="100" value="72" aria-label="Comparar: arraste para a esquerda para ver o Intelligence e para a direita para ver a IA de uso geral">
     </div>
     <p class="vs-dica reveal"><span class="longo">Arraste para comparar</span><span class="curto">Toque ou deslize para trocar de lado</span></p>
   </div>
@@ -625,6 +625,6 @@
 </footer>
 
 <script src="./assets/js/main.js?v=v12-11"></script>
-<script src="./assets/js/intelligence.js?v=i19"></script>
+<script src="./assets/js/intelligence.js?v=i22"></script>
 </body>
 </html>

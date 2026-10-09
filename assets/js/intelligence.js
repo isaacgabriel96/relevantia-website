@@ -230,8 +230,9 @@
   }
 
   /* ── 4. Comparador: IA de uso geral × Intelligence ──
-     Computador: arrastar o controle; o lado que ocupa menos espaço fica
-     desfocado. Celular (até 720px): um lado inteiro por vez, trocando pelo
+     Computador: arrastar o controle; ao soltar, ele encaixa em SNAP_L
+     (Intelligence em foco) ou SNAP_R (IA geral em foco), e o lado menor fica
+     desfocado. As mesmas posições estão no CSS (--snap-l e --snap-r). Celular (até 720px): um lado inteiro por vez, trocando pelo
      seletor ou deslizando o dedo. */
   const cmp = document.querySelector('[data-cmp]');
   if (cmp) {
@@ -239,7 +240,8 @@
     const handle = cmp.querySelector('.vs-handle');
     const tagL = cmp.querySelector('.vs-tag.l'), tagR = cmp.querySelector('.vs-tag.r');
     const celular = matchMedia('(max-width: 720px)');
-    let pos = 50;
+    const SNAP_L = 28, SNAP_R = 72;
+    let pos = SNAP_R;
     const foco = () => {
       const g = Math.max(0, Math.min(1, (50 - pos) / 25));   // geral perde foco quando o Intelligence cresce
       const i = Math.max(0, Math.min(1, (pos - 50) / 25));
@@ -266,10 +268,10 @@
     const modo = () => { if (celular.matches) lado(cmp.dataset.lado || 'geral'); else { delete cmp.dataset.lado; poe(pos); } };
     celular.addEventListener('change', modo);
     modo();
-    poe(50);
+    poe(SNAP_R);
 
     const pelaX = x => { const r = cmp.getBoundingClientRect(); return ((x - r.left) / r.width) * 100; };
-    let arrastando = false, inicioPos = 50, ultimo = 50, direcao = 0;
+    let arrastando = false, inicioPos = SNAP_R, ultimo = SNAP_R, direcao = 0;
     cmp.addEventListener('pointerdown', e => {
       if (celular.matches) return;
       if (e.pointerType !== 'mouse' && !handle.contains(e.target)) return;
@@ -288,22 +290,22 @@
       ultimo = p;
       poe(p);
     });
-    // Ao soltar, encaixa num lado em largura total: segue a direção do último
-    // movimento; sem arrastar de verdade, vai para o lado mais próximo
+    // Ao soltar, encaixa num dos lados: segue a direção do último movimento;
+    // sem arrastar de verdade, vai para o lado mais próximo
     const fim = () => {
       if (!arrastando) return;
       arrastando = false;
       cmp.classList.remove('arrastando');
       const moveu = Math.abs(pos - inicioPos) > 4;
-      const alvo = moveu && direcao ? (direcao < 0 ? 0 : 100) : (pos < 50 ? 0 : 100);
+      const alvo = moveu && direcao ? (direcao < 0 ? SNAP_L : SNAP_R) : (pos < 50 ? SNAP_L : SNAP_R);
       poe(alvo, true);
     };
     cmp.addEventListener('pointerup', fim);
     cmp.addEventListener('pointercancel', fim);
     range.addEventListener('input', () => poe(Number(range.value)));
     cmp.querySelectorAll('[data-cmp-ir]').forEach(b => b.addEventListener('click', () => {
-      const p = Number(b.dataset.cmpIr);
-      if (celular.matches) lado(p === 0 ? 'intel' : 'geral'); else poe(p, true);
+      const intel = b.classList.contains('r');
+      if (celular.matches) lado(intel ? 'intel' : 'geral'); else poe(intel ? SNAP_L : SNAP_R, true);
     }));
     // Celular: deslizar o dedo para o lado troca
     let x0 = null, y0 = null;
@@ -314,15 +316,14 @@
       if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) lado(dx < 0 ? 'intel' : 'geral');
       x0 = null;
     });
-    // Dica na primeira vez que aparece
+    // Na primeira vez que aparece: começa na IA geral e desliza até o Intelligence
     if (!reduce && 'IntersectionObserver' in window) {
       const io = new IntersectionObserver(async es => {
         if (!es.some(e => e.isIntersecting)) return;
         io.disconnect();
         await wait(700);
         if (celular.matches) return;
-        for (const p of [32, 66, 50]) { if (arrastando) break; poe(p, true); await wait(700); }
-        cmp.classList.remove('suave');
+        if (!arrastando) poe(SNAP_L, true);
       }, { threshold: 0.45 });
       io.observe(cmp);
     }
