@@ -1420,21 +1420,10 @@ h4, .h4 { font-size: clamp(17px, 1.4vw, 20px); }
   .player .vid-meta { margin-top: 10px; }
 }
 
-/* ═════════ Intelligence: identidade preto e prata (como no Audience to Business e em /intelligence) ═════════ */
-#intelligence { --silver-grad: linear-gradient(110deg, #8E9196 0%, #F4F5F7 42%, #BFC3C8 62%, #7C8087 100%); --graphite: linear-gradient(135deg, #2A2D32 0%, #3E434A 55%, #555B63 100%); }
+/* ═════════ Intelligence: toque preto e prata (como no Audience to Business e em /intelligence) ═════════ */
+#intelligence { --silver-grad: linear-gradient(110deg, #8E9196 0%, #F4F5F7 42%, #BFC3C8 62%, #7C8087 100%); }
 #intelligence .eco-product { background: var(--silver-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 #intelligence .soon { background: transparent; color: var(--white); border: 1px solid rgba(214,218,224,0.32); }
 #intelligence .soon::before { background: #D6DAE0; }
 #intelligence .checks li::before { background: var(--silver-grad); }
-#intelligence .btn-primary { background: var(--graphite); border: 1px solid rgba(214,218,224,0.38); box-shadow: 0 12px 34px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12); }
-#intelligence .btn-primary::before { background: linear-gradient(135deg, #3A3E45, #5E646D); }
-#intelligence .btn-primary:hover { box-shadow: 0 18px 44px rgba(0,0,0,0.36), inset 0 1px 0 rgba(255,255,255,0.16); }
 #intelligence .link-arrow { color: #D6DAE0; }
-#intelligence .ichat { background: radial-gradient(70% 60% at 85% 0%, rgba(214,218,224,0.10), transparent 60%), linear-gradient(160deg, #1A1C20, #0B0C0E); border-color: rgba(214,218,224,0.28); }
-#intelligence .ichat-back { border-color: rgba(214,218,224,0.14); }
-#intelligence .ichat-ico { border-color: rgba(214,218,224,0.3); color: #D6DAE0; }
-#intelligence .ichat-top small { color: #BFC3C8; }
-#intelligence .ichat-input, #intelligence .ichat-sug > span { border-color: rgba(214,218,224,0.20); }
-#intelligence .ichat-caret { background: #D6DAE0; }
-#intelligence .ichat-foot > span:first-child svg, #intelligence .ichat-sug svg { color: #BFC3C8; }
-#intelligence .ichat-send { background: var(--graphite); color: var(--white); border: 1px solid rgba(214,218,224,0.3); }
